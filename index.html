@@ -42,9 +42,14 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .card-info{flex:1;min-width:0}.card-word{font-size:15px;font-weight:700;direction:ltr;text-align:left;color:var(--ink)}.card-trans{font-size:12px;color:var(--muted);margin-top:2px}
 .pos-badge{font-size:10px;color:var(--school);background:var(--school-l);padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap}
 .teacher-badge{font-size:10px;color:var(--gold-d);background:var(--gold-l);padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap}
+.unit-badge{font-size:10px;color:var(--teal-d);background:var(--teal-l);padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap}
 .del-btn{background:none;border:none;cursor:pointer;color:var(--hint);font-size:16px;padding:4px;flex-shrink:0}
 .empty-box{text-align:center;padding:40px 16px}.empty-icon{font-size:48px;margin-bottom:12px}
 .empty-h{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}.empty-p{font-size:13px;color:var(--muted);line-height:1.7}
+.unit-filter{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;scrollbar-width:none}
+.unit-filter::-webkit-scrollbar{display:none}
+.unit-btn{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:var(--surface);font-size:12px;font-weight:600;font-family:inherit;color:var(--muted);cursor:pointer;white-space:nowrap}
+.unit-btn.active{background:var(--school);color:#fff;border-color:var(--school)}
 .add-wrap{padding:20px 16px 110px}
 .section-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;margin-bottom:16px}
 .sc-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px}.sc-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
@@ -52,7 +57,6 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .pd-label{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
 .pd-text{font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:12px}
 .copy-btn{display:flex;align-items:center;gap:6px;background:var(--gold);color:#fff;border:none;border-radius:var(--r-sm);padding:9px 16px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer}
-.copy-btn:active{opacity:.85}
 .lang-row{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:12px}
 .lang-label{font-size:12px;color:var(--muted);white-space:nowrap}
 .lang-sel{flex:1;border:none;background:none;outline:none;font-size:14px;font-weight:600;font-family:inherit;color:var(--ink);direction:ltr}
@@ -108,134 +112,147 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .modal-cancel{width:100%;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:500;font-family:inherit;color:var(--muted);cursor:pointer}
 .teacher-login-btn{background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:12px;font-size:13px;font-weight:600;font-family:inherit;color:var(--muted);cursor:pointer;width:100%;margin-top:8px}
 .info-note{font-size:11px;background:var(--teal-l);color:var(--teal-d);padding:10px 12px;border-radius:var(--r-sm);margin-bottom:12px;line-height:1.6}
+.warn-note{font-size:11px;background:var(--gold-l);color:var(--gold-d);padding:10px 12px;border-radius:var(--r-sm);margin-bottom:12px;line-height:1.6}
 .toast{position:fixed;bottom:85px;left:50%;z-index:200;transform:translateX(-50%) translateY(12px);background:var(--ink2);color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;white-space:nowrap;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .loading-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);z-index:200;transform:scaleX(0);transform-origin:right;transition:transform .3s}
 .loading-bar.show{transform:scaleX(1);transform-origin:left}
+/* Login screen */
+.login-screen{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
+.login-logo{width:72px;height:72px;border-radius:20px;background:var(--school);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#fff;margin-bottom:20px}
+.login-title{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:6px;text-align:center}
+.login-sub{font-size:13px;color:var(--muted);margin-bottom:32px;text-align:center;line-height:1.6}
+.login-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:24px;width:100%;max-width:340px}
+.login-label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
+.login-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:13px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:14px;transition:border-color .15s}
+.login-input:focus{border-color:var(--school)}
+.login-btn{width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
+.login-btn:active{opacity:.85}
 </style>
 </head>
 <body>
 <div class="loading-bar" id="loading-bar"></div>
 <div class="toast" id="toast"></div>
  
-<!-- Login -->
+<!-- Student Login Screen -->
+<div id="login-screen" class="login-screen">
+  <div class="login-logo">پ</div>
+  <div class="login-title">واژه‌یار پیشرو</div>
+  <div class="login-sub">مدرسه غیرانتفاعی پیشرو<br>برای ورود، نام کلاس خود را وارد کنید</div>
+  <div class="login-box">
+    <label class="login-label">نام کلاس یا نام شما</label>
+    <input class="login-input" type="text" id="student-name" placeholder="مثلاً: هفتم الف یا علی محمدی" autocomplete="off">
+    <button class="login-btn" onclick="studentLogin()">ورود به اپ</button>
+  </div>
+</div>
+ 
+<!-- Teacher Set Password Modal -->
+<div class="modal-bg" id="modal-set-pass">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">تنظیم رمز معلم</div>
+    <div class="info-note">اولین بار است وارد می‌شوید. رمز دلخواه خود را تنظیم کنید. این رمز ذخیره می‌شود و دیگران نمی‌بینند.</div>
+    <input class="modal-input" type="password" id="np1" placeholder="رمز جدید (حداقل ۶ کاراکتر)...">
+    <input class="modal-input" type="password" id="np2" placeholder="تکرار رمز...">
+    <button class="modal-btn" onclick="setNewPass()">ذخیره رمز و ورود</button>
+    <button class="modal-cancel" onclick="closeModal('modal-set-pass')">انصراف</button>
+  </div>
+</div>
+ 
+<!-- Teacher Login Modal -->
 <div class="modal-bg" id="modal-login">
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title">ورود معلم</div>
-    <div class="modal-sub">رمز خود را وارد کنید</div>
+    <div class="modal-sub">رمز عبور خود را وارد کنید</div>
     <input class="modal-input" type="password" id="pass-input" placeholder="رمز عبور...">
     <button class="modal-btn" onclick="checkPass()">ورود</button>
     <button class="modal-cancel" onclick="closeModal('modal-login')">انصراف</button>
   </div>
 </div>
  
-<!-- Set Pass (first time) -->
-<div class="modal-bg" id="modal-set-pass">
-  <div class="modal-box">
-    <div class="modal-handle"></div>
-    <div class="modal-title">تنظیم رمز معلم</div>
-    <div class="info-note">اولین بار است وارد می‌شوید. یک رمز دلخواه برای خود بسازید. رمز فقط روی همین دستگاه ذخیره می‌شه و در هیچ‌جای کد دیده نمی‌شه.</div>
-    <input class="modal-input" type="password" id="np1" placeholder="رمز جدید (حداقل ۴ کاراکتر)...">
-    <input class="modal-input" type="password" id="np2" placeholder="تکرار رمز...">
-    <button class="modal-btn" onclick="setNewPass()">ذخیره و ورود</button>
-  </div>
-</div>
- 
-<!-- Teacher Add -->
+<!-- Teacher Add Modal -->
 <div class="modal-bg" id="modal-teacher-add">
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title">افزودن کارت برای همه دانش‌آموزان</div>
-    <div class="modal-sub">این کارت در سرور ذخیره می‌شه و همه دانش‌آموزان می‌بینن.</div>
-    <textarea class="json-ta" id="teacher-json" placeholder='{ "word": "persevere", ... }' style="min-height:120px"></textarea>
+    <div class="modal-sub">این کارت در سرور ذخیره می‌شه و همه می‌بینن.</div>
+    <div class="lang-row" style="margin-bottom:12px">
+      <span class="login-label" style="margin:0;white-space:nowrap">یونیت:</span>
+      <select class="lang-sel" id="unit-select">
+        <option value="1">یونیت ۱ — Nice to meet you</option>
+        <option value="2">یونیت ۲ — In class</option>
+        <option value="3">یونیت ۳ — In my family</option>
+        <option value="4">یونیت ۴ — Daily life</option>
+        <option value="5">یونیت ۵ — Free time</option>
+        <option value="6">یونیت ۶ — My neighborhood</option>
+        <option value="7">یونیت ۷ — Food</option>
+        <option value="8">یونیت ۸ — Clothes</option>
+        <option value="9">یونیت ۹ — My interests</option>
+        <option value="10">یونیت ۱۰ — Busy lives</option>
+        <option value="11">یونیت ۱۱ — Looking back</option>
+        <option value="12">یونیت ۱۲ — Fabulous food</option>
+      </select>
+    </div>
+    <textarea class="json-ta" id="teacher-json" placeholder='{ "word": "introduce", ... }' style="min-height:120px"></textarea>
     <button class="modal-btn" onclick="addTeacherCard()" style="margin-top:10px">افزودن به کارت‌های مدرسه</button>
     <button class="modal-cancel" onclick="closeModal('modal-teacher-add')">انصراف</button>
   </div>
 </div>
  
 <!-- Topbar -->
-<div class="topbar">
+<div class="topbar" id="topbar" style="display:none">
   <div class="tb-left">
     <button class="back-btn" id="back-btn" style="display:none" onclick="goBack()">←</button>
     <div id="school-logo" style="display:flex;align-items:center;gap:8px">
       <div class="school-emblem">پ</div>
-      <div><div class="school-name">واژه‌یار پیشرو</div><div class="school-sub">مدرسه غیرانتفاعی پیشرو</div></div>
+      <div><div class="school-name">واژه‌یار پیشرو</div><div class="school-sub" id="student-label">مدرسه پیشرو</div></div>
     </div>
   </div>
   <span class="tb-badge" id="tb-badge"></span>
 </div>
  
 <!-- HOME -->
-<div class="screen active" id="s-home">
+<div class="screen" id="s-home">
   <div class="sb">
     <div class="hero-banner">
-      <div class="hero-eyebrow">مدرسه پیشرو</div>
+      <div class="hero-eyebrow">Touchstone 1 — مدرسه پیشرو</div>
       <div class="hero-title">واژه‌یار هوشمند</div>
-      <div class="hero-sub">کارت‌های معلم رو مطالعه کن، تمرین کن و پیشرفتت رو ببین</div>
+      <div class="hero-sub">کارت‌های معلم رو مطالعه کن و تمرین کن</div>
       <div class="hero-stats">
         <div><div class="hstat-n" id="h-total">0</div><div class="hstat-l">کل کارت</div></div>
-        <div><div class="hstat-n" id="h-teacher">0</div><div class="hstat-l">از معلم</div></div>
-        <div><div class="hstat-n" id="h-mine">0</div><div class="hstat-l">کارت من</div></div>
+        <div><div class="hstat-n" id="h-units">0</div><div class="hstat-l">یونیت</div></div>
+        <div><div class="hstat-n" id="h-score">—</div><div class="hstat-l">موفقیت</div></div>
       </div>
     </div>
     <div class="mode-row">
-      <div class="mode-card" onclick="startFullQuiz()"><div class="mode-icon">🎯</div><div class="mode-title">تمرین همه</div><div class="mode-desc">همه کارت‌ها</div></div>
-      <div class="mode-card" onclick="startTeacherQuiz()"><div class="mode-icon">📚</div><div class="mode-title">کارت‌های معلم</div><div class="mode-desc">درس این هفته</div></div>
+      <div class="mode-card" onclick="startFullQuiz()"><div class="mode-icon">🎯</div><div class="mode-title">تمرین همه</div><div class="mode-desc">همه یونیت‌ها</div></div>
+      <div class="mode-card" onclick="showUnitPicker()"><div class="mode-icon">📚</div><div class="mode-title">تمرین یونیت</div><div class="mode-desc">انتخاب یونیت</div></div>
     </div>
+ 
+    <div class="section-head"><span>فیلتر یونیت</span></div>
+    <div class="unit-filter" id="unit-filter"></div>
+ 
     <div id="sec-teacher" style="display:none">
-      <div class="section-head"><span>کارت‌های معلم</span><button class="see-all" onclick="showAllTeacher()">همه</button></div>
+      <div class="section-head"><span id="cards-section-title">کارت‌های معلم</span><button class="see-all" onclick="showAllCards()">همه</button></div>
       <div id="list-teacher"></div>
     </div>
-    <div id="sec-mine" style="display:none">
-      <div class="section-head"><span>کارت‌های من</span><button class="see-all" onclick="goTab('add')">+ اضافه</button></div>
-      <div id="list-mine"></div>
-    </div>
+ 
     <div id="empty-home" class="empty-box">
       <div class="empty-icon">📖</div>
       <div class="empty-h">در حال بارگذاری...</div>
       <div class="empty-p">کارت‌های معلم از سرور دریافت می‌شه</div>
     </div>
+ 
     <button class="teacher-login-btn" onclick="openTeacherLogin()">🔐 ورود معلم</button>
   </div>
 </div>
  
-<!-- ADD -->
-<div class="screen" id="s-add">
-  <div class="add-wrap">
-    <div class="section-card">
-      <div class="sc-title">پرامپت رو از AI بگیر</div>
-      <div class="sc-sub">زبان رو انتخاب کن، پرامپت رو کپی کن و توی Claude یا ChatGPT بذار.</div>
-      <div class="lang-row"><span class="lang-label">زبان:</span>
-        <select class="lang-sel" id="lang-sel">
-          <option value="English">انگلیسی</option><option value="German">آلمانی</option>
-          <option value="French">فرانسوی</option><option value="Spanish">اسپانیایی</option>
-          <option value="Turkish">ترکی</option>
-        </select>
-      </div>
-      <div class="prompt-dark">
-        <div class="pd-label">پرامپت آماده</div>
-        <div class="pd-text">کپی کن ← توی Claude/ChatGPT بذار ← JSON جواب رو اینجا پیست کن</div>
-        <button class="copy-btn" onclick="copyPrompt()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          کپی پرامپت
-        </button>
-      </div>
-    </div>
-    <div class="section-card">
-      <div class="sc-title">JSON رو اینجا پیست کن</div>
-      <div class="sc-sub">جواب AI رو کپی کن و اینجا بذار — فقط JSON، بدون توضیح.</div>
-      <textarea class="json-ta" id="student-json" placeholder='{ "word": "resilient", ... }'></textarea>
-      <button class="primary-btn" onclick="addMyCard()">+ افزودن کارت شخصی</button>
-    </div>
-  </div>
-</div>
+<!-- QUIZ -->
+<div class="screen" id="s-quiz"><div class="quiz-sb" id="quiz-body"></div></div>
  
 <!-- DETAIL -->
 <div class="screen" id="s-detail"><div class="sb" id="detail-body"></div></div>
- 
-<!-- QUIZ -->
-<div class="screen" id="s-quiz"><div class="quiz-sb" id="quiz-body"></div></div>
  
 <!-- STATS -->
 <div class="screen" id="s-stats">
@@ -246,18 +263,18 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
       <div class="stat-tile"><div class="st-num" id="st-ok">0</div><div class="st-lbl">جواب درست</div></div>
       <div class="stat-tile"><div class="st-num" id="st-pct">—</div><div class="st-lbl">درصد موفقیت</div></div>
     </div>
-    <div class="section-head" style="margin-bottom:12px">آخرین کارت‌ها</div>
-    <div id="recent-list"></div>
+    <div class="section-head" style="margin-bottom:12px">پیشرفت به تفکیک یونیت</div>
+    <div id="unit-stats"></div>
     <button class="reset-btn" onclick="resetStats()">پاک کردن آمار تمرین</button>
   </div>
 </div>
  
-<nav class="bottomnav">
+<nav class="bottomnav" id="bottomnav" style="display:none">
   <button class="ntab active" id="nt-home" onclick="goTab('home')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>خانه</span>
   </button>
-  <button class="ntab" id="nt-add" onclick="goTab('add')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>اضافه</span>
+  <button class="ntab" id="nt-quiz" onclick="startFullQuiz()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>تمرین</span>
   </button>
   <button class="ntab" id="nt-stats" onclick="goTab('stats')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>آمار</span>
@@ -269,159 +286,261 @@ const SB='https://akmwnlmwfouunwmdnbbb.supabase.co';
 const SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFrbXdubG13Zm91dW53bWRuYmJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxNDI0NTQsImV4cCI6MjA5NzcxODQ1NH0.Kqts_Xq03Wtc3wV-jNhLJnZm86RF_pu-AIOvYpbGJAg';
 const API=`${SB}/rest/v1/cards`;
 const H={'apikey':SK,'Authorization':`Bearer ${SK}`,'Content-Type':'application/json','Prefer':'return=representation'};
-const PROMPT=l=>`You are a language learning assistant. I want to create a flashcard for the ${l} language.\n\nGive me a JSON object for a word or phrase of your choice that is useful for intermediate learners. Do NOT ask me which word — just pick one yourself that hasn't been common/basic.\n\nReturn ONLY valid JSON, no markdown, no backticks:\n\n{\n  "word": "the ${l} word",\n  "language": "${l}",\n  "translation": "Persian meaning",\n  "pronunciation": "phonetic",\n  "part_of_speech": "noun/verb/etc",\n  "definition": "short Persian definition",\n  "example1": "example in ${l}",\n  "example1_translation": "Persian translation",\n  "example2": "another example in ${l}",\n  "example2_translation": "Persian translation",\n  "synonyms": ["s1","s2","s3"],\n  "quiz_question": "sentence with ___ instead of word",\n  "quiz_answer": "the word",\n  "quiz_options": ["wrong1","wrong2","wrong3"]\n}`;
  
-let TC=[],MC=JSON.parse(localStorage.getItem('py_m')||'[]');
-let ST=JSON.parse(localStorage.getItem('py_s')||'{"p":0,"c":0}');
-let cur='home',prev='home',OCD=null;
+const UNITS={1:'Nice to meet you',2:'In class',3:'In my family',4:'Daily life',5:'Free time',6:'My neighborhood',7:'Food',8:'Clothes',9:'My interests',10:'Busy lives',11:'Looking back',12:'Fabulous food'};
  
-function saveL(){localStorage.setItem('py_m',JSON.stringify(MC));localStorage.setItem('py_s',JSON.stringify(ST));}
-function all(){return[...TC,...MC];}
+// State
+let TC=[];
+let ST=JSON.parse(localStorage.getItem('py_s')||'{"p":0,"c":0,"units":{}}');
+let cur='home',prev='home',OCD=null,activeUnit=0;
+let studentName='';
+ 
+function saveL(){localStorage.setItem('py_s',JSON.stringify(ST));}
 function ld(on){document.getElementById('loading-bar').classList.toggle('show',on);}
-function getP(){return localStorage.getItem('py_tp');}
  
+// ── Password (hashed with simple SHA-like) ──
+async function hashPass(p){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p+'pishro_salt'));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function getStoredHash(){return localStorage.getItem('py_th');}
+ 
+// ── Student Login ──
+function studentLogin(){
+  const name=document.getElementById('student-name').value.trim();
+  if(!name||name.length<2){toast('لطفاً نام یا کلاس خود را وارد کنید');return;}
+  studentName=name;
+  localStorage.setItem('py_student',name);
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('topbar').style.display='flex';
+  document.getElementById('bottomnav').style.display='flex';
+  document.getElementById('student-label').textContent=name;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-home').classList.add('active');
+  fetchTC();
+}
+ 
+// Check if already logged in
+window.addEventListener('load',()=>{
+  const saved=localStorage.getItem('py_student');
+  if(saved){
+    studentName=saved;
+    document.getElementById('student-name').value=saved;
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('topbar').style.display='flex';
+    document.getElementById('bottomnav').style.display='flex';
+    document.getElementById('student-label').textContent=saved;
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('s-home').classList.add('active');
+    fetchTC();
+  }
+});
+ 
+// ── Teacher Auth ──
 function openTeacherLogin(){
-  if(!getP()){
-    document.getElementById('modal-set-pass').classList.add('show');
+  if(!getStoredHash()){
+    openModal('modal-set-pass');
     setTimeout(()=>document.getElementById('np1').focus(),150);
   } else {
     openModal('modal-login');
   }
 }
  
-function setNewPass(){
+async function setNewPass(){
   const p1=document.getElementById('np1').value;
   const p2=document.getElementById('np2').value;
-  if(!p1||p1.length<4){toast('رمز باید حداقل ۴ کاراکتر باشد');return;}
+  if(!p1||p1.length<6){toast('رمز باید حداقل ۶ کاراکتر باشد');return;}
   if(p1!==p2){toast('رمزها یکسان نیستند');return;}
-  localStorage.setItem('py_tp',p1);
+  const h=await hashPass(p1);
+  localStorage.setItem('py_th',h);
   document.getElementById('modal-set-pass').classList.remove('show');
   document.getElementById('np1').value='';document.getElementById('np2').value='';
   openModal('modal-teacher-add');
   toast('رمز ذخیره شد! خوش آمدید معلم گرامی');
 }
  
-function checkPass(){
-  if(document.getElementById('pass-input').value===getP()){
+async function checkPass(){
+  const p=document.getElementById('pass-input').value;
+  const h=await hashPass(p);
+  if(h===getStoredHash()){
     closeModal('modal-login');document.getElementById('pass-input').value='';
     openModal('modal-teacher-add');toast('خوش آمدید، معلم گرامی!');
   } else toast('رمز اشتباه است');
 }
  
+// ── Supabase ──
 async function fetchTC(){
   ld(true);
   try{
-    const r=await fetch(`${API}?is_teacher=eq.true&order=created_at.desc`,{headers:H});
+    const r=await fetch(`${API}?is_teacher=eq.true&order=unit_number.asc,created_at.asc`,{headers:H});
     const d=await r.json();
     TC=d.map(x=>({...x,synonyms:Array.isArray(x.synonyms)?x.synonyms:[],quiz_options:Array.isArray(x.quiz_options)?x.quiz_options:[],_teacher:true}));
     renderHome();
-  }catch{toast('خطا در اتصال به سرور');}
+    renderUnitFilter();
+  }catch{
+    document.getElementById('empty-home').querySelector('.empty-h').textContent='خطا در اتصال';
+    document.getElementById('empty-home').querySelector('.empty-p').textContent='اینترنت خود را بررسی کنید';
+    document.getElementById('empty-home').style.display='';
+  }
   ld(false);
 }
  
 async function saveSB(c){
-  const b={word:c.word,language:c.language,translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true};
+  const b={word:c.word,language:c.language||'English',translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1};
   const r=await fetch(API,{method:'POST',headers:H,body:JSON.stringify(b)});
+  if(!r.ok)throw new Error(await r.text());
+}
+ 
+async function delSB(id){
+  const r=await fetch(`${API}?id=eq.${id}`,{method:'DELETE',headers:H});
   if(!r.ok)throw new Error();
 }
- 
-async function delSB(id){await fetch(`${API}?id=eq.${id}`,{method:'DELETE',headers:H});}
- 
-function copyPrompt(){
-  const t=PROMPT(document.getElementById('lang-sel').value);
-  navigator.clipboard.writeText(t).catch(()=>{const el=document.createElement('textarea');el.value=t;el.style.cssText='position:fixed;opacity:0';document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);});
-  toast('پرامپت کپی شد!');
-}
- 
-function parseC(raw){const c=JSON.parse(raw.replace(/```json|```/g,'').trim());if(!c.word||!c.translation)throw new Error();return c;}
  
 async function addTeacherCard(){
   const raw=document.getElementById('teacher-json').value.trim();
   if(!raw){toast('چیزی پیست نشده!');return;}
-  try{const c=parseC(raw);ld(true);await saveSB(c);await fetchTC();closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';toast('کارت معلم برای همه اضافه شد ✓');}
-  catch{toast('فرمت JSON اشتباه است');}
+  try{
+    const c=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    if(!c.word||!c.translation)throw new Error();
+    ld(true);await saveSB(c);await fetchTC();
+    closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';
+    toast('کارت معلم برای همه اضافه شد ✓');
+  }catch(e){toast('فرمت JSON اشتباه است: '+e.message);}
   ld(false);
 }
  
-function addMyCard(){
-  const raw=document.getElementById('student-json').value.trim();
-  if(!raw){toast('چیزی پیست نشده!');return;}
-  try{const c=parseC(raw);c.id=Date.now()+Math.random();c._mine=true;MC.unshift(c);saveL();renderHome();document.getElementById('student-json').value='';toast('کارت شخصی اضافه شد ✓');goTab('home');}
-  catch{toast('فرمت JSON اشتباه است');}
+async function delTeacher(id){
+  if(!confirm('این کارت برای همه حذف شود؟'))return;
+  ld(true);
+  try{await delSB(id);await fetchTC();toast('حذف شد');}
+  catch{toast('خطا در حذف');}
+  ld(false);
 }
  
-async function delTeacher(id){if(!confirm('این کارت برای همه حذف شود؟'))return;ld(true);await delSB(id);await fetchTC();ld(false);toast('حذف شد');}
-function delMine(id){MC=MC.filter(c=>c.id!==id);saveL();renderHome();toast('حذف شد');}
- 
+// ── Render ──
 function renderHome(){
-  const a=all();
-  document.getElementById('h-total').textContent=a.length;
-  document.getElementById('h-teacher').textContent=TC.length;
-  document.getElementById('h-mine').textContent=MC.length;
-  document.getElementById('tb-badge').textContent=a.length?a.length+' کارت':'';
-  const emp=document.getElementById('empty-home');
-  emp.style.display=a.length?'none':'';
-  if(!a.length){emp.querySelector('.empty-h').textContent='هنوز کارتی نداری';emp.querySelector('.empty-p').textContent='معلم کارت‌هایی برات آماده می‌کنه یا خودت اضافه کن';}
-  document.getElementById('sec-teacher').style.display=TC.length?'':'none';
-  document.getElementById('sec-mine').style.display=MC.length?'':'none';
-  document.getElementById('list-teacher').innerHTML=TC.slice(0,3).map(c=>rHTML(c,true)).join('');
-  document.getElementById('list-mine').innerHTML=MC.slice(0,3).map(c=>rHTML(c,false)).join('');
+  const filtered=activeUnit===0?TC:TC.filter(c=>c.unit_number===activeUnit);
+  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean);
+  document.getElementById('h-total').textContent=TC.length;
+  document.getElementById('h-units').textContent=units.length;
+  const pct=ST.p>0?Math.round(ST.c/ST.p*100)+'%':'—';
+  document.getElementById('h-score').textContent=pct;
+  document.getElementById('tb-badge').textContent=TC.length?TC.length+' کارت':'';
+  document.getElementById('empty-home').style.display=TC.length?'none':'';
+  if(!TC.length){document.getElementById('empty-home').querySelector('.empty-h').textContent='هنوز کارتی نداری';document.getElementById('empty-home').querySelector('.empty-p').textContent='معلم به زودی کارت‌هایی اضافه می‌کند';}
+  document.getElementById('sec-teacher').style.display=filtered.length?'':'none';
+  document.getElementById('cards-section-title').textContent=activeUnit===0?'همه کارت‌ها':`یونیت ${activeUnit} — ${UNITS[activeUnit]||''}`;
+  document.getElementById('list-teacher').innerHTML=filtered.slice(0,6).map(c=>rowHTML(c)).join('');
 }
  
-function rHTML(c,isT){
-  return`<div class="card-row" onclick="openCard('${c.id}',${isT})">
+function rowHTML(c){
+  const unitNum=c.unit_number||'';
+  return`<div class="card-row" onclick="openCard('${c.id}')">
     <div class="card-avatar">${c.word[0].toUpperCase()}</div>
     <div class="card-info"><div class="card-word">${c.word}</div><div class="card-trans">${c.translation}</div></div>
-    ${isT?'<span class="teacher-badge">معلم</span>':`<span class="pos-badge">${c.part_of_speech||'word'}</span>`}
-    <button class="del-btn" onclick="event.stopPropagation();${isT?`delTeacher(${c.id})`:`delMine(${c.id})`}">✕</button>
+    ${unitNum?`<span class="unit-badge">U${unitNum}</span>`:''}
   </div>`;
 }
  
-function showAllTeacher(){document.getElementById('list-teacher').innerHTML=TC.map(c=>rHTML(c,true)).join('');}
+function showAllCards(){
+  const filtered=activeUnit===0?TC:TC.filter(c=>c.unit_number===activeUnit);
+  document.getElementById('list-teacher').innerHTML=filtered.map(c=>rowHTML(c)).join('');
+}
  
-function openCard(id,isT){
-  const c=(isT?TC:MC).find(x=>String(x.id)===String(id));
+function renderUnitFilter(){
+  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean).sort((a,b)=>a-b);
+  const el=document.getElementById('unit-filter');
+  el.innerHTML=`<button class="unit-btn ${activeUnit===0?'active':''}" onclick="filterUnit(0)">همه</button>`+
+    units.map(u=>`<button class="unit-btn ${activeUnit===u?'active':''}" onclick="filterUnit(${u})">یونیت ${u}</button>`).join('');
+}
+ 
+function filterUnit(u){
+  activeUnit=u;renderHome();renderUnitFilter();
+}
+ 
+function openCard(id){
+  const c=TC.find(x=>String(x.id)===String(id));
   if(!c)return;OCD=c;
   const syn=c.synonyms?.length?`<div class="info-block"><div class="ib-label">مترادف‌ها</div><div class="syn-wrap">${c.synonyms.map(s=>`<span class="syn-tag">${s}</span>`).join('')}</div></div>`:'';
+  const unitInfo=c.unit_number?`<span class="unit-badge" style="margin-left:6px">یونیت ${c.unit_number}</span>`:'';
   document.getElementById('detail-body').innerHTML=`
     <div class="word-hero" data-l="${c.word[0].toUpperCase()}">
-      <div class="wh-pos">${isT?'<span class="teacher-badge" style="margin-left:6px">معلم</span>':''}${c.part_of_speech||''} · ${c.language||''}</div>
+      <div class="wh-pos">${unitInfo}<span class="teacher-badge">معلم</span></div>
       <div class="wh-word">${c.word}</div><div class="wh-phon">${c.pronunciation||''}</div>
       <div class="wh-trans">${c.translation}</div><div class="wh-def">${c.definition||''}</div>
     </div>
     <div class="info-block"><div class="ib-label">مثال‌ها</div>
       <div class="ex-en">${c.example1}</div><div class="ex-fa">${c.example1_translation}</div>
-      <div class="ex-en">${c.example2}</div><div class="ex-fa">${c.example2_translation}</div>
+      <div class="ex-en" style="margin-top:10px">${c.example2}</div><div class="ex-fa">${c.example2_translation}</div>
     </div>${syn}
     <button class="practice-btn" onclick="runQuiz([OCD])">تمرین این کارت</button>`;
   showScreen('detail');
 }
  
-function startFullQuiz(){if(!all().length){toast('کارتی وجود ندارد');return;}runQuiz([...all()].sort(()=>Math.random()-.5));}
-function startTeacherQuiz(){if(!TC.length){toast('معلم هنوز کارت نداده');return;}runQuiz([...TC].sort(()=>Math.random()-.5));}
+// ── Quiz ──
+function startFullQuiz(){
+  if(!TC.length){toast('کارتی وجود ندارد');return;}
+  const pool=activeUnit===0?[...TC]:[...TC.filter(c=>c.unit_number===activeUnit)];
+  if(!pool.length){toast('کارتی برای این یونیت وجود ندارد');return;}
+  runQuiz(pool.sort(()=>Math.random()-.5));
+}
+ 
+function showUnitPicker(){
+  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean).sort((a,b)=>a-b);
+  if(!units.length){toast('کارتی وجود ندارد');return;}
+  const opts=units.map(u=>`<div class="card-row" onclick="startUnitQuiz(${u})" style="cursor:pointer">
+    <div class="card-avatar" style="background:var(--school);color:#fff;font-size:14px;font-weight:700">${u}</div>
+    <div class="card-info"><div class="card-word" style="direction:rtl;text-align:right">یونیت ${u}</div><div class="card-trans">${UNITS[u]||''}</div></div>
+    <span class="unit-badge">${TC.filter(c=>c.unit_number===u).length} کارت</span>
+  </div>`).join('');
+  document.getElementById('quiz-body').innerHTML=`<div style="padding:20px 0 110px"><div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px">کدام یونیت؟</div>${opts}</div>`;
+  showScreen('quiz');
+}
+ 
+function startUnitQuiz(u){
+  const pool=TC.filter(c=>c.unit_number===u).sort(()=>Math.random()-.5);
+  runQuiz(pool);
+}
  
 function runQuiz(pool){
-  let idx=0,ans=false,ses=0;showScreen('quiz');
+  let idx=0,ans=false,ses=0;
+  showScreen('quiz');
   function render(){
     if(idx>=pool.length){
-      const p=Math.round(ses/pool.length*100);
-      document.getElementById('quiz-body').innerHTML=`<div class="quiz-done"><div class="done-ring">${p>=70?'🎉':'💪'}</div><div class="done-h">${p>=70?'آفرین!':'ادامه بده!'}</div><div class="done-score">${p}%</div><div class="done-score-l">${ses} از ${pool.length} درست</div><button class="practice-btn" style="width:100%" onclick="goTab('home')">برگشت به خانه</button></div>`;
+      const pct=Math.round(ses/pool.length*100);
+      document.getElementById('quiz-body').innerHTML=`<div class="quiz-done" style="padding-top:60px">
+        <div class="done-ring">${pct>=70?'🎉':'💪'}</div>
+        <div class="done-h">${pct>=70?'آفرین!':'ادامه بده!'}</div>
+        <div class="done-score">${pct}%</div>
+        <div class="done-score-l">${ses} از ${pool.length} درست</div>
+        <button class="practice-btn" style="width:100%" onclick="goTab('home')">برگشت به خانه</button>
+        <button style="width:100%;margin-top:10px;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:14px;font-size:14px;font-family:inherit;cursor:pointer" onclick="runQuiz(pool.sort(()=>Math.random()-.5))">تمرین دوباره</button>
+      </div>`;
       return;
     }
     const c=pool[idx],opts=[...(c.quiz_options||[]),c.quiz_answer].sort(()=>Math.random()-.5);
     ans=false;
     document.getElementById('quiz-body').innerHTML=`
-      <div class="qprog-track"><div class="qprog-fill" style="width:${Math.round(idx/pool.length*100)}%"></div></div>
-      <div class="qcounter">سوال ${idx+1} از ${pool.length}</div>
-      <div class="quiz-card"><div class="qc-label">جای خالی را پر کن</div>
-        <div class="qc-sentence">${(c.quiz_question||'').replace('___','<span class="qc-blank">___</span>')}</div>
-      </div>
-      <div class="opts-list">${opts.map(o=>`<button class="opt-btn" data-v="${o.replace(/"/g,'&quot;')}" onclick="pick(this)">${o}</button>`).join('')}</div>
-      <div class="qfeedback" id="qfb"></div>
-      <button class="next-btn" id="qnxt" onclick="nxt()">${idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه'}</button>`;
+      <div style="padding-top:20px">
+        <div class="qprog-track"><div class="qprog-fill" style="width:${Math.round(idx/pool.length*100)}%"></div></div>
+        <div class="qcounter">سوال ${idx+1} از ${pool.length}${c.unit_number?' · یونیت '+c.unit_number:''}</div>
+        <div class="quiz-card"><div class="qc-label">جای خالی را پر کن</div>
+          <div class="qc-sentence">${(c.quiz_question||'').replace('___','<span class="qc-blank">___</span>')}</div>
+        </div>
+        <div class="opts-list">${opts.map(o=>`<button class="opt-btn" data-v="${o.replace(/"/g,'&quot;')}" onclick="pick(this)">${o}</button>`).join('')}</div>
+        <div class="qfeedback" id="qfb"></div>
+        <button class="next-btn" id="qnxt" onclick="nxt()">${idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه'}</button>
+      </div>`;
     window.pick=b=>{
       if(ans)return;ans=true;ST.p++;
-      const ok=b.dataset.v===c.quiz_answer;if(ok){ST.c++;ses++;}saveL();
+      const ok=b.dataset.v===c.quiz_answer;
+      if(ok){ST.c++;ses++;}
+      if(c.unit_number){
+        if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
+        ST.units[c.unit_number].p++;
+        if(ok)ST.units[c.unit_number].c++;
+      }
+      saveL();
       document.querySelectorAll('.opt-btn').forEach(x=>{if(x.dataset.v===c.quiz_answer)x.classList.add('correct');else if(x===b&&!ok)x.classList.add('wrong');x.disabled=true;});
       const fb=document.getElementById('qfb');
       fb.textContent=ok?'آفرین! جواب درسته ✓':`اشتباه — جواب: ${c.quiz_answer}`;
@@ -433,20 +552,40 @@ function runQuiz(pool){
   render();
 }
  
+// ── Stats ──
 function fillStats(){
-  const a=all();
-  document.getElementById('st-c').textContent=a.length;
+  document.getElementById('st-c').textContent=TC.length;
   document.getElementById('st-p').textContent=ST.p;
   document.getElementById('st-ok').textContent=ST.c;
   document.getElementById('st-pct').textContent=ST.p>0?Math.round(ST.c/ST.p*100)+'%':'—';
-  document.getElementById('recent-list').innerHTML=a.slice(0,5).map(c=>`<div class="card-row" onclick="openCard('${c.id}',${!!c._teacher})"><div class="card-avatar">${c.word[0].toUpperCase()}</div><div class="card-info"><div class="card-word">${c.word}</div><div class="card-trans">${c.translation}</div></div>${c._teacher?'<span class="teacher-badge">معلم</span>':''}</div>`).join('')||'<div style="color:var(--hint);font-size:13px;padding:12px 0">هنوز کارتی نداری</div>';
+  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean).sort((a,b)=>a-b);
+  document.getElementById('unit-stats').innerHTML=units.map(u=>{
+    const s=ST.units&&ST.units[u];
+    const pct=s&&s.p>0?Math.round(s.c/s.p*100):0;
+    const done=s&&s.p>0;
+    return`<div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px">
+      <div style="width:40px;height:40px;border-radius:10px;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0">${u}</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">${UNITS[u]||'یونیت '+u}</div>
+        <div style="height:4px;background:var(--line);border-radius:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${pct>=70?'var(--teal)':'var(--school)'};border-radius:4px"></div></div>
+      </div>
+      <div style="font-size:13px;font-weight:700;color:${done?(pct>=70?'var(--teal-d)':'var(--school)'):'var(--hint)'}">${done?pct+'%':'—'}</div>
+    </div>`;
+  }).join('')||'<div style="color:var(--hint);font-size:13px;padding:12px 0">هنوز تمرین نکردی</div>';
 }
-function resetStats(){if(!confirm('آمار پاک شود؟'))return;ST={p:0,c:0};saveL();fillStats();toast('آمار پاک شد');}
  
+function resetStats(){if(!confirm('آمار پاک شود؟'))return;ST={p:0,c:0,units:{}};saveL();fillStats();toast('آمار پاک شد');}
+ 
+// ── Modal ──
 function openModal(id){document.getElementById(id).classList.add('show');setTimeout(()=>{const i=document.querySelector(`#${id} input,#${id} textarea`);i&&i.focus();},150);}
 function closeModal(id){document.getElementById(id).classList.remove('show');}
  
-function goTab(n){if(n==='stats')fillStats();showScreen(n);['home','add','stats'].forEach(x=>document.getElementById('nt-'+x)?.classList.toggle('active',x===n));}
+// ── Nav ──
+function goTab(n){
+  if(n==='stats')fillStats();
+  showScreen(n);
+  ['home','quiz','stats'].forEach(x=>document.getElementById('nt-'+x)?.classList.toggle('active',x===n));
+}
 function showScreen(n){
   prev=cur;cur=n;
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -455,10 +594,12 @@ function showScreen(n){
   document.getElementById('school-logo').style.display=n==='detail'?'none':'flex';
   window.scrollTo(0,0);
 }
-function goBack(){const t=prev==='detail'?'home':prev;showScreen(t);['home','add','stats'].forEach(x=>document.getElementById('nt-'+x)?.classList.toggle('active',x===cur));}
+function goBack(){
+  const t=prev==='detail'||prev==='quiz'?'home':prev;
+  showScreen(t);
+  ['home','quiz','stats'].forEach(x=>document.getElementById('nt-'+x)?.classList.toggle('active',x===cur));
+}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400);}
- 
-fetchTC();
 </script>
 </body>
 </html>
