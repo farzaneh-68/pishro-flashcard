@@ -508,60 +508,80 @@ function startUnitQuiz(u){
 function runQuiz(pool){
   let idx=0,ans=false,ses=0;
   showScreen('quiz');
+ 
+  const qBody=document.getElementById('quiz-body');
+ 
+  // event delegation روی quiz-body
+  qBody.addEventListener('click',function handler(e){
+    const btn=e.target.closest('.opt-btn');
+    const nxt=e.target.closest('#qnxt');
+ 
+    if(btn){
+      if(ans)return;
+      const c=pool[idx];
+      ans=true;ST.p++;
+      const ok=btn.dataset.v===c.quiz_answer;
+      if(ok){ST.c++;ses++;}
+      if(c.unit_number){
+        if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
+        ST.units[c.unit_number].p++;
+        if(ok)ST.units[c.unit_number].c++;
+      }
+      saveL();
+      document.querySelectorAll('.opt-btn').forEach(x=>{
+        if(x.dataset.v===c.quiz_answer)x.classList.add('correct');
+        else if(x===btn&&!ok)x.classList.add('wrong');
+        x.disabled=true;
+      });
+      const fb=document.getElementById('qfb');
+      fb.textContent=ok?'آفرین! جواب درسته ✓':`اشتباه — جواب: ${c.quiz_answer}`;
+      fb.className='qfeedback show '+(ok?'ok':'no');
+      const qn=document.getElementById('qnxt');
+      if(qn)qn.className='next-btn show';
+    }
+ 
+    if(nxt){
+      idx++;
+      if(idx>=pool.length){
+        qBody.removeEventListener('click',handler);
+      }
+      render();
+    }
+  });
+ 
   function render(){
     if(idx>=pool.length){
       const pct=Math.round(ses/pool.length*100);
-      document.getElementById('quiz-body').innerHTML=`<div class="quiz-done" style="padding-top:60px">
+      qBody.innerHTML=`<div class="quiz-done" style="padding-top:60px">
         <div class="done-ring">${pct>=70?'🎉':'💪'}</div>
         <div class="done-h">${pct>=70?'آفرین!':'ادامه بده!'}</div>
         <div class="done-score">${pct}%</div>
         <div class="done-score-l">${ses} از ${pool.length} درست</div>
         <button class="practice-btn" style="width:100%" onclick="goTab('home')">برگشت به خانه</button>
-        <button style="width:100%;margin-top:10px;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:14px;font-size:14px;font-family:inherit;cursor:pointer" onclick="runQuiz(pool.sort(()=>Math.random()-.5))">تمرین دوباره</button>
+        <button style="width:100%;margin-top:10px;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:14px;font-size:14px;font-family:inherit;cursor:pointer" onclick="runQuiz([...pool].sort(()=>Math.random()-.5))">تمرین دوباره</button>
       </div>`;
       return;
     }
-    const c=pool[idx],opts=[...(c.quiz_options||[]),c.quiz_answer].sort(()=>Math.random()-.5);
+    const c=pool[idx];
     ans=false;
-    document.getElementById('quiz-body').innerHTML=`
-      <div style="padding-top:20px">
+    const opts=[...(c.quiz_options||[]),c.quiz_answer].sort(()=>Math.random()-.5);
+    qBody.innerHTML=`
+      <div style="padding:20px 0 110px">
         <div class="qprog-track"><div class="qprog-fill" style="width:${Math.round(idx/pool.length*100)}%"></div></div>
         <div class="qcounter">سوال ${idx+1} از ${pool.length}${c.unit_number?' · یونیت '+c.unit_number:''}</div>
-        <div class="quiz-card"><div class="qc-label">جای خالی را پر کن</div>
+        <div class="quiz-card">
+          <div class="qc-label">جای خالی را پر کن</div>
           <div class="qc-sentence">${(c.quiz_question||'').replace('___','<span class="qc-blank">___</span>')}</div>
         </div>
-        <div class="opts-list" id="opts-list">${opts.map(o=>`<button class="opt-btn" data-v="${o.replace(/"/g,'&quot;')}">${o}</button>`).join('')}</div>
+        <div class="opts-list">${opts.map(o=>`<button class="opt-btn" data-v="${o.replace(/"/g,'&quot;')}">${o}</button>`).join('')}</div>
         <div class="qfeedback" id="qfb"></div>
         <button class="next-btn" id="qnxt">${idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه'}</button>
       </div>`;
-    document.querySelectorAll('.opt-btn').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        if(ans)return;ans=true;ST.p++;
-        const ok=btn.dataset.v===c.quiz_answer;
-        if(ok){ST.c++;ses++;}
-        if(c.unit_number){
-          if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
-          ST.units[c.unit_number].p++;
-          if(ok)ST.units[c.unit_number].c++;
-        }
-        saveL();
-        document.querySelectorAll('.opt-btn').forEach(x=>{
-          if(x.dataset.v===c.quiz_answer)x.classList.add('correct');
-          else if(x===btn&&!ok)x.classList.add('wrong');
-          x.disabled=true;
-        });
-        const fb=document.getElementById('qfb');
-        fb.textContent=ok?'آفرین! جواب درسته ✓':`اشتباه — جواب: ${c.quiz_answer}`;
-        fb.className='qfeedback show '+(ok?'ok':'no');
-        document.getElementById('qnxt').className='next-btn show';
-      });
-    });
-    document.getElementById('qnxt').addEventListener('click',()=>{idx++;render();});
   }
+ 
   render();
 }
  
-// ── Stats ──
 function fillStats(){
   document.getElementById('st-c').textContent=TC.length;
   document.getElementById('st-p').textContent=ST.p;
