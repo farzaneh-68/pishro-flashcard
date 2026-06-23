@@ -31,38 +31,21 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .hero-sub{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:18px}
 .hero-stats{display:flex;gap:20px}.hstat-n{font-size:22px;font-weight:900;color:#fff}.hstat-l{font-size:10px;color:rgba(255,255,255,.45);font-weight:500}
 .mode-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.mode-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;cursor:pointer;transition:background .1s}
-.mode-card:active{background:var(--bg)}.mode-icon{font-size:26px;margin-bottom:8px}
-.mode-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}.mode-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.mode-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;cursor:pointer}
+.mode-icon{font-size:26px;margin-bottom:8px}.mode-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:2px}.mode-desc{font-size:11px;color:var(--muted);line-height:1.5}
 .section-head{font-size:11px;font-weight:700;color:var(--hint);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
 .see-all{font-size:11px;color:var(--school);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600}
-.card-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:13px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:9px;transition:background .1s}
-.card-row:active{background:var(--bg)}
+.card-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:13px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:9px}
 .card-avatar{width:42px;height:42px;border-radius:11px;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0;font-family:Georgia,serif}
 .card-info{flex:1;min-width:0}.card-word{font-size:15px;font-weight:700;direction:ltr;text-align:left;color:var(--ink)}.card-trans{font-size:12px;color:var(--muted);margin-top:2px}
-.pos-badge{font-size:10px;color:var(--school);background:var(--school-l);padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap}
-.teacher-badge{font-size:10px;color:var(--gold-d);background:var(--gold-l);padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap}
 .unit-badge{font-size:10px;color:var(--teal-d);background:var(--teal-l);padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap}
-.del-btn{background:none;border:none;cursor:pointer;color:var(--hint);font-size:16px;padding:4px;flex-shrink:0}
-.empty-box{text-align:center;padding:40px 16px}.empty-icon{font-size:48px;margin-bottom:12px}
-.empty-h{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}.empty-p{font-size:13px;color:var(--muted);line-height:1.7}
+.teacher-badge{font-size:10px;color:var(--gold-d);background:var(--gold-l);padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap}
 .unit-filter{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;scrollbar-width:none}
 .unit-filter::-webkit-scrollbar{display:none}
 .unit-btn{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:var(--surface);font-size:12px;font-weight:600;font-family:inherit;color:var(--muted);cursor:pointer;white-space:nowrap}
 .unit-btn.active{background:var(--school);color:#fff;border-color:var(--school)}
-.add-wrap{padding:20px 16px 110px}
-.section-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;margin-bottom:16px}
-.sc-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px}.sc-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6}
-.prompt-dark{background:var(--school);border-radius:var(--r-md);padding:16px;margin-bottom:12px}
-.pd-label{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.pd-text{font-size:11px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:12px}
-.copy-btn{display:flex;align-items:center;gap:6px;background:var(--gold);color:#fff;border:none;border-radius:var(--r-sm);padding:9px 16px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer}
-.lang-row{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:12px}
-.lang-label{font-size:12px;color:var(--muted);white-space:nowrap}
-.lang-sel{flex:1;border:none;background:none;outline:none;font-size:14px;font-weight:600;font-family:inherit;color:var(--ink);direction:ltr}
-.json-ta{width:100%;min-height:90px;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;font-size:12px;font-family:'Courier New',monospace;direction:ltr;text-align:left;resize:none;background:var(--bg);color:var(--ink);outline:none;line-height:1.5;transition:border-color .15s}
-.json-ta:focus{border-color:var(--school)}
-.primary-btn{width:100%;margin-top:12px;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
+.empty-box{text-align:center;padding:40px 16px}.empty-icon{font-size:48px;margin-bottom:12px}
+.empty-h{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px}.empty-p{font-size:13px;color:var(--muted);line-height:1.7}
 .word-hero{background:var(--school);border-radius:var(--r-xl);padding:26px 22px;margin-bottom:14px;position:relative;overflow:hidden}
 .word-hero::after{content:attr(data-l);position:absolute;bottom:-15px;left:5px;font-size:130px;font-weight:900;color:rgba(255,255,255,0.04);font-family:Georgia,serif;line-height:1;pointer-events:none}
 .wh-pos{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px}
@@ -75,26 +58,6 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .ex-fa{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6;margin-bottom:12px}
 .syn-wrap{display:flex;flex-wrap:wrap;gap:8px}.syn-tag{font-size:13px;padding:6px 14px;border-radius:20px;background:var(--teal-l);color:var(--teal-d);font-weight:500;direction:ltr}
 .practice-btn{width:100%;margin-top:14px;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
-.quiz-sb{padding:20px 16px 110px}
-.qprog-track{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:8px}
-.qprog-fill{height:100%;background:var(--school);border-radius:4px;transition:width .4s}
-.qcounter{font-size:12px;color:var(--muted);margin-bottom:20px}
-.quiz-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:22px;margin-bottom:18px}
-.qc-label{font-size:10px;font-weight:700;color:var(--hint);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
-.qc-sentence{font-size:17px;color:var(--ink);direction:ltr;text-align:left;line-height:1.8}
-.qc-blank{color:var(--school);font-weight:700;border-bottom:2px solid var(--school);padding:0 3px}
-.opts-list{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
-.opt-btn{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-md);padding:15px 18px;font-size:15px;font-weight:500;font-family:inherit;color:var(--ink);cursor:pointer;text-align:left;direction:ltr}
-.opt-btn:active:not(:disabled){background:var(--bg)}.opt-btn.correct{background:var(--teal-l);border-color:var(--teal);color:var(--teal-d);font-weight:700}
-.opt-btn.wrong{background:var(--rose-l);border-color:var(--rose);color:var(--rose-d);font-weight:700}.opt-btn:disabled{cursor:default}
-.qfeedback{border-radius:var(--r-md);padding:13px 16px;font-size:14px;font-weight:600;margin-bottom:12px;display:none}
-.qfeedback.show{display:block}.qfeedback.ok{background:var(--teal-l);color:var(--teal-d)}.qfeedback.no{background:var(--rose-l);color:var(--rose-d)}
-.next-btn{width:100%;background:var(--ink);color:#fff;border:none;border-radius:var(--r-md);padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;display:none}
-.next-btn.show{display:block}
-.quiz-done{text-align:center;padding:50px 16px}
-.done-ring{width:96px;height:96px;border-radius:50%;background:var(--school-l);margin:0 auto 22px;display:flex;align-items:center;justify-content:center;font-size:44px}
-.done-h{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:8px}
-.done-score{font-size:40px;font-weight:900;color:var(--school);margin-bottom:4px}.done-score-l{font-size:13px;color:var(--muted);margin-bottom:28px}
 .stats-sb{padding:20px 16px 110px}.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .stat-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 14px}
 .stat-tile.dark{background:var(--school);border-color:var(--school)}.st-num{font-size:34px;font-weight:900;color:var(--ink);line-height:1}
@@ -106,56 +69,79 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .modal-handle{width:36px;height:4px;background:var(--line);border-radius:4px;margin:0 auto 20px}
 .modal-title{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px}
 .modal-sub{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.6}
-.modal-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;font-size:14px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:10px;transition:border-color .15s}
+.modal-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;font-size:14px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:10px}
 .modal-input:focus{border-color:var(--school)}
 .modal-btn{width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;margin-bottom:8px}
 .modal-cancel{width:100%;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:500;font-family:inherit;color:var(--muted);cursor:pointer}
 .teacher-login-btn{background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:12px;font-size:13px;font-weight:600;font-family:inherit;color:var(--muted);cursor:pointer;width:100%;margin-top:8px}
+.lang-row{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:12px}
+.lang-sel{flex:1;border:none;background:none;outline:none;font-size:14px;font-weight:600;font-family:inherit;color:var(--ink);direction:ltr}
+.json-ta{width:100%;min-height:90px;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;font-size:12px;font-family:'Courier New',monospace;direction:ltr;text-align:left;resize:none;background:var(--bg);color:var(--ink);outline:none;line-height:1.5}
+.json-ta:focus{border-color:var(--school)}
 .info-note{font-size:11px;background:var(--teal-l);color:var(--teal-d);padding:10px 12px;border-radius:var(--r-sm);margin-bottom:12px;line-height:1.6}
-.warn-note{font-size:11px;background:var(--gold-l);color:var(--gold-d);padding:10px 12px;border-radius:var(--r-sm);margin-bottom:12px;line-height:1.6}
 .toast{position:fixed;bottom:85px;left:50%;z-index:200;transform:translateX(-50%) translateY(12px);background:var(--ink2);color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:500;opacity:0;transition:all .25s;white-space:nowrap;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .loading-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);z-index:200;transform:scaleX(0);transform-origin:right;transition:transform .3s}
 .loading-bar.show{transform:scaleX(1);transform-origin:left}
-/* Login screen */
 .login-screen{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
 .login-logo{width:72px;height:72px;border-radius:20px;background:var(--school);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#fff;margin-bottom:20px}
 .login-title{font-size:22px;font-weight:900;color:var(--ink);margin-bottom:6px;text-align:center}
 .login-sub{font-size:13px;color:var(--muted);margin-bottom:32px;text-align:center;line-height:1.6}
 .login-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:24px;width:100%;max-width:340px}
 .login-label{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;display:block}
-.login-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:13px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:14px;transition:border-color .15s}
+.login-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:13px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:14px}
 .login-input:focus{border-color:var(--school)}
 .login-btn{width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
-.login-btn:active{opacity:.85}
+ 
+/* ── QUIZ ── */
+.quiz-wrap{padding:20px 16px 110px}
+.q-prog-track{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:8px}
+.q-prog-fill{height:100%;background:var(--school);border-radius:4px;transition:width .4s}
+.q-counter{font-size:12px;color:var(--muted);margin-bottom:20px}
+.q-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:22px;margin-bottom:18px}
+.q-label{font-size:10px;font-weight:700;color:var(--hint);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.q-sentence{font-size:17px;color:var(--ink);direction:ltr;text-align:left;line-height:1.8}
+.q-blank{color:var(--school);font-weight:700;border-bottom:2px solid var(--school);padding:0 3px}
+.q-opts{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.q-opt{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-md);padding:15px 18px;font-size:15px;font-weight:500;font-family:inherit;color:var(--ink);cursor:pointer;text-align:left;direction:ltr;width:100%;display:block}
+.q-opt.correct{background:var(--teal-l);border-color:var(--teal);color:var(--teal-d);font-weight:700}
+.q-opt.wrong{background:var(--rose-l);border-color:var(--rose);color:var(--rose-d);font-weight:700}
+.q-feedback{border-radius:var(--r-md);padding:13px 16px;font-size:14px;font-weight:600;margin-bottom:12px;display:none}
+.q-feedback.show{display:block}
+.q-feedback.ok{background:var(--teal-l);color:var(--teal-d)}
+.q-feedback.no{background:var(--rose-l);color:var(--rose-d)}
+.q-next{width:100%;background:var(--ink);color:#fff;border:none;border-radius:var(--r-md);padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;display:none}
+.q-next.show{display:block}
+.q-done{text-align:center;padding:50px 16px}
+.q-done-ring{width:96px;height:96px;border-radius:50%;background:var(--school-l);margin:0 auto 22px;display:flex;align-items:center;justify-content:center;font-size:44px}
 </style>
 </head>
 <body>
 <div class="loading-bar" id="loading-bar"></div>
 <div class="toast" id="toast"></div>
  
-<!-- Student Login Screen -->
+<!-- Login -->
 <div id="login-screen" class="login-screen">
   <div class="login-logo">پ</div>
   <div class="login-title">واژه‌یار پیشرو</div>
-  <div class="login-sub">مدرسه غیرانتفاعی پیشرو<br>برای ورود، نام کلاس خود را وارد کنید</div>
+  <div class="login-sub">مدرسه غیرانتفاعی پیشرو<br>نام کلاس یا نام خود را وارد کنید</div>
   <div class="login-box">
     <label class="login-label">نام کلاس یا نام شما</label>
-    <input class="login-input" type="text" id="student-name" placeholder="مثلاً: هفتم الف یا علی محمدی" autocomplete="off">
-    <button class="login-btn" onclick="studentLogin()">ورود به اپ</button>
+    <input class="login-input" type="text" id="student-name" placeholder="مثلاً: هفتم الف">
+    <button class="login-btn" id="login-btn">ورود به اپ</button>
   </div>
 </div>
  
-<!-- Teacher Set Password Modal -->
+<!-- Set Pass Modal -->
 <div class="modal-bg" id="modal-set-pass">
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title">تنظیم رمز معلم</div>
-    <div class="info-note">اولین بار است وارد می‌شوید. رمز دلخواه خود را تنظیم کنید. این رمز ذخیره می‌شود و دیگران نمی‌بینند.</div>
-    <input class="modal-input" type="password" id="np1" placeholder="رمز جدید (حداقل ۶ کاراکتر)...">
-    <input class="modal-input" type="password" id="np2" placeholder="تکرار رمز...">
-    <button class="modal-btn" onclick="setNewPass()">ذخیره رمز و ورود</button>
-    <button class="modal-cancel" onclick="closeModal('modal-set-pass')">انصراف</button>
+    <div class="info-note">اولین بار است وارد می‌شوید. رمز دلخواه خود را بسازید.</div>
+    <input class="modal-input" type="password" id="np1" placeholder="رمز جدید (حداقل ۶ کاراکتر)">
+    <input class="modal-input" type="password" id="np2" placeholder="تکرار رمز">
+    <button class="modal-btn" id="btn-set-pass">ذخیره رمز و ورود</button>
+    <button class="modal-cancel" id="btn-cancel-set">انصراف</button>
   </div>
 </div>
  
@@ -165,9 +151,9 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <div class="modal-handle"></div>
     <div class="modal-title">ورود معلم</div>
     <div class="modal-sub">رمز عبور خود را وارد کنید</div>
-    <input class="modal-input" type="password" id="pass-input" placeholder="رمز عبور...">
-    <button class="modal-btn" onclick="checkPass()">ورود</button>
-    <button class="modal-cancel" onclick="closeModal('modal-login')">انصراف</button>
+    <input class="modal-input" type="password" id="pass-input" placeholder="رمز عبور">
+    <button class="modal-btn" id="btn-check-pass">ورود</button>
+    <button class="modal-cancel" id="btn-cancel-login">انصراف</button>
   </div>
 </div>
  
@@ -177,8 +163,8 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <div class="modal-handle"></div>
     <div class="modal-title">افزودن کارت برای همه دانش‌آموزان</div>
     <div class="modal-sub">این کارت در سرور ذخیره می‌شه و همه می‌بینن.</div>
-    <div class="lang-row" style="margin-bottom:12px">
-      <span class="login-label" style="margin:0;white-space:nowrap">یونیت:</span>
+    <div class="lang-row">
+      <span style="font-size:12px;color:var(--muted);white-space:nowrap">یونیت:</span>
       <select class="lang-sel" id="unit-select">
         <option value="1">یونیت ۱ — Nice to meet you</option>
         <option value="2">یونیت ۲ — In class</option>
@@ -195,15 +181,15 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
       </select>
     </div>
     <textarea class="json-ta" id="teacher-json" placeholder='{ "word": "introduce", ... }' style="min-height:120px"></textarea>
-    <button class="modal-btn" onclick="addTeacherCard()" style="margin-top:10px">افزودن به کارت‌های مدرسه</button>
-    <button class="modal-cancel" onclick="closeModal('modal-teacher-add')">انصراف</button>
+    <button class="modal-btn" id="btn-add-teacher-card" style="margin-top:10px">افزودن به کارت‌های مدرسه</button>
+    <button class="modal-cancel" id="btn-cancel-add">انصراف</button>
   </div>
 </div>
  
 <!-- Topbar -->
 <div class="topbar" id="topbar" style="display:none">
   <div class="tb-left">
-    <button class="back-btn" id="back-btn" style="display:none" onclick="goBack()">←</button>
+    <button class="back-btn" id="back-btn" style="display:none">←</button>
     <div id="school-logo" style="display:flex;align-items:center;gap:8px">
       <div class="school-emblem">پ</div>
       <div><div class="school-name">واژه‌یار پیشرو</div><div class="school-sub" id="student-label">مدرسه پیشرو</div></div>
@@ -226,33 +212,58 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
       </div>
     </div>
     <div class="mode-row">
-      <div class="mode-card" onclick="startFullQuiz()"><div class="mode-icon">🎯</div><div class="mode-title">تمرین همه</div><div class="mode-desc">همه یونیت‌ها</div></div>
-      <div class="mode-card" onclick="showUnitPicker()"><div class="mode-icon">📚</div><div class="mode-title">تمرین یونیت</div><div class="mode-desc">انتخاب یونیت</div></div>
+      <div class="mode-card" id="btn-quiz-all"><div class="mode-icon">🎯</div><div class="mode-title">تمرین همه</div><div class="mode-desc">همه یونیت‌ها</div></div>
+      <div class="mode-card" id="btn-quiz-unit"><div class="mode-icon">📚</div><div class="mode-title">تمرین یونیت</div><div class="mode-desc">انتخاب یونیت</div></div>
     </div>
- 
     <div class="section-head"><span>فیلتر یونیت</span></div>
     <div class="unit-filter" id="unit-filter"></div>
- 
     <div id="sec-teacher" style="display:none">
-      <div class="section-head"><span id="cards-section-title">کارت‌های معلم</span><button class="see-all" onclick="showAllCards()">همه</button></div>
+      <div class="section-head"><span id="cards-title">کارت‌های معلم</span><button class="see-all" id="btn-see-all">همه</button></div>
       <div id="list-teacher"></div>
     </div>
- 
     <div id="empty-home" class="empty-box">
       <div class="empty-icon">📖</div>
       <div class="empty-h">در حال بارگذاری...</div>
       <div class="empty-p">کارت‌های معلم از سرور دریافت می‌شه</div>
     </div>
- 
-    <button class="teacher-login-btn" onclick="openTeacherLogin()">🔐 ورود معلم</button>
+    <button class="teacher-login-btn" id="btn-teacher-login">🔐 ورود معلم</button>
   </div>
 </div>
  
-<!-- QUIZ -->
-<div class="screen" id="s-quiz"><div class="quiz-sb" id="quiz-body"></div></div>
- 
 <!-- DETAIL -->
 <div class="screen" id="s-detail"><div class="sb" id="detail-body"></div></div>
+ 
+<!-- QUIZ -->
+<div class="screen" id="s-quiz">
+  <div class="quiz-wrap">
+    <!-- progress -->
+    <div class="q-prog-track"><div class="q-prog-fill" id="q-prog" style="width:0%"></div></div>
+    <div class="q-counter" id="q-counter">سوال ۱ از ۱</div>
+    <!-- question card -->
+    <div class="q-card">
+      <div class="q-label">جای خالی را پر کن</div>
+      <div class="q-sentence" id="q-sentence"></div>
+    </div>
+    <!-- options - 4 static buttons -->
+    <div class="q-opts">
+      <button class="q-opt" id="qo0"></button>
+      <button class="q-opt" id="qo1"></button>
+      <button class="q-opt" id="qo2"></button>
+      <button class="q-opt" id="qo3"></button>
+    </div>
+    <div class="q-feedback" id="q-feedback"></div>
+    <button class="q-next" id="q-next">سوال بعدی →</button>
+    <!-- done screen (hidden) -->
+    <div class="q-done" id="q-done" style="display:none">
+      <div class="q-done-ring" id="q-done-emoji">🎉</div>
+      <div style="font-size:22px;font-weight:900;color:var(--ink);margin-bottom:8px" id="q-done-h">آفرین!</div>
+      <div style="font-size:40px;font-weight:900;color:var(--school);margin-bottom:4px" id="q-done-score">0%</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:28px" id="q-done-sub"></div>
+      <button class="practice-btn" style="width:100%" id="q-done-home">برگشت به خانه</button>
+      <button style="width:100%;margin-top:10px;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:14px;font-size:14px;font-family:inherit;cursor:pointer" id="q-done-retry">تمرین دوباره</button>
+    </div>
+  </div>
+</div>
  
 <!-- STATS -->
 <div class="screen" id="s-stats">
@@ -265,367 +276,447 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     </div>
     <div class="section-head" style="margin-bottom:12px">پیشرفت به تفکیک یونیت</div>
     <div id="unit-stats"></div>
-    <button class="reset-btn" onclick="resetStats()">پاک کردن آمار تمرین</button>
+    <button class="reset-btn" id="btn-reset-stats">پاک کردن آمار تمرین</button>
   </div>
 </div>
  
 <nav class="bottomnav" id="bottomnav" style="display:none">
-  <button class="ntab active" id="nt-home" onclick="goTab('home')">
+  <button class="ntab active" id="nt-home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>خانه</span>
   </button>
-  <button class="ntab" id="nt-quiz" onclick="startFullQuiz()">
+  <button class="ntab" id="nt-quiz">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><span>تمرین</span>
   </button>
-  <button class="ntab" id="nt-stats" onclick="goTab('stats')">
+  <button class="ntab" id="nt-stats">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>آمار</span>
   </button>
 </nav>
  
 <script>
-const SB='https://akmwnlmwfouunwmdnbbb.supabase.co';
-const SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFrbXdubG13Zm91dW53bWRuYmJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxNDI0NTQsImV4cCI6MjA5NzcxODQ1NH0.Kqts_Xq03Wtc3wV-jNhLJnZm86RF_pu-AIOvYpbGJAg';
-const API=`${SB}/rest/v1/cards`;
-const H={'apikey':SK,'Authorization':`Bearer ${SK}`,'Content-Type':'application/json','Prefer':'return=representation'};
+var SB='https://akmwnlmwfouunwmdnbbb.supabase.co';
+var SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFrbXdubG13Zm91dW53bWRuYmJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxNDI0NTQsImV4cCI6MjA5NzcxODQ1NH0.Kqts_Xq03Wtc3wV-jNhLJnZm86RF_pu-AIOvYpbGJAg';
+var API=SB+'/rest/v1/cards';
+var H={'apikey':SK,'Authorization':'Bearer '+SK,'Content-Type':'application/json','Prefer':'return=representation'};
+var UNITS={1:'Nice to meet you',2:'In class',3:'In my family',4:'Daily life',5:'Free time',6:'My neighborhood',7:'Food',8:'Clothes',9:'My interests',10:'Busy lives',11:'Looking back',12:'Fabulous food'};
  
-const UNITS={1:'Nice to meet you',2:'In class',3:'In my family',4:'Daily life',5:'Free time',6:'My neighborhood',7:'Food',8:'Clothes',9:'My interests',10:'Busy lives',11:'Looking back',12:'Fabulous food'};
+var TC=[];
+var ST=JSON.parse(localStorage.getItem('py_s')||'{"p":0,"c":0,"units":{}}');
+var curScreen='home',prevScreen='home',activeUnit=0,OCD=null;
  
-// State
-let TC=[];
-let ST=JSON.parse(localStorage.getItem('py_s')||'{"p":0,"c":0,"units":{}}');
-let cur='home',prev='home',OCD=null,activeUnit=0;
-let studentName='';
+// ── Quiz state ──
+var qPool=[], qIdx=0, qAns=false, qSes=0;
  
 function saveL(){localStorage.setItem('py_s',JSON.stringify(ST));}
 function ld(on){document.getElementById('loading-bar').classList.toggle('show',on);}
  
-// ── Password (hashed with simple SHA-like) ──
+// ── Auth ──
 async function hashPass(p){
-  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p+'pishro_salt'));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p+'pishro_salt'));
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
 }
-function getStoredHash(){return localStorage.getItem('py_th');}
+function getHash(){return localStorage.getItem('py_th');}
  
-// ── Student Login ──
-function studentLogin(){
-  const name=document.getElementById('student-name').value.trim();
-  if(!name||name.length<2){toast('لطفاً نام یا کلاس خود را وارد کنید');return;}
-  studentName=name;
-  localStorage.setItem('py_student',name);
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('topbar').style.display='flex';
-  document.getElementById('bottomnav').style.display='flex';
-  document.getElementById('student-label').textContent=name;
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('s-home').classList.add('active');
-  fetchTC();
-}
+// ── Init events ──
+document.addEventListener('DOMContentLoaded', function(){
+  // Login
+  document.getElementById('login-btn').addEventListener('click', studentLogin);
+  document.getElementById('student-name').addEventListener('keydown', function(e){if(e.key==='Enter')studentLogin();});
  
-// Check if already logged in
-window.addEventListener('load',()=>{
-  const saved=localStorage.getItem('py_student');
+  // Teacher
+  document.getElementById('btn-teacher-login').addEventListener('click', openTeacherLogin);
+  document.getElementById('btn-set-pass').addEventListener('click', setNewPass);
+  document.getElementById('btn-cancel-set').addEventListener('click', function(){closeModal('modal-set-pass');});
+  document.getElementById('btn-check-pass').addEventListener('click', checkPass);
+  document.getElementById('btn-cancel-login').addEventListener('click', function(){closeModal('modal-login');});
+  document.getElementById('btn-add-teacher-card').addEventListener('click', addTeacherCard);
+  document.getElementById('btn-cancel-add').addEventListener('click', function(){closeModal('modal-teacher-add');});
+ 
+  // Nav
+  document.getElementById('nt-home').addEventListener('click', function(){goTab('home');});
+  document.getElementById('nt-quiz').addEventListener('click', function(){startFullQuiz();});
+  document.getElementById('nt-stats').addEventListener('click', function(){goTab('stats');});
+  document.getElementById('back-btn').addEventListener('click', goBack);
+ 
+  // Home buttons
+  document.getElementById('btn-quiz-all').addEventListener('click', startFullQuiz);
+  document.getElementById('btn-quiz-unit').addEventListener('click', showUnitPicker);
+  document.getElementById('btn-see-all').addEventListener('click', showAllCards);
+ 
+  // Stats
+  document.getElementById('btn-reset-stats').addEventListener('click', resetStats);
+ 
+  // Quiz buttons (static)
+  document.getElementById('qo0').addEventListener('click', function(){pickOpt(0);});
+  document.getElementById('qo1').addEventListener('click', function(){pickOpt(1);});
+  document.getElementById('qo2').addEventListener('click', function(){pickOpt(2);});
+  document.getElementById('qo3').addEventListener('click', function(){pickOpt(3);});
+  document.getElementById('q-next').addEventListener('click', nextQ);
+  document.getElementById('q-done-home').addEventListener('click', function(){goTab('home');});
+  document.getElementById('q-done-retry').addEventListener('click', retryQuiz);
+ 
+  // Check saved login
+  var saved=localStorage.getItem('py_student');
   if(saved){
-    studentName=saved;
-    document.getElementById('student-name').value=saved;
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('topbar').style.display='flex';
-    document.getElementById('bottomnav').style.display='flex';
-    document.getElementById('student-label').textContent=saved;
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-    document.getElementById('s-home').classList.add('active');
+    showApp(saved);
     fetchTC();
   }
 });
  
-// ── Teacher Auth ──
+function studentLogin(){
+  var name=document.getElementById('student-name').value.trim();
+  if(!name||name.length<2){toast('لطفاً نام خود را وارد کنید');return;}
+  localStorage.setItem('py_student',name);
+  showApp(name);
+  fetchTC();
+}
+ 
+function showApp(name){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('topbar').style.display='flex';
+  document.getElementById('bottomnav').style.display='flex';
+  document.getElementById('student-label').textContent=name;
+  showScreen('home');
+}
+ 
 function openTeacherLogin(){
-  if(!getStoredHash()){
-    openModal('modal-set-pass');
-    setTimeout(()=>document.getElementById('np1').focus(),150);
-  } else {
-    openModal('modal-login');
-  }
+  if(!getHash()){openModal('modal-set-pass');setTimeout(function(){document.getElementById('np1').focus();},200);}
+  else{openModal('modal-login');setTimeout(function(){document.getElementById('pass-input').focus();},200);}
 }
  
 async function setNewPass(){
-  const p1=document.getElementById('np1').value;
-  const p2=document.getElementById('np2').value;
+  var p1=document.getElementById('np1').value;
+  var p2=document.getElementById('np2').value;
   if(!p1||p1.length<6){toast('رمز باید حداقل ۶ کاراکتر باشد');return;}
   if(p1!==p2){toast('رمزها یکسان نیستند');return;}
-  const h=await hashPass(p1);
+  var h=await hashPass(p1);
   localStorage.setItem('py_th',h);
-  document.getElementById('modal-set-pass').classList.remove('show');
+  closeModal('modal-set-pass');
   document.getElementById('np1').value='';document.getElementById('np2').value='';
   openModal('modal-teacher-add');
   toast('رمز ذخیره شد! خوش آمدید معلم گرامی');
 }
  
 async function checkPass(){
-  const p=document.getElementById('pass-input').value;
-  const h=await hashPass(p);
-  if(h===getStoredHash()){
+  var p=document.getElementById('pass-input').value;
+  var h=await hashPass(p);
+  if(h===getHash()){
     closeModal('modal-login');document.getElementById('pass-input').value='';
     openModal('modal-teacher-add');toast('خوش آمدید، معلم گرامی!');
   } else toast('رمز اشتباه است');
 }
  
 // ── Supabase ──
-async function fetchTC(){
+function fetchTC(){
   ld(true);
-  try{
-    const r=await fetch(`${API}?is_teacher=eq.true&order=unit_number.asc,created_at.asc`,{headers:H});
-    const d=await r.json();
-    TC=d.map(x=>({...x,synonyms:Array.isArray(x.synonyms)?x.synonyms:[],quiz_options:Array.isArray(x.quiz_options)?x.quiz_options:[],_teacher:true}));
+  fetch(API+'?is_teacher=eq.true&order=unit_number.asc,created_at.asc',{headers:H})
+  .then(function(r){return r.json();})
+  .then(function(d){
+    TC=d.map(function(x){
+      return Object.assign({},x,{
+        synonyms:Array.isArray(x.synonyms)?x.synonyms:[],
+        quiz_options:Array.isArray(x.quiz_options)?x.quiz_options:[]
+      });
+    });
     renderHome();
     renderUnitFilter();
-  }catch{
+    ld(false);
+  })
+  .catch(function(){
+    document.getElementById('empty-home').style.display='';
     document.getElementById('empty-home').querySelector('.empty-h').textContent='خطا در اتصال';
     document.getElementById('empty-home').querySelector('.empty-p').textContent='اینترنت خود را بررسی کنید';
-    document.getElementById('empty-home').style.display='';
-  }
-  ld(false);
+    ld(false);
+  });
 }
  
-async function saveSB(c){
-  const b={word:c.word,language:c.language||'English',translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1};
-  const r=await fetch(API,{method:'POST',headers:H,body:JSON.stringify(b)});
-  if(!r.ok)throw new Error(await r.text());
-}
- 
-async function delSB(id){
-  const r=await fetch(`${API}?id=eq.${id}`,{method:'DELETE',headers:H});
-  if(!r.ok)throw new Error();
-}
- 
-async function addTeacherCard(){
-  const raw=document.getElementById('teacher-json').value.trim();
+function addTeacherCard(){
+  var raw=document.getElementById('teacher-json').value.trim();
   if(!raw){toast('چیزی پیست نشده!');return;}
   try{
-    const c=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    var c=JSON.parse(raw.replace(/```json|```/g,'').trim());
     if(!c.word||!c.translation)throw new Error();
-    ld(true);await saveSB(c);await fetchTC();
-    closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';
-    toast('کارت معلم برای همه اضافه شد ✓');
-  }catch(e){toast('فرمت JSON اشتباه است: '+e.message);}
-  ld(false);
-}
- 
-async function delTeacher(id){
-  if(!confirm('این کارت برای همه حذف شود؟'))return;
-  ld(true);
-  try{await delSB(id);await fetchTC();toast('حذف شد');}
-  catch{toast('خطا در حذف');}
-  ld(false);
+    ld(true);
+    var body=JSON.stringify({word:c.word,language:c.language||'English',translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1});
+    fetch(API,{method:'POST',headers:H,body:body})
+    .then(function(){return fetchTC();})
+    .then(function(){closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';toast('کارت معلم اضافه شد ✓');ld(false);})
+    .catch(function(){toast('خطا در ذخیره');ld(false);});
+  }catch(e){toast('فرمت JSON اشتباه است');}
 }
  
 // ── Render ──
 function renderHome(){
-  const filtered=activeUnit===0?TC:TC.filter(c=>c.unit_number===activeUnit);
-  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean);
+  var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean);
+  var filtered=activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;});
   document.getElementById('h-total').textContent=TC.length;
   document.getElementById('h-units').textContent=units.length;
-  const pct=ST.p>0?Math.round(ST.c/ST.p*100)+'%':'—';
+  var pct=ST.p>0?Math.round(ST.c/ST.p*100)+'%':'—';
   document.getElementById('h-score').textContent=pct;
   document.getElementById('tb-badge').textContent=TC.length?TC.length+' کارت':'';
   document.getElementById('empty-home').style.display=TC.length?'none':'';
-  if(!TC.length){document.getElementById('empty-home').querySelector('.empty-h').textContent='هنوز کارتی نداری';document.getElementById('empty-home').querySelector('.empty-p').textContent='معلم به زودی کارت‌هایی اضافه می‌کند';}
+  if(!TC.length){
+    document.getElementById('empty-home').querySelector('.empty-h').textContent='هنوز کارتی نداری';
+    document.getElementById('empty-home').querySelector('.empty-p').textContent='معلم به زودی کارت اضافه می‌کند';
+  }
   document.getElementById('sec-teacher').style.display=filtered.length?'':'none';
-  document.getElementById('cards-section-title').textContent=activeUnit===0?'همه کارت‌ها':`یونیت ${activeUnit} — ${UNITS[activeUnit]||''}`;
-  document.getElementById('list-teacher').innerHTML=filtered.slice(0,6).map(c=>rowHTML(c)).join('');
+  document.getElementById('cards-title').textContent=activeUnit===0?'کارت‌های معلم':'یونیت '+activeUnit+' — '+(UNITS[activeUnit]||'');
+  renderCardList(filtered.slice(0,6));
 }
  
-function rowHTML(c){
-  const unitNum=c.unit_number||'';
-  return`<div class="card-row" onclick="openCard('${c.id}')">
-    <div class="card-avatar">${c.word[0].toUpperCase()}</div>
-    <div class="card-info"><div class="card-word">${c.word}</div><div class="card-trans">${c.translation}</div></div>
-    ${unitNum?`<span class="unit-badge">U${unitNum}</span>`:''}
-  </div>`;
+function renderCardList(list){
+  var el=document.getElementById('list-teacher');
+  el.innerHTML='';
+  list.forEach(function(c){
+    var row=document.createElement('div');
+    row.className='card-row';
+    row.innerHTML='<div class="card-avatar">'+c.word[0].toUpperCase()+'</div>'
+      +'<div class="card-info"><div class="card-word">'+c.word+'</div><div class="card-trans">'+c.translation+'</div></div>'
+      +(c.unit_number?'<span class="unit-badge">U'+c.unit_number+'</span>':'');
+    row.addEventListener('click',function(){openCard(c.id);});
+    el.appendChild(row);
+  });
 }
  
 function showAllCards(){
-  const filtered=activeUnit===0?TC:TC.filter(c=>c.unit_number===activeUnit);
-  document.getElementById('list-teacher').innerHTML=filtered.map(c=>rowHTML(c)).join('');
+  var filtered=activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;});
+  renderCardList(filtered);
 }
  
 function renderUnitFilter(){
-  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean).sort((a,b)=>a-b);
-  const el=document.getElementById('unit-filter');
-  el.innerHTML=`<button class="unit-btn ${activeUnit===0?'active':''}" onclick="filterUnit(0)">همه</button>`+
-    units.map(u=>`<button class="unit-btn ${activeUnit===u?'active':''}" onclick="filterUnit(${u})">یونیت ${u}</button>`).join('');
+  var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean).sort(function(a,b){return a-b;});
+  var el=document.getElementById('unit-filter');
+  el.innerHTML='';
+  var allBtn=document.createElement('button');
+  allBtn.className='unit-btn'+(activeUnit===0?' active':'');
+  allBtn.textContent='همه';
+  allBtn.addEventListener('click',function(){filterUnit(0);});
+  el.appendChild(allBtn);
+  units.forEach(function(u){
+    var btn=document.createElement('button');
+    btn.className='unit-btn'+(activeUnit===u?' active':'');
+    btn.textContent='یونیت '+u;
+    btn.addEventListener('click',function(){filterUnit(u);});
+    el.appendChild(btn);
+  });
 }
  
-function filterUnit(u){
-  activeUnit=u;renderHome();renderUnitFilter();
-}
+function filterUnit(u){activeUnit=u;renderHome();renderUnitFilter();}
  
 function openCard(id){
-  const c=TC.find(x=>String(x.id)===String(id));
-  if(!c)return;OCD=c;
-  const syn=c.synonyms?.length?`<div class="info-block"><div class="ib-label">مترادف‌ها</div><div class="syn-wrap">${c.synonyms.map(s=>`<span class="syn-tag">${s}</span>`).join('')}</div></div>`:'';
-  const unitInfo=c.unit_number?`<span class="unit-badge" style="margin-left:6px">یونیت ${c.unit_number}</span>`:'';
-  document.getElementById('detail-body').innerHTML=`
-    <div class="word-hero" data-l="${c.word[0].toUpperCase()}">
-      <div class="wh-pos">${unitInfo}<span class="teacher-badge">معلم</span></div>
-      <div class="wh-word">${c.word}</div><div class="wh-phon">${c.pronunciation||''}</div>
-      <div class="wh-trans">${c.translation}</div><div class="wh-def">${c.definition||''}</div>
-    </div>
-    <div class="info-block"><div class="ib-label">مثال‌ها</div>
-      <div class="ex-en">${c.example1}</div><div class="ex-fa">${c.example1_translation}</div>
-      <div class="ex-en" style="margin-top:10px">${c.example2}</div><div class="ex-fa">${c.example2_translation}</div>
-    </div>${syn}
-    <button class="practice-btn" onclick="runQuiz([OCD])">تمرین این کارت</button>`;
+  var c=TC.find(function(x){return x.id==id;});
+  if(!c)return;
+  OCD=c;
+  var syn=c.synonyms&&c.synonyms.length?'<div class="info-block"><div class="ib-label">مترادف‌ها</div><div class="syn-wrap">'+c.synonyms.map(function(s){return '<span class="syn-tag">'+s+'</span>';}).join('')+'</div></div>':'';
+  var unitBadge=c.unit_number?'<span class="unit-badge" style="margin-left:6px">یونیت '+c.unit_number+'</span>':'';
+  document.getElementById('detail-body').innerHTML=
+    '<div class="word-hero" data-l="'+c.word[0].toUpperCase()+'">'
+    +'<div class="wh-pos">'+unitBadge+'<span class="teacher-badge">معلم</span></div>'
+    +'<div class="wh-word">'+c.word+'</div>'
+    +'<div class="wh-phon">'+(c.pronunciation||'')+'</div>'
+    +'<div class="wh-trans">'+c.translation+'</div>'
+    +'<div class="wh-def">'+(c.definition||'')+'</div></div>'
+    +'<div class="info-block"><div class="ib-label">مثال‌ها</div>'
+    +'<div class="ex-en">'+c.example1+'</div><div class="ex-fa">'+c.example1_translation+'</div>'
+    +'<div class="ex-en" style="margin-top:10px">'+c.example2+'</div><div class="ex-fa">'+c.example2_translation+'</div></div>'
+    +syn
+    +'<button class="practice-btn" id="detail-practice-btn">تمرین این کارت</button>';
+  document.getElementById('detail-practice-btn').addEventListener('click',function(){startQuiz([OCD]);});
   showScreen('detail');
 }
  
 // ── Quiz ──
 function startFullQuiz(){
   if(!TC.length){toast('کارتی وجود ندارد');return;}
-  const pool=activeUnit===0?[...TC]:[...TC.filter(c=>c.unit_number===activeUnit)];
+  var pool=activeUnit===0?TC.slice():TC.filter(function(c){return c.unit_number===activeUnit;});
   if(!pool.length){toast('کارتی برای این یونیت وجود ندارد');return;}
-  runQuiz(pool.sort(()=>Math.random()-.5));
+  startQuiz(pool.sort(function(){return Math.random()-.5;}));
 }
  
 function showUnitPicker(){
-  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean).sort((a,b)=>a-b);
+  var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean).sort(function(a,b){return a-b;});
   if(!units.length){toast('کارتی وجود ندارد');return;}
-  const opts=units.map(u=>`<div class="card-row unit-quiz-row" data-unit="${u}" style="cursor:pointer">
-    <div class="card-avatar" style="background:var(--school);color:#fff;font-size:14px;font-weight:700">${u}</div>
-    <div class="card-info"><div class="card-word" style="direction:rtl;text-align:right">یونیت ${u}</div><div class="card-trans">${UNITS[u]||''}</div></div>
-    <span class="unit-badge">${TC.filter(c=>c.unit_number===u).length} کارت</span>
-  </div>`).join('');
-  document.getElementById('quiz-body').innerHTML=`<div style="padding:20px 0 110px"><div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px">کدام یونیت؟</div>${opts}</div>`;
-  document.querySelectorAll('.unit-quiz-row').forEach(row=>{
-    row.addEventListener('click',()=>startUnitQuiz(parseInt(row.dataset.unit)));
-  });
-  showScreen('quiz');
-}
- 
-function startUnitQuiz(u){
-  const pool=TC.filter(c=>c.unit_number===u).sort(()=>Math.random()-.5);
-  runQuiz(pool);
-}
- 
-function runQuiz(pool){
-  let idx=0,ans=false,ses=0;
- 
-  function render(){
-    showScreen('quiz');
-    const qBody=document.getElementById('quiz-body');
- 
-    if(idx>=pool.length){
-      const pct=Math.round(ses/pool.length*100);
-      qBody.innerHTML='<div style="padding:40px 16px 110px;text-align:center">'
-        +'<div style="width:90px;height:90px;border-radius:50%;background:var(--school-l);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:42px">'+(pct>=70?'🎉':'💪')+'</div>'
-        +'<div style="font-size:22px;font-weight:900;color:var(--ink);margin-bottom:8px">'+(pct>=70?'آفرین!':'ادامه بده!')+'</div>'
-        +'<div style="font-size:38px;font-weight:900;color:var(--school);margin-bottom:4px">'+pct+'%</div>'
-        +'<div style="font-size:13px;color:var(--muted);margin-bottom:28px">'+ses+' از '+pool.length+' درست</div>'
-        +'<button id="btn-home" style="width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer">برگشت به خانه</button>'
-        +'<button id="btn-retry" style="width:100%;margin-top:10px;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:14px;font-size:14px;font-family:inherit;cursor:pointer">تمرین دوباره</button>'
-        +'</div>';
-      document.getElementById('btn-home').addEventListener('click',function(){goTab('home');});
-      document.getElementById('btn-retry').addEventListener('click',function(){idx=0;ans=false;ses=0;pool.sort(function(){return Math.random()-.5;});render();});
-      return;
-    }
- 
-    const c=pool[idx];
-    ans=false;
-    const opts=[].concat(c.quiz_options||[],[c.quiz_answer]).sort(function(){return Math.random()-.5;});
-    const pct2=Math.round(idx/pool.length*100);
-    const qText=(c.quiz_question||'').replace('___','<span style="color:var(--school);font-weight:700;border-bottom:2px solid var(--school);padding:0 3px">___</span>');
-    const optsHtml=opts.map(function(o){return '<button class="opt-btn" data-v="'+o.replace(/"/g,'&quot;')+'" style="display:block;width:100%;padding:15px 18px;margin-bottom:9px;font-size:15px;font-weight:500;font-family:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:16px;cursor:pointer;text-align:left;direction:ltr">'+o+'</button>';}).join('');
- 
-    qBody.innerHTML='<div style="padding:20px 16px 110px">'
-      +'<div style="height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:8px"><div style="height:100%;width:'+pct2+'%;background:var(--school);border-radius:4px"></div></div>'
-      +'<div style="font-size:12px;color:var(--muted);margin-bottom:20px">سوال '+(idx+1)+' از '+pool.length+(c.unit_number?' · یونیت '+c.unit_number:'')+'</div>'
-      +'<div style="background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:22px;margin-bottom:18px">'
-      +'<div style="font-size:10px;font-weight:700;color:var(--hint);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">جای خالی را پر کن</div>'
-      +'<div style="font-size:17px;color:var(--ink);direction:ltr;text-align:left;line-height:1.8">'+qText+'</div></div>'
-      +'<div id="opts-wrap">'+optsHtml+'</div>'
-      +'<div id="qfb" style="display:none;border-radius:16px;padding:13px 16px;font-size:14px;font-weight:600;margin-bottom:12px"></div>'
-      +'<button id="qnxt" style="display:none;width:100%;background:var(--ink);color:#fff;border:none;border-radius:16px;padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer">'+(idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه')+'</button>'
-      +'</div>';
- 
-    document.getElementById('opts-wrap').addEventListener('click',function(e){
-      var btn=e.target;
-      while(btn&&!btn.classList.contains('opt-btn')){btn=btn.parentElement;}
-      if(!btn||ans)return;
-      ans=true; ST.p++;
-      var chosen=btn.getAttribute('data-v');
-      var ok=chosen===c.quiz_answer;
-      if(ok){ST.c++;ses++;}
-      if(c.unit_number){
-        if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
-        ST.units[c.unit_number].p++;
-        if(ok)ST.units[c.unit_number].c++;
-      }
-      saveL();
-      document.querySelectorAll('.opt-btn').forEach(function(x){
-        if(x.getAttribute('data-v')===c.quiz_answer){x.style.background='var(--teal-l)';x.style.borderColor='var(--teal)';x.style.color='var(--teal-d)';x.style.fontWeight='700';}
-        else if(x===btn&&!ok){x.style.background='var(--rose-l)';x.style.borderColor='var(--rose)';x.style.color='var(--rose-d)';}
-        x.disabled=true;
+  var el=document.getElementById('list-teacher');
+  el.innerHTML='';
+  document.getElementById('sec-teacher').style.display='';
+  document.getElementById('cards-title').textContent='کدام یونیت؟';
+  units.forEach(function(u){
+    var cnt=TC.filter(function(c){return c.unit_number===u;}).length;
+    var row=document.createElement('div');
+    row.className='card-row';
+    row.style.cursor='pointer';
+    row.innerHTML='<div class="card-avatar" style="background:var(--school);color:#fff;font-size:14px;font-weight:700">'+u+'</div>'
+      +'<div class="card-info"><div class="card-word" style="direction:rtl;text-align:right">یونیت '+u+'</div><div class="card-trans">'+(UNITS[u]||'')+'</div></div>'
+      +'<span class="unit-badge">'+cnt+' کارت</span>';
+    (function(unit){
+      row.addEventListener('click',function(){
+        var pool=TC.filter(function(c){return c.unit_number===unit;}).sort(function(){return Math.random()-.5;});
+        startQuiz(pool);
       });
-      var fb=document.getElementById('qfb');
-      fb.textContent=ok?'آفرین! جواب درسته ✓':'اشتباه — جواب: '+c.quiz_answer;
-      fb.style.display='block';
-      fb.style.background=ok?'var(--teal-l)':'var(--rose-l)';
-      fb.style.color=ok?'var(--teal-d)':'var(--rose-d)';
-      document.getElementById('qnxt').style.display='block';
-    });
+    })(u);
+    el.appendChild(row);
+  });
+}
  
-    document.getElementById('qnxt').addEventListener('click',function(){idx++;render();});
+function startQuiz(pool){
+  qPool=pool;qIdx=0;qAns=false;qSes=0;
+  showScreen('quiz');
+  renderQ();
+}
+ 
+function renderQ(){
+  var done=document.getElementById('q-done');
+  var card=document.querySelector('.q-card');
+  var opts=document.querySelector('.q-opts');
+  var fb=document.getElementById('q-feedback');
+  var nxt=document.getElementById('q-next');
+ 
+  if(qIdx>=qPool.length){
+    // show done
+    card.style.display='none';
+    opts.style.display='none';
+    fb.style.display='none';
+    nxt.style.display='none';
+    document.getElementById('q-prog').style.width='100%';
+    var pct=Math.round(qSes/qPool.length*100);
+    done.style.display='block';
+    document.getElementById('q-done-emoji').textContent=pct>=70?'🎉':'💪';
+    document.getElementById('q-done-h').textContent=pct>=70?'آفرین!':'ادامه بده!';
+    document.getElementById('q-done-score').textContent=pct+'%';
+    document.getElementById('q-done-sub').textContent=qSes+' از '+qPool.length+' درست';
+    return;
   }
  
-  render();
+  done.style.display='none';
+  card.style.display='';
+  opts.style.display='';
+  fb.className='q-feedback';
+  fb.textContent='';
+  nxt.className='q-next';
+ 
+  var c=qPool[qIdx];
+  qAns=false;
+ 
+  // progress
+  document.getElementById('q-prog').style.width=Math.round(qIdx/qPool.length*100)+'%';
+  document.getElementById('q-counter').textContent='سوال '+(qIdx+1)+' از '+qPool.length+(c.unit_number?' · یونیت '+c.unit_number:'');
+ 
+  // question
+  var qText=(c.quiz_question||'').replace('___','<span class="q-blank">___</span>');
+  document.getElementById('q-sentence').innerHTML=qText;
+ 
+  // options
+  var allOpts=(c.quiz_options||[]).concat([c.quiz_answer]).sort(function(){return Math.random()-.5;});
+  while(allOpts.length<4)allOpts.push('—');
+  for(var i=0;i<4;i++){
+    var btn=document.getElementById('qo'+i);
+    btn.textContent=allOpts[i];
+    btn.setAttribute('data-v',allOpts[i]);
+    btn.className='q-opt';
+    btn.disabled=false;
+    btn.style.display=allOpts[i]==='—'?'none':'block';
+  }
 }
  
+function pickOpt(i){
+  if(qAns)return;
+  var c=qPool[qIdx];
+  var btn=document.getElementById('qo'+i);
+  var chosen=btn.getAttribute('data-v');
+  if(!chosen||chosen==='—')return;
+  qAns=true;
+  ST.p++;
+  var ok=chosen===c.quiz_answer;
+  if(ok){ST.c++;qSes++;}
+  if(c.unit_number){
+    if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
+    ST.units[c.unit_number].p++;
+    if(ok)ST.units[c.unit_number].c++;
+  }
+  saveL();
+  for(var j=0;j<4;j++){
+    var b=document.getElementById('qo'+j);
+    if(b.getAttribute('data-v')===c.quiz_answer)b.classList.add('correct');
+    else if(b===btn&&!ok)b.classList.add('wrong');
+    b.disabled=true;
+  }
+  var fb=document.getElementById('q-feedback');
+  fb.textContent=ok?'آفرین! جواب درسته ✓':'اشتباه — جواب: '+c.quiz_answer;
+  fb.className='q-feedback show '+(ok?'ok':'no');
+  var nxt=document.getElementById('q-next');
+  nxt.textContent=qIdx+1<qPool.length?'سوال بعدی →':'مشاهده نتیجه';
+  nxt.className='q-next show';
+}
+ 
+function nextQ(){qIdx++;renderQ();}
+function retryQuiz(){qPool.sort(function(){return Math.random()-.5;});qIdx=0;qAns=false;qSes=0;renderQ();}
+ 
+// ── Stats ──
 function fillStats(){
   document.getElementById('st-c').textContent=TC.length;
   document.getElementById('st-p').textContent=ST.p;
   document.getElementById('st-ok').textContent=ST.c;
   document.getElementById('st-pct').textContent=ST.p>0?Math.round(ST.c/ST.p*100)+'%':'—';
-  const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean).sort((a,b)=>a-b);
-  document.getElementById('unit-stats').innerHTML=units.map(u=>{
-    const s=ST.units&&ST.units[u];
-    const pct=s&&s.p>0?Math.round(s.c/s.p*100):0;
-    const done=s&&s.p>0;
-    return`<div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px">
-      <div style="width:40px;height:40px;border-radius:10px;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0">${u}</div>
-      <div style="flex:1">
-        <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">${UNITS[u]||'یونیت '+u}</div>
-        <div style="height:4px;background:var(--line);border-radius:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${pct>=70?'var(--teal)':'var(--school)'};border-radius:4px"></div></div>
-      </div>
-      <div style="font-size:13px;font-weight:700;color:${done?(pct>=70?'var(--teal-d)':'var(--school)'):'var(--hint)'}">${done?pct+'%':'—'}</div>
-    </div>`;
-  }).join('')||'<div style="color:var(--hint);font-size:13px;padding:12px 0">هنوز تمرین نکردی</div>';
+  var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean).sort(function(a,b){return a-b;});
+  var el=document.getElementById('unit-stats');
+  el.innerHTML='';
+  if(!units.length){el.innerHTML='<div style="color:var(--hint);font-size:13px;padding:12px 0">هنوز تمرین نکردی</div>';return;}
+  units.forEach(function(u){
+    var s=ST.units&&ST.units[u];
+    var pct2=s&&s.p>0?Math.round(s.c/s.p*100):0;
+    var done=s&&s.p>0;
+    var div=document.createElement('div');
+    div.style.cssText='background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;margin-bottom:8px;display:flex;align-items:center;gap:12px';
+    div.innerHTML='<div style="width:40px;height:40px;border-radius:10px;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0">'+u+'</div>'
+      +'<div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">'+(UNITS[u]||'یونیت '+u)+'</div>'
+      +'<div style="height:4px;background:var(--line);border-radius:4px;overflow:hidden"><div style="height:100%;width:'+pct2+'%;background:'+(pct2>=70?'var(--teal)':'var(--school)')+';border-radius:4px"></div></div></div>'
+      +'<div style="font-size:13px;font-weight:700;color:'+(done?(pct2>=70?'var(--teal-d)':'var(--school)'):'var(--hint)')+'">'+(done?pct2+'%':'—')+'</div>';
+    el.appendChild(div);
+  });
 }
  
-function resetStats(){if(!confirm('آمار پاک شود؟'))return;ST={p:0,c:0,units:{}};saveL();fillStats();toast('آمار پاک شد');}
- 
-// ── Modal ──
-function openModal(id){document.getElementById(id).classList.add('show');setTimeout(()=>{const i=document.querySelector(`#${id} input,#${id} textarea`);i&&i.focus();},150);}
-function closeModal(id){document.getElementById(id).classList.remove('show');}
+function resetStats(){
+  if(!confirm('آمار پاک شود؟'))return;
+  ST={p:0,c:0,units:{}};saveL();fillStats();toast('آمار پاک شد');
+}
  
 // ── Nav ──
 function goTab(n){
   if(n==='stats')fillStats();
   showScreen(n);
-  ['home','quiz','stats'].forEach(x=>document.getElementById('nt-'+x)?.classList.toggle('active',x===n));
+  ['home','quiz','stats'].forEach(function(x){
+    var el=document.getElementById('nt-'+x);
+    if(el)el.classList.toggle('active',x===n);
+  });
 }
+ 
 function showScreen(n){
-  prev=cur;cur=n;
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  prevScreen=curScreen;curScreen=n;
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
   document.getElementById('s-'+n).classList.add('active');
   document.getElementById('back-btn').style.display=n==='detail'?'block':'none';
   document.getElementById('school-logo').style.display=n==='detail'?'none':'flex';
   window.scrollTo(0,0);
 }
+ 
 function goBack(){
-  const t=prev==='detail'||prev==='quiz'?'home':prev;
+  var t=prevScreen==='detail'||prevScreen==='quiz'?'home':prevScreen;
   showScreen(t);
-  ['home','quiz','stats'].forEach(x=>document.getElementById('nt-'+x)?.classList.toggle('active',x===cur));
+  ['home','quiz','stats'].forEach(function(x){
+    var el=document.getElementById('nt-'+x);
+    if(el)el.classList.toggle('active',x===curScreen);
+  });
 }
-function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400);}
+ 
+// ── Modal ──
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+ 
+// ── Toast ──
+function toast(msg){
+  var el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(function(){el.classList.remove('show');},2400);
+}
 </script>
 </body>
 </html>
- 
