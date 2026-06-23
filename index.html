@@ -167,6 +167,16 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .loading-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);z-index:200;transform:scaleX(0);transform-origin:right;transition:transform .3s}
 .loading-bar.show{transform:scaleX(1);transform-origin:left}
 </style>
+ 
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/pishro-flashcard/sw.js').then(function(reg){
+      console.log('SW registered');
+    }).catch(function(err){console.log('SW error:',err);});
+  });
+}
+</script>
 </head>
 <body>
 <div class="loading-bar" id="loading-bar"></div>
@@ -220,9 +230,38 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
         <option value="7">یونیت ۷</option><option value="8">یونیت ۸</option><option value="9">یونیت ۹</option>
         <option value="10">یونیت ۱۰</option><option value="11">یونیت ۱۱</option><option value="12">یونیت ۱۲</option>
       </select>
+      <div style="margin-top:10px">
+        <span style="font-size:11px;color:var(--muted)">زبان کارت:</span>
+        <select class="lang-sel" id="card-lang-select" style="margin-right:8px">
+          <option value="English">🇬🇧 انگلیسی</option>
+          <option value="German">🇩🇪 آلمانی</option>
+          <option value="French">🇫🇷 فرانسوی</option>
+          <option value="Spanish">🇪🇸 اسپانیایی</option>
+          <option value="Arabic">🇸🇦 عربی</option>
+          <option value="Turkish">🇹🇷 ترکی</option>
+        </select>
+      </div>
     </div>
     <textarea class="json-ta" id="teacher-json" placeholder='{ "word": "introduce", ... }' style="min-height:100px"></textarea>
     <button class="modal-btn" id="btn-add-teacher-card" style="margin-top:8px">افزودن کارت</button>
+    <!-- AI Generator -->
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
+      <div style="font-size:12px;font-weight:700;color:var(--ink);margin-bottom:8px">🤖 ساخت کارت با AI</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px">کلمه را وارد کن — AI کارت کامل می‌سازه</div>
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <input class="modal-input" type="text" id="ai-word-input" placeholder="کلمه انگلیسی..." style="flex:1;margin-bottom:0">
+        <select class="lang-sel" id="ai-lang-select" style="width:120px;border:1px solid var(--line);border-radius:var(--r-sm);padding:0 8px;background:var(--bg)">
+          <option value="English">انگلیسی</option>
+          <option value="German">آلمانی</option>
+          <option value="French">فرانسوی</option>
+          <option value="Spanish">اسپانیایی</option>
+          <option value="Arabic">عربی</option>
+          <option value="Turkish">ترکی</option>
+        </select>
+      </div>
+      <button class="modal-btn" id="btn-ai-generate" style="background:var(--gold)">✨ ساخت با AI</button>
+      <div id="ai-status" style="font-size:11px;color:var(--muted);text-align:center;margin-top:6px;display:none">در حال ساخت کارت...</div>
+    </div>
     <button class="modal-cancel" id="btn-cancel-add">انصراف</button>
   </div>
 </div>
@@ -243,6 +282,9 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 <div class="screen" id="s-home">
   <div class="sb">
     <!-- Announcement -->
+    <div id="offline-banner" style="display:none;background:var(--rose-l);border:1px solid var(--rose);border-radius:var(--r-md);padding:10px 14px;margin-bottom:10px;font-size:12px;color:var(--rose-d);font-weight:600;text-align:center">
+      📵 حالت آفلاین — تمرین بدون اینترنت ادامه دارد
+    </div>
     <div class="announce-box" id="announce-box">
       <button class="announce-close" id="announce-close">×</button>
       <span class="announce-icon">📢</span>
@@ -503,6 +545,8 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('btn-cancel-login').addEventListener('click',function(){closeModal('modal-login');});
   document.getElementById('btn-add-teacher-card').addEventListener('click',addTeacherCard);
   document.getElementById('btn-cancel-add').addEventListener('click',function(){closeModal('modal-teacher-add');});
+  document.getElementById('btn-ai-generate').addEventListener('click',generateWithAI);
+  document.getElementById('ai-word-input').addEventListener('keydown',function(e){if(e.key==='Enter')generateWithAI();});
   document.getElementById('btn-open-add-card').addEventListener('click',function(){openModal('modal-teacher-add');});
   document.getElementById('announce-close').addEventListener('click',function(){document.getElementById('announce-box').style.display='none';});
   document.getElementById('nt-home').addEventListener('click',function(){goTab('home');});
@@ -724,7 +768,8 @@ function addTeacherCard(){
   try{
     var c=JSON.parse(raw.replace(/```json|```/g,'').trim());if(!c.word||!c.translation)throw new Error();
     ld(true);
-    sbPost('cards',{word:c.word,language:c.language||'English',translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1})
+    var cardLang=document.getElementById('card-lang-select')?document.getElementById('card-lang-select').value:'English';
+    sbPost('cards',{word:c.word,language:c.language||cardLang,translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1})
     .then(function(){return fetchTC();}).then(function(){closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';toast('کارت اضافه شد ✓');ld(false);}).catch(function(){toast('خطا');ld(false);});
   }catch(e){toast('فرمت JSON اشتباه است');}
 }
@@ -1008,6 +1053,42 @@ function goBack(){
 function openModal(id){document.getElementById(id).classList.add('show');}
 function closeModal(id){document.getElementById(id).classList.remove('show');}
 function toast(msg){var el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2400);}
+ 
+// ── آفلاین detection ──
+window.addEventListener('online',function(){document.getElementById('offline-banner').style.display='none';});
+window.addEventListener('offline',function(){document.getElementById('offline-banner').style.display='block';});
+if(!navigator.onLine){document.getElementById('offline-banner').style.display='block';}
+ 
+// ── AI Card Generator ──
+async function generateWithAI(){
+  var word=document.getElementById('ai-word-input').value.trim();
+  var lang=document.getElementById('ai-lang-select').value;
+  if(!word){toast('کلمه را وارد کنید');return;}
+  
+  var btn=document.getElementById('btn-ai-generate');
+  var status=document.getElementById('ai-status');
+  btn.disabled=true;btn.textContent='در حال ساخت...';status.style.display='block';
+  
+  var prompt='You are a language learning assistant. Create a flashcard for the '+lang+' word or phrase: "'+word+'".\n\nReturn ONLY valid JSON, no markdown:\n{\n  "word": "'+word+'",\n  "language": "'+lang+'",\n  "translation": "Persian (Farsi) meaning",\n  "pronunciation": "phonetic transcription",\n  "part_of_speech": "noun/verb/adjective/etc",\n  "definition": "short Persian definition",\n  "example1": "example sentence in '+lang+'",\n  "example1_translation": "Persian translation",\n  "example2": "another example in '+lang+'",\n  "example2_translation": "Persian translation",\n  "synonyms": ["s1","s2","s3"],\n  "quiz_question": "sentence with ___ instead of the word",\n  "quiz_answer": "'+word+'",\n  "quiz_options": ["wrong1","wrong2","wrong3"]\n}';
+  
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+    });
+    var data=await res.json();
+    var text=(data.content||[]).map(function(b){return b.text||'';}).join('').replace(/```json|```/g,'').trim();
+    var card=JSON.parse(text);
+    if(!card.word||!card.translation)throw new Error('invalid');
+    // نمایش در textarea
+    document.getElementById('teacher-json').value=JSON.stringify(card,null,2);
+    toast('کارت AI ساخته شد! بررسی کن و افزودن کن ✓');
+  }catch(e){
+    toast('خطا در ساخت کارت — دوباره امتحان کن');
+  }
+  btn.disabled=false;btn.textContent='✨ ساخت با AI';status.style.display='none';
+}
 </script>
 </body>
 </html>
