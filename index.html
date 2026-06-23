@@ -488,12 +488,15 @@ function startFullQuiz(){
 function showUnitPicker(){
   const units=[...new Set(TC.map(c=>c.unit_number))].filter(Boolean).sort((a,b)=>a-b);
   if(!units.length){toast('کارتی وجود ندارد');return;}
-  const opts=units.map(u=>`<div class="card-row" onclick="startUnitQuiz(${u})" style="cursor:pointer">
+  const opts=units.map(u=>`<div class="card-row unit-quiz-row" data-unit="${u}" style="cursor:pointer">
     <div class="card-avatar" style="background:var(--school);color:#fff;font-size:14px;font-weight:700">${u}</div>
     <div class="card-info"><div class="card-word" style="direction:rtl;text-align:right">یونیت ${u}</div><div class="card-trans">${UNITS[u]||''}</div></div>
     <span class="unit-badge">${TC.filter(c=>c.unit_number===u).length} کارت</span>
   </div>`).join('');
   document.getElementById('quiz-body').innerHTML=`<div style="padding:20px 0 110px"><div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:16px">کدام یونیت؟</div>${opts}</div>`;
+  document.querySelectorAll('.unit-quiz-row').forEach(row=>{
+    row.addEventListener('click',()=>startUnitQuiz(parseInt(row.dataset.unit)));
+  });
   showScreen('quiz');
 }
  
@@ -527,27 +530,33 @@ function runQuiz(pool){
         <div class="quiz-card"><div class="qc-label">جای خالی را پر کن</div>
           <div class="qc-sentence">${(c.quiz_question||'').replace('___','<span class="qc-blank">___</span>')}</div>
         </div>
-        <div class="opts-list">${opts.map(o=>`<button class="opt-btn" data-v="${o.replace(/"/g,'&quot;')}" onclick="pick(this)">${o}</button>`).join('')}</div>
+        <div class="opts-list" id="opts-list">${opts.map(o=>`<button class="opt-btn" data-v="${o.replace(/"/g,'&quot;')}">${o}</button>`).join('')}</div>
         <div class="qfeedback" id="qfb"></div>
-        <button class="next-btn" id="qnxt" onclick="nxt()">${idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه'}</button>
+        <button class="next-btn" id="qnxt">${idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه'}</button>
       </div>`;
-    window.pick=b=>{
-      if(ans)return;ans=true;ST.p++;
-      const ok=b.dataset.v===c.quiz_answer;
-      if(ok){ST.c++;ses++;}
-      if(c.unit_number){
-        if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
-        ST.units[c.unit_number].p++;
-        if(ok)ST.units[c.unit_number].c++;
-      }
-      saveL();
-      document.querySelectorAll('.opt-btn').forEach(x=>{if(x.dataset.v===c.quiz_answer)x.classList.add('correct');else if(x===b&&!ok)x.classList.add('wrong');x.disabled=true;});
-      const fb=document.getElementById('qfb');
-      fb.textContent=ok?'آفرین! جواب درسته ✓':`اشتباه — جواب: ${c.quiz_answer}`;
-      fb.className='qfeedback show '+(ok?'ok':'no');
-      document.getElementById('qnxt').className='next-btn show';
-    };
-    window.nxt=()=>{idx++;render();};
+    document.querySelectorAll('.opt-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(ans)return;ans=true;ST.p++;
+        const ok=btn.dataset.v===c.quiz_answer;
+        if(ok){ST.c++;ses++;}
+        if(c.unit_number){
+          if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
+          ST.units[c.unit_number].p++;
+          if(ok)ST.units[c.unit_number].c++;
+        }
+        saveL();
+        document.querySelectorAll('.opt-btn').forEach(x=>{
+          if(x.dataset.v===c.quiz_answer)x.classList.add('correct');
+          else if(x===btn&&!ok)x.classList.add('wrong');
+          x.disabled=true;
+        });
+        const fb=document.getElementById('qfb');
+        fb.textContent=ok?'آفرین! جواب درسته ✓':`اشتباه — جواب: ${c.quiz_answer}`;
+        fb.className='qfeedback show '+(ok?'ok':'no');
+        document.getElementById('qnxt').className='next-btn show';
+      });
+    });
+    document.getElementById('qnxt').addEventListener('click',()=>{idx++;render();});
   }
   render();
 }
