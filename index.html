@@ -92,7 +92,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .login-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:13px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:14px}
 .login-input:focus{border-color:var(--school)}
 .login-btn{width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:14px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
-
+ 
 /* ── QUIZ ── */
 .quiz-wrap{padding:20px 16px 110px}
 .q-prog-track{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:8px}
@@ -119,7 +119,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 <body>
 <div class="loading-bar" id="loading-bar"></div>
 <div class="toast" id="toast"></div>
-
+ 
 <!-- Login -->
 <div id="login-screen" class="login-screen">
   <div class="login-logo">پ</div>
@@ -131,7 +131,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <button class="login-btn" id="login-btn">ورود به اپ</button>
   </div>
 </div>
-
+ 
 <!-- Set Pass Modal -->
 <div class="modal-bg" id="modal-set-pass">
   <div class="modal-box">
@@ -144,7 +144,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <button class="modal-cancel" id="btn-cancel-set">انصراف</button>
   </div>
 </div>
-
+ 
 <!-- Teacher Login Modal -->
 <div class="modal-bg" id="modal-login">
   <div class="modal-box">
@@ -156,7 +156,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <button class="modal-cancel" id="btn-cancel-login">انصراف</button>
   </div>
 </div>
-
+ 
 <!-- Teacher Add Modal -->
 <div class="modal-bg" id="modal-teacher-add">
   <div class="modal-box">
@@ -185,7 +185,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <button class="modal-cancel" id="btn-cancel-add">انصراف</button>
   </div>
 </div>
-
+ 
 <!-- Topbar -->
 <div class="topbar" id="topbar" style="display:none">
   <div class="tb-left">
@@ -197,7 +197,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
   </div>
   <span class="tb-badge" id="tb-badge"></span>
 </div>
-
+ 
 <!-- HOME -->
 <div class="screen" id="s-home">
   <div class="sb">
@@ -229,10 +229,10 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <button class="teacher-login-btn" id="btn-teacher-login">🔐 ورود معلم</button>
   </div>
 </div>
-
+ 
 <!-- DETAIL -->
 <div class="screen" id="s-detail"><div class="sb" id="detail-body"></div></div>
-
+ 
 <!-- QUIZ -->
 <div class="screen" id="s-quiz">
   <div class="quiz-wrap">
@@ -264,7 +264,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     </div>
   </div>
 </div>
-
+ 
 <!-- STATS -->
 <div class="screen" id="s-stats">
   <div class="stats-sb">
@@ -279,7 +279,7 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <button class="reset-btn" id="btn-reset-stats">پاک کردن آمار تمرین</button>
   </div>
 </div>
-
+ 
 <nav class="bottomnav" id="bottomnav" style="display:none">
   <button class="ntab active" id="nt-home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>خانه</span>
@@ -291,37 +291,37 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>آمار</span>
   </button>
 </nav>
-
+ 
 <script>
 var SB='https://akmwnlmwfouunwmdnbbb.supabase.co';
 var SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFrbXdubG13Zm91dW53bWRuYmJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxNDI0NTQsImV4cCI6MjA5NzcxODQ1NH0.Kqts_Xq03Wtc3wV-jNhLJnZm86RF_pu-AIOvYpbGJAg';
 var API=SB+'/rest/v1/cards';
 var H={'apikey':SK,'Authorization':'Bearer '+SK,'Content-Type':'application/json','Prefer':'return=representation'};
 var UNITS={1:'Nice to meet you',2:'In class',3:'In my family',4:'Daily life',5:'Free time',6:'My neighborhood',7:'Food',8:'Clothes',9:'My interests',10:'Busy lives',11:'Looking back',12:'Fabulous food'};
-
+ 
 var TC=[];
 var ST=JSON.parse(localStorage.getItem('py_s')||'{"p":0,"c":0,"units":{}}');
 var curScreen='home',prevScreen='home',activeUnit=0,OCD=null;
-
+ 
 // ── Quiz state ──
 var qPool=[], qIdx=0, qAns=false, qSes=0;
-
+ 
 function saveL(){localStorage.setItem('py_s',JSON.stringify(ST));}
 function ld(on){document.getElementById('loading-bar').classList.toggle('show',on);}
-
+ 
 // ── Auth ──
 async function hashPass(p){
   var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p+'pishro_salt'));
   return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
 }
 function getHash(){return localStorage.getItem('py_th');}
-
+ 
 // ── Init events ──
 document.addEventListener('DOMContentLoaded', function(){
   // Login
   document.getElementById('login-btn').addEventListener('click', studentLogin);
   document.getElementById('student-name').addEventListener('keydown', function(e){if(e.key==='Enter')studentLogin();});
-
+ 
   // Teacher
   document.getElementById('btn-teacher-login').addEventListener('click', openTeacherLogin);
   document.getElementById('btn-set-pass').addEventListener('click', setNewPass);
@@ -330,21 +330,21 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('btn-cancel-login').addEventListener('click', function(){closeModal('modal-login');});
   document.getElementById('btn-add-teacher-card').addEventListener('click', addTeacherCard);
   document.getElementById('btn-cancel-add').addEventListener('click', function(){closeModal('modal-teacher-add');});
-
+ 
   // Nav
   document.getElementById('nt-home').addEventListener('click', function(){goTab('home');});
   document.getElementById('nt-quiz').addEventListener('click', function(){startFullQuiz();});
   document.getElementById('nt-stats').addEventListener('click', function(){goTab('stats');});
   document.getElementById('back-btn').addEventListener('click', goBack);
-
+ 
   // Home buttons
   document.getElementById('btn-quiz-all').addEventListener('click', startFullQuiz);
   document.getElementById('btn-quiz-unit').addEventListener('click', showUnitPicker);
   document.getElementById('btn-see-all').addEventListener('click', showAllCards);
-
+ 
   // Stats
   document.getElementById('btn-reset-stats').addEventListener('click', resetStats);
-
+ 
   // Quiz buttons (static)
   document.getElementById('qo0').addEventListener('click', function(){pickOpt(0);});
   document.getElementById('qo1').addEventListener('click', function(){pickOpt(1);});
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('q-next').addEventListener('click', nextQ);
   document.getElementById('q-done-home').addEventListener('click', function(){goTab('home');});
   document.getElementById('q-done-retry').addEventListener('click', retryQuiz);
-
+ 
   // Check saved login
   var saved=localStorage.getItem('py_student');
   if(saved){
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function(){
     fetchTC();
   }
 });
-
+ 
 function studentLogin(){
   var name=document.getElementById('student-name').value.trim();
   if(!name||name.length<2){toast('لطفاً نام خود را وارد کنید');return;}
@@ -369,7 +369,7 @@ function studentLogin(){
   showApp(name);
   fetchTC();
 }
-
+ 
 function showApp(name){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('topbar').style.display='flex';
@@ -377,12 +377,12 @@ function showApp(name){
   document.getElementById('student-label').textContent=name;
   showScreen('home');
 }
-
+ 
 function openTeacherLogin(){
   if(!getHash()){openModal('modal-set-pass');setTimeout(function(){document.getElementById('np1').focus();},200);}
   else{openModal('modal-login');setTimeout(function(){document.getElementById('pass-input').focus();},200);}
 }
-
+ 
 async function setNewPass(){
   var p1=document.getElementById('np1').value;
   var p2=document.getElementById('np2').value;
@@ -395,7 +395,7 @@ async function setNewPass(){
   openModal('modal-teacher-add');
   toast('رمز ذخیره شد! خوش آمدید معلم گرامی');
 }
-
+ 
 async function checkPass(){
   var p=document.getElementById('pass-input').value;
   var h=await hashPass(p);
@@ -404,7 +404,7 @@ async function checkPass(){
     openModal('modal-teacher-add');toast('خوش آمدید، معلم گرامی!');
   } else toast('رمز اشتباه است');
 }
-
+ 
 // ── Supabase ──
 function fetchTC(){
   ld(true);
@@ -428,7 +428,7 @@ function fetchTC(){
     ld(false);
   });
 }
-
+ 
 function addTeacherCard(){
   var raw=document.getElementById('teacher-json').value.trim();
   if(!raw){toast('چیزی پیست نشده!');return;}
@@ -443,7 +443,7 @@ function addTeacherCard(){
     .catch(function(){toast('خطا در ذخیره');ld(false);});
   }catch(e){toast('فرمت JSON اشتباه است');}
 }
-
+ 
 // ── Render ──
 function renderHome(){
   var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean);
@@ -462,7 +462,7 @@ function renderHome(){
   document.getElementById('cards-title').textContent=activeUnit===0?'کارت‌های معلم':'یونیت '+activeUnit+' — '+(UNITS[activeUnit]||'');
   renderCardList(filtered.slice(0,6));
 }
-
+ 
 function renderCardList(list){
   var el=document.getElementById('list-teacher');
   el.innerHTML='';
@@ -476,12 +476,12 @@ function renderCardList(list){
     el.appendChild(row);
   });
 }
-
+ 
 function showAllCards(){
   var filtered=activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;});
   renderCardList(filtered);
 }
-
+ 
 function renderUnitFilter(){
   var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean).sort(function(a,b){return a-b;});
   var el=document.getElementById('unit-filter');
@@ -499,9 +499,9 @@ function renderUnitFilter(){
     el.appendChild(btn);
   });
 }
-
+ 
 function filterUnit(u){activeUnit=u;renderHome();renderUnitFilter();}
-
+ 
 function openCard(id){
   var c=TC.find(function(x){return x.id==id;});
   if(!c)return;
@@ -515,15 +515,26 @@ function openCard(id){
     +'<div class="wh-phon">'+(c.pronunciation||'')+'</div>'
     +'<div class="wh-trans">'+c.translation+'</div>'
     +'<div class="wh-def">'+(c.definition||'')+'</div></div>'
+    +'<div id="word-image-wrap" style="margin-bottom:12px;border-radius:var(--r-md);overflow:hidden;background:var(--line);min-height:160px;display:flex;align-items:center;justify-content:center">'
+    +'<div id="word-image-loading" style="color:var(--hint);font-size:13px">در حال بارگذاری تصویر...</div>'
+    +'</div>'
     +'<div class="info-block"><div class="ib-label">مثال‌ها</div>'
     +'<div class="ex-en">'+c.example1+'</div><div class="ex-fa">'+c.example1_translation+'</div>'
     +'<div class="ex-en" style="margin-top:10px">'+c.example2+'</div><div class="ex-fa">'+c.example2_translation+'</div></div>'
     +syn
-    +'<button class="practice-btn" id="detail-practice-btn">تمرین این کارت</button>';
+    +'<div style="display:flex;gap:10px;margin-top:14px">'
+    +'<button id="detail-sound-btn" style="flex:1;background:var(--teal-l);color:var(--teal-d);border:none;border-radius:var(--r-md);padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer">🔊 تلفظ کلمه</button>'
+    +'<button id="detail-practice-btn" style="flex:2;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer">تمرین این کارت</button>'
+    +'</div>';
   document.getElementById('detail-practice-btn').addEventListener('click',function(){startQuiz([OCD]);});
+  document.getElementById('detail-sound-btn').addEventListener('click',function(){speakWord(OCD.word);});
+  // بارگذاری تصویر
+  loadWordImage(c.word);
+  // پخش خودکار تلفظ
+  setTimeout(function(){speakWord(c.word);},500);
   showScreen('detail');
 }
-
+ 
 // ── Quiz ──
 function startFullQuiz(){
   if(!TC.length){toast('کارتی وجود ندارد');return;}
@@ -531,7 +542,7 @@ function startFullQuiz(){
   if(!pool.length){toast('کارتی برای این یونیت وجود ندارد');return;}
   startQuiz(pool.sort(function(){return Math.random()-.5;}));
 }
-
+ 
 function showUnitPicker(){
   var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean).sort(function(a,b){return a-b;});
   if(!units.length){toast('کارتی وجود ندارد');return;}
@@ -556,20 +567,20 @@ function showUnitPicker(){
     el.appendChild(row);
   });
 }
-
+ 
 function startQuiz(pool){
   qPool=pool;qIdx=0;qAns=false;qSes=0;
   showScreen('quiz');
   renderQ();
 }
-
+ 
 function renderQ(){
   var done=document.getElementById('q-done');
   var card=document.querySelector('.q-card');
   var opts=document.querySelector('.q-opts');
   var fb=document.getElementById('q-feedback');
   var nxt=document.getElementById('q-next');
-
+ 
   if(qIdx>=qPool.length){
     // show done
     card.style.display='none';
@@ -585,25 +596,31 @@ function renderQ(){
     document.getElementById('q-done-sub').textContent=qSes+' از '+qPool.length+' درست';
     return;
   }
-
+ 
   done.style.display='none';
   card.style.display='';
   opts.style.display='';
   fb.className='q-feedback';
   fb.textContent='';
   nxt.className='q-next';
-
+ 
   var c=qPool[qIdx];
   qAns=false;
-
+ 
   // progress
   document.getElementById('q-prog').style.width=Math.round(qIdx/qPool.length*100)+'%';
   document.getElementById('q-counter').textContent='سوال '+(qIdx+1)+' از '+qPool.length+(c.unit_number?' · یونیت '+c.unit_number:'');
-
+ 
   // question
+  // نمایش کلمه + دکمه صدا در بالای quiz
+  var wordDisplay='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:10px 14px;background:var(--school-l);border-radius:var(--r-md)">'
+    +'<span style="font-size:16px;font-weight:700;color:var(--school);direction:ltr">'+c.word+'</span>'
+    +'<button onclick="speakWord(\''+c.word.replace(/'/g,"\\'")+'\');" style="background:var(--teal-l);color:var(--teal-d);border:none;border-radius:var(--r-sm);padding:6px 12px;font-size:13px;font-weight:700;cursor:pointer">🔊 تلفظ</button>'
+    +'</div>';
+  document.getElementById('q-sentence').insertAdjacentHTML('beforebegin',wordDisplay);
   var qText=(c.quiz_question||'').replace('___','<span class="q-blank">___</span>');
   document.getElementById('q-sentence').innerHTML=qText;
-
+ 
   // options
   // ساخت گزینه‌ها — حذف تکراری و خالی
   var rawOpts=(c.quiz_options||[]).filter(function(o){return o&&o.trim()&&o!==c.quiz_answer;});
@@ -628,7 +645,7 @@ function renderQ(){
     }
   }
 }
-
+ 
 function pickOpt(i){
   if(qAns)return;
   var c=qPool[qIdx];
@@ -658,10 +675,47 @@ function pickOpt(i){
   nxt.textContent=qIdx+1<qPool.length?'سوال بعدی →':'مشاهده نتیجه';
   nxt.className='q-next show';
 }
-
+ 
 function nextQ(){qIdx++;renderQ();}
 function retryQuiz(){qPool.sort(function(){return Math.random()-.5;});qIdx=0;qAns=false;qSes=0;renderQ();}
-
+ 
+// ── Speech ──
+function speakWord(word){
+  if(!word)return;
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(word);
+  u.lang='en-US';
+  u.rate=0.85;
+  u.pitch=1;
+  // سعی می‌کنه صدای انگلیسی پیدا کنه
+  var voices=window.speechSynthesis.getVoices();
+  var enVoice=voices.find(function(v){return v.lang.startsWith('en');});
+  if(enVoice)u.voice=enVoice;
+  window.speechSynthesis.speak(u);
+}
+ 
+// load voices
+if(window.speechSynthesis){
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices();};
+}
+ 
+// ── Image ──
+function loadWordImage(word){
+  var wrap=document.getElementById('word-image-wrap');
+  if(!wrap)return;
+  var img=new Image();
+  img.onload=function(){
+    wrap.innerHTML='';
+    img.style.cssText='width:100%;height:180px;object-fit:cover;display:block';
+    wrap.appendChild(img);
+  };
+  img.onerror=function(){
+    wrap.style.display='none';
+  };
+  img.src='https://source.unsplash.com/400x200/?'+encodeURIComponent(word)+',education';
+}
+ 
 // ── Stats ──
 function fillStats(){
   document.getElementById('st-c').textContent=TC.length;
@@ -685,12 +739,12 @@ function fillStats(){
     el.appendChild(div);
   });
 }
-
+ 
 function resetStats(){
   if(!confirm('آمار پاک شود؟'))return;
   ST={p:0,c:0,units:{}};saveL();fillStats();toast('آمار پاک شد');
 }
-
+ 
 // ── Nav ──
 function goTab(n){
   if(n==='stats')fillStats();
@@ -700,7 +754,7 @@ function goTab(n){
     if(el)el.classList.toggle('active',x===n);
   });
 }
-
+ 
 function showScreen(n){
   prevScreen=curScreen;curScreen=n;
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
@@ -709,7 +763,7 @@ function showScreen(n){
   document.getElementById('school-logo').style.display=n==='detail'?'none':'flex';
   window.scrollTo(0,0);
 }
-
+ 
 function goBack(){
   var t=prevScreen==='detail'||prevScreen==='quiz'?'home':prevScreen;
   showScreen(t);
@@ -718,11 +772,11 @@ function goBack(){
     if(el)el.classList.toggle('active',x===curScreen);
   });
 }
-
+ 
 // ── Modal ──
 function openModal(id){document.getElementById(id).classList.add('show');}
 function closeModal(id){document.getElementById(id).classList.remove('show');}
-
+ 
 // ── Toast ──
 function toast(msg){
   var el=document.getElementById('toast');
@@ -732,3 +786,4 @@ function toast(msg){
 </script>
 </body>
 </html>
+ 
