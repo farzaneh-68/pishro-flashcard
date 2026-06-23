@@ -442,7 +442,7 @@ var matchSelected=null,matchPairs=[],matchMatched=0;
 var isTeacher=false;
 var currentStudent={name:'',sid:''};
 var ST=JSON.parse(localStorage.getItem('py_s5')||'{"p":0,"c":0,"units":{},"srs":{},"weekly":{}}');
-var packs=JSON.parse(localStorage.getItem('py_packs')||'[]');
+var packs=[];
 var selectedPackUnits=[];
  
 function saveL(){localStorage.setItem('py_s5',JSON.stringify(ST));}
@@ -559,6 +559,7 @@ function showApp(){
   showScreen('home');
   fetchTC();
   loadAnnouncement();
+  loadPacks().then(function(){renderHomePacks();});
 }
  
 // ── Teacher Auth ──
