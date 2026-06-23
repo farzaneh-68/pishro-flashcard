@@ -682,19 +682,30 @@ function retryQuiz(){qPool.sort(function(){return Math.random()-.5;});qIdx=0;qAn
 // ── Speech ──
 function speakWord(word){
   if(!word)return;
+  // روش 1: Google Translate TTS
+  try{
+    var audio=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&q='+encodeURIComponent(word)+'&tl=en&client=tw-ob');
+    audio.play().catch(function(){
+      // روش 2: Web Speech API
+      fallbackSpeak(word);
+    });
+  }catch(e){
+    fallbackSpeak(word);
+  }
+}
+ 
+function fallbackSpeak(word){
+  if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
   var u=new SpeechSynthesisUtterance(word);
   u.lang='en-US';
   u.rate=0.85;
-  u.pitch=1;
-  // سعی می‌کنه صدای انگلیسی پیدا کنه
   var voices=window.speechSynthesis.getVoices();
   var enVoice=voices.find(function(v){return v.lang.startsWith('en');});
   if(enVoice)u.voice=enVoice;
   window.speechSynthesis.speak(u);
 }
  
-// load voices
 if(window.speechSynthesis){
   window.speechSynthesis.getVoices();
   window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices();};
@@ -786,4 +797,3 @@ function toast(msg){
 </script>
 </body>
 </html>
- 
