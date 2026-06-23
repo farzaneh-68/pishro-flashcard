@@ -264,6 +264,11 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
       <div class="mode-card" id="btn-quiz-match"><div class="mode-icon">🔗</div><div class="mode-title">مچ کردن</div><div class="mode-desc">کلمه با معنی</div></div>
       <div class="mode-card" id="btn-quiz-srs"><div class="mode-icon">🔄</div><div class="mode-title">مرور هوشمند</div><div class="mode-desc">کارت‌های امروز</div></div>
     </div>
+    <!-- Packs for students -->
+    <div id="home-packs" style="display:none">
+      <div class="section-head"><span>پک‌های درسی</span></div>
+      <div id="home-packs-list" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px;scrollbar-width:none"></div>
+    </div>
     <div class="section-head"><span>فیلتر یونیت</span></div>
     <div class="unit-filter" id="unit-filter"></div>
     <div id="sec-teacher" style="display:none">
@@ -609,6 +614,7 @@ function sendAnnouncement(){
 // ── Teacher Panel ──
 function loadTeacherPanel(){
   ld(true);
+  loadPacks().then(function(){renderPacks();});
   // آمار دانش‌آموزان از Supabase
   sbGet('students','select=*').then(function(students){
     document.getElementById('t-students').textContent=students.length;
@@ -658,29 +664,40 @@ function savePack(){
   var name=document.getElementById('pack-name').value.trim();
   if(!name){toast('اسم پک را وارد کنید');return;}
   if(!selectedPackUnits.length){toast('حداقل یک یونیت انتخاب کنید');return;}
-  packs.push({id:Date.now(),name:name,units:selectedPackUnits.slice().sort()});
-  localStorage.setItem('py_packs',JSON.stringify(packs));
-  closeModal('modal-pack');renderPacks();toast('پک ذخیره شد ✓');
+  ld(true);
+  sbPost('packs',{name:name,units:selectedPackUnits.slice().sort(),is_active:true})
+  .then(function(){closeModal('modal-pack');toast('پک ذخیره شد ✓');return loadPacks();})
+  .then(function(){ld(false);renderPacks();})
+  .catch(function(){toast('خطا در ذخیره پک');ld(false);});
 }
+function loadPacks(){
+  return sbGet('packs','is_active=eq.true&order=created_at.desc').then(function(d){packs=d||[];});
+}
+ 
 function renderPacks(){
   var el=document.getElementById('packs-list');if(!el)return;el.innerHTML='';
   if(!packs.length){el.innerHTML='<div style="color:var(--hint);font-size:12px;padding:10px 0">هنوز پکی نساختی. پک‌ها مجموعه‌ای از یونیت‌ها هستند.</div>';return;}
   packs.forEach(function(p,i){
+    var units=Array.isArray(p.units)?p.units:[];
     var card=document.createElement('div');card.className='pack-card';
-    var unitBadges=p.units.map(function(u){return '<span class="unit-badge" style="margin-left:4px">U'+u+'</span>';}).join('');
-    var cardCount=TC.filter(function(c){return p.units.includes(c.unit_number);}).length;
+    var unitBadges=units.map(function(u){return '<span class="unit-badge" style="margin-left:4px">U'+u+'</span>';}).join('');
+    var cardCount=TC.filter(function(c){return units.includes(c.unit_number);}).length;
     card.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">'
       +'<div class="pack-title">'+p.name+'</div>'
-      +'<button style="background:none;border:none;cursor:pointer;color:var(--rose);font-size:18px" data-idx="'+i+'">🗑</button></div>'
+      +'<button style="background:none;border:none;cursor:pointer;color:var(--rose);font-size:18px" data-id="'+p.id+'">🗑</button></div>'
       +'<div class="pack-meta">'+cardCount+' کارت</div>'
       +'<div class="pack-units">'+unitBadges+'</div>'
-      +'<button style="width:100%;margin-top:10px;background:var(--school);color:#fff;border:none;border-radius:var(--r-sm);padding:9px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer" data-pack="'+i+'">تمرین این پک</button>';
-    card.querySelector('[data-idx]').addEventListener('click',function(e){
-      var idx=parseInt(e.target.dataset.idx);packs.splice(idx,1);localStorage.setItem('py_packs',JSON.stringify(packs));renderPacks();
+      +'<button style="width:100%;margin-top:10px;background:var(--school);color:#fff;border:none;border-radius:var(--r-sm);padding:9px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer" data-pidx="'+i+'">تمرین این پک</button>';
+    card.querySelector('[data-id]').addEventListener('click',function(e){
+      var pid=e.target.dataset.id;
+      if(!confirm('این پک حذف شود؟'))return;
+      fetch(API+'packs?id=eq.'+pid,{method:'DELETE',headers:H})
+      .then(function(){return loadPacks();}).then(function(){renderPacks();toast('پک حذف شد');}).catch(function(){toast('خطا');});
     });
-    card.querySelector('[data-pack]').addEventListener('click',function(e){
-      var idx=parseInt(e.target.dataset.pack);var pack=packs[idx];
-      var pool=TC.filter(function(c){return pack.units.includes(c.unit_number);});
+    card.querySelector('[data-pidx]').addEventListener('click',function(e){
+      var idx=parseInt(e.target.dataset.pidx);var pack=packs[idx];
+      var packUnits=Array.isArray(pack.units)?pack.units:[];
+      var pool=TC.filter(function(c){return packUnits.includes(c.unit_number);});
       if(!pool.length){toast('کارتی برای این پک وجود ندارد');return;}
       startQuizMode('mc',pool);
     });
@@ -696,6 +713,8 @@ function fetchTC(){
   .then(function(d){
     TC=d.map(function(x){return Object.assign({},x,{synonyms:Array.isArray(x.synonyms)?x.synonyms:[],quiz_options:Array.isArray(x.quiz_options)?x.quiz_options:[]});});
     renderHome();renderUnitFilter();ld(false);
+    // لود پک‌ها برای دانش‌آموز
+    loadPacks().then(function(){renderHomePacks();});
   }).catch(function(){document.getElementById('empty-home').style.display='';ld(false);});
 }
  
@@ -707,6 +726,28 @@ function addTeacherCard(){
     sbPost('cards',{word:c.word,language:c.language||'English',translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1})
     .then(function(){return fetchTC();}).then(function(){closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';toast('کارت اضافه شد ✓');ld(false);}).catch(function(){toast('خطا');ld(false);});
   }catch(e){toast('فرمت JSON اشتباه است');}
+}
+ 
+// ── Render Home Packs ──
+function renderHomePacks(){
+  var el=document.getElementById('home-packs-list');
+  var wrap=document.getElementById('home-packs');
+  if(!el||!packs.length){if(wrap)wrap.style.display='none';return;}
+  wrap.style.display='';
+  el.innerHTML='';
+  packs.forEach(function(p,i){
+    var units=Array.isArray(p.units)?p.units:[];
+    var cnt=TC.filter(function(c){return units.includes(c.unit_number);}).length;
+    var btn=document.createElement('button');
+    btn.style.cssText='flex-shrink:0;padding:10px 14px;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;text-align:right';
+    btn.innerHTML='<div>'+p.name+'</div><div style="font-size:10px;opacity:.7;margin-top:2px">'+cnt+' کارت</div>';
+    btn.addEventListener('click',function(){
+      var pool=TC.filter(function(c){return units.includes(c.unit_number);});
+      if(!pool.length){toast('کارتی برای این پک وجود ندارد');return;}
+      startQuizMode('mc',pool);
+    });
+    el.appendChild(btn);
+  });
 }
  
 // ── Render Home ──
