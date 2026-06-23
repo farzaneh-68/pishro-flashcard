@@ -507,20 +507,51 @@ function startUnitQuiz(u){
  
 function runQuiz(pool){
   let idx=0,ans=false,ses=0;
-  showScreen('quiz');
  
-  const qBody=document.getElementById('quiz-body');
+  function render(){
+    showScreen('quiz');
+    const qBody=document.getElementById('quiz-body');
  
-  // event delegation روی quiz-body
-  qBody.addEventListener('click',function handler(e){
-    const btn=e.target.closest('.opt-btn');
-    const nxt=e.target.closest('#qnxt');
+    if(idx>=pool.length){
+      const pct=Math.round(ses/pool.length*100);
+      qBody.innerHTML='<div style="padding:40px 16px 110px;text-align:center">'
+        +'<div style="width:90px;height:90px;border-radius:50%;background:var(--school-l);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:42px">'+(pct>=70?'🎉':'💪')+'</div>'
+        +'<div style="font-size:22px;font-weight:900;color:var(--ink);margin-bottom:8px">'+(pct>=70?'آفرین!':'ادامه بده!')+'</div>'
+        +'<div style="font-size:38px;font-weight:900;color:var(--school);margin-bottom:4px">'+pct+'%</div>'
+        +'<div style="font-size:13px;color:var(--muted);margin-bottom:28px">'+ses+' از '+pool.length+' درست</div>'
+        +'<button id="btn-home" style="width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer">برگشت به خانه</button>'
+        +'<button id="btn-retry" style="width:100%;margin-top:10px;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:14px;font-size:14px;font-family:inherit;cursor:pointer">تمرین دوباره</button>'
+        +'</div>';
+      document.getElementById('btn-home').addEventListener('click',function(){goTab('home');});
+      document.getElementById('btn-retry').addEventListener('click',function(){idx=0;ans=false;ses=0;pool.sort(function(){return Math.random()-.5;});render();});
+      return;
+    }
  
-    if(btn){
-      if(ans)return;
-      const c=pool[idx];
-      ans=true;ST.p++;
-      const ok=btn.dataset.v===c.quiz_answer;
+    const c=pool[idx];
+    ans=false;
+    const opts=[].concat(c.quiz_options||[],[c.quiz_answer]).sort(function(){return Math.random()-.5;});
+    const pct2=Math.round(idx/pool.length*100);
+    const qText=(c.quiz_question||'').replace('___','<span style="color:var(--school);font-weight:700;border-bottom:2px solid var(--school);padding:0 3px">___</span>');
+    const optsHtml=opts.map(function(o){return '<button class="opt-btn" data-v="'+o.replace(/"/g,'&quot;')+'" style="display:block;width:100%;padding:15px 18px;margin-bottom:9px;font-size:15px;font-weight:500;font-family:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:16px;cursor:pointer;text-align:left;direction:ltr">'+o+'</button>';}).join('');
+ 
+    qBody.innerHTML='<div style="padding:20px 16px 110px">'
+      +'<div style="height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:8px"><div style="height:100%;width:'+pct2+'%;background:var(--school);border-radius:4px"></div></div>'
+      +'<div style="font-size:12px;color:var(--muted);margin-bottom:20px">سوال '+(idx+1)+' از '+pool.length+(c.unit_number?' · یونیت '+c.unit_number:'')+'</div>'
+      +'<div style="background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:22px;margin-bottom:18px">'
+      +'<div style="font-size:10px;font-weight:700;color:var(--hint);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">جای خالی را پر کن</div>'
+      +'<div style="font-size:17px;color:var(--ink);direction:ltr;text-align:left;line-height:1.8">'+qText+'</div></div>'
+      +'<div id="opts-wrap">'+optsHtml+'</div>'
+      +'<div id="qfb" style="display:none;border-radius:16px;padding:13px 16px;font-size:14px;font-weight:600;margin-bottom:12px"></div>'
+      +'<button id="qnxt" style="display:none;width:100%;background:var(--ink);color:#fff;border:none;border-radius:16px;padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer">'+(idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه')+'</button>'
+      +'</div>';
+ 
+    document.getElementById('opts-wrap').addEventListener('click',function(e){
+      var btn=e.target;
+      while(btn&&!btn.classList.contains('opt-btn')){btn=btn.parentElement;}
+      if(!btn||ans)return;
+      ans=true; ST.p++;
+      var chosen=btn.getAttribute('data-v');
+      var ok=chosen===c.quiz_answer;
       if(ok){ST.c++;ses++;}
       if(c.unit_number){
         if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};
@@ -528,55 +559,20 @@ function runQuiz(pool){
         if(ok)ST.units[c.unit_number].c++;
       }
       saveL();
-      document.querySelectorAll('.opt-btn').forEach(x=>{
-        if(x.dataset.v===c.quiz_answer)x.classList.add('correct');
-        else if(x===btn&&!ok)x.classList.add('wrong');
+      document.querySelectorAll('.opt-btn').forEach(function(x){
+        if(x.getAttribute('data-v')===c.quiz_answer){x.style.background='var(--teal-l)';x.style.borderColor='var(--teal)';x.style.color='var(--teal-d)';x.style.fontWeight='700';}
+        else if(x===btn&&!ok){x.style.background='var(--rose-l)';x.style.borderColor='var(--rose)';x.style.color='var(--rose-d)';}
         x.disabled=true;
       });
-      const fb=document.getElementById('qfb');
-      fb.textContent=ok?'آفرین! جواب درسته ✓':`اشتباه — جواب: ${c.quiz_answer}`;
-      fb.className='qfeedback show '+(ok?'ok':'no');
-      const qn=document.getElementById('qnxt');
-      if(qn)qn.className='next-btn show';
-    }
+      var fb=document.getElementById('qfb');
+      fb.textContent=ok?'آفرین! جواب درسته ✓':'اشتباه — جواب: '+c.quiz_answer;
+      fb.style.display='block';
+      fb.style.background=ok?'var(--teal-l)':'var(--rose-l)';
+      fb.style.color=ok?'var(--teal-d)':'var(--rose-d)';
+      document.getElementById('qnxt').style.display='block';
+    });
  
-    if(nxt){
-      idx++;
-      if(idx>=pool.length){
-        qBody.removeEventListener('click',handler);
-      }
-      render();
-    }
-  });
- 
-  function render(){
-    if(idx>=pool.length){
-      const pct=Math.round(ses/pool.length*100);
-      qBody.innerHTML=`<div class="quiz-done" style="padding-top:60px">
-        <div class="done-ring">${pct>=70?'🎉':'💪'}</div>
-        <div class="done-h">${pct>=70?'آفرین!':'ادامه بده!'}</div>
-        <div class="done-score">${pct}%</div>
-        <div class="done-score-l">${ses} از ${pool.length} درست</div>
-        <button class="practice-btn" style="width:100%" onclick="goTab('home')">برگشت به خانه</button>
-        <button style="width:100%;margin-top:10px;background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:14px;font-size:14px;font-family:inherit;cursor:pointer" onclick="runQuiz([...pool].sort(()=>Math.random()-.5))">تمرین دوباره</button>
-      </div>`;
-      return;
-    }
-    const c=pool[idx];
-    ans=false;
-    const opts=[...(c.quiz_options||[]),c.quiz_answer].sort(()=>Math.random()-.5);
-    qBody.innerHTML=`
-      <div style="padding:20px 0 110px">
-        <div class="qprog-track"><div class="qprog-fill" style="width:${Math.round(idx/pool.length*100)}%"></div></div>
-        <div class="qcounter">سوال ${idx+1} از ${pool.length}${c.unit_number?' · یونیت '+c.unit_number:''}</div>
-        <div class="quiz-card">
-          <div class="qc-label">جای خالی را پر کن</div>
-          <div class="qc-sentence">${(c.quiz_question||'').replace('___','<span class="qc-blank">___</span>')}</div>
-        </div>
-        <div class="opts-list">${opts.map(o=>`<button class="opt-btn" data-v="${o.replace(/"/g,'&quot;')}">${o}</button>`).join('')}</div>
-        <div class="qfeedback" id="qfb"></div>
-        <button class="next-btn" id="qnxt">${idx+1<pool.length?'سوال بعدی →':'مشاهده نتیجه'}</button>
-      </div>`;
+    document.getElementById('qnxt').addEventListener('click',function(){idx++;render();});
   }
  
   render();
@@ -632,3 +628,4 @@ function toast(msg){const el=document.getElementById('toast');el.textContent=msg
 </script>
 </body>
 </html>
+ 
