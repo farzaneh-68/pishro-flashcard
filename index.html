@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#12102A;--ink2:#2A2650;--muted:#6B688A;--hint:#A8A6C0;--line:#ECEAF5;--surface:#FFFFFF;--bg:#F5F4FC;--school:#1A1060;--school-l:#EDEAFB;--school-d:#0D0840;--gold:#C8933A;--gold-l:#FDF3E3;--gold-d:#7A5520;--teal:#0F7A64;--teal-l:#E0F5F0;--teal-d:#094F40;--rose:#C0384A;--rose-l:#FDEEF0;--rose-d:#7A1E2A;--r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:28px}
+:root{--ink:#12102A;--ink2:#2A2650;--muted:#6B688A;--hint:#A8A6C0;--line:#ECEAF5;--surface:#FFFFFF;--bg:#F5F4FC;--school:#1A1060;--school-l:#EDEAFB;--gold:#C8933A;--gold-l:#FDF3E3;--gold-d:#7A5520;--teal:#0F7A64;--teal-l:#E0F5F0;--teal-d:#094F40;--rose:#C0384A;--rose-l:#FDEEF0;--rose-d:#7A1E2A;--r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:28px}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100dvh;direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .screen{display:none}.screen.active{display:block;animation:fu .2s ease}
@@ -30,19 +30,23 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .hero-title{font-size:19px;font-weight:900;color:#fff;margin-bottom:4px}
 .hero-sub{font-size:11px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:14px}
 .hero-stats{display:flex;gap:16px}.hstat-n{font-size:20px;font-weight:900;color:#fff}.hstat-l{font-size:10px;color:rgba(255,255,255,.45);font-weight:500}
+.announce-box{background:var(--gold-l);border:1px solid #E8C87A;border-radius:var(--r-md);padding:14px;margin-bottom:14px;display:none}
+.announce-icon{font-size:16px;margin-left:6px}
+.announce-text{font-size:13px;color:var(--gold-d);font-weight:500;line-height:1.6}
+.announce-close{float:left;background:none;border:none;cursor:pointer;color:var(--gold-d);font-size:18px;line-height:1}
 .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .mode-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px;cursor:pointer;transition:background .1s}
 .mode-card:active{background:var(--bg)}.mode-icon{font-size:22px;margin-bottom:6px}
 .mode-title{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:2px}.mode-desc{font-size:10px;color:var(--muted);line-height:1.4}
 .section-head{font-size:11px;font-weight:700;color:var(--hint);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .see-all{font-size:11px;color:var(--school);background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600}
-.card-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:8px;transition:background .1s}
+.card-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:8px}
 .card-row:active{background:var(--bg)}
 .card-avatar{width:40px;height:40px;border-radius:10px;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0;font-family:Georgia,serif}
 .card-info{flex:1;min-width:0}.card-word{font-size:14px;font-weight:700;direction:ltr;text-align:left;color:var(--ink)}.card-trans{font-size:11px;color:var(--muted);margin-top:2px}
 .unit-badge{font-size:10px;color:var(--teal-d);background:var(--teal-l);padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap}
-.teacher-badge{font-size:10px;color:var(--gold-d);background:var(--gold-l);padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap}
 .srs-badge{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap}
+.srs-new{background:#E8F4FD;color:#0A5C8C}.srs-learning{background:var(--gold-l);color:var(--gold-d)}.srs-review{background:var(--teal-l);color:var(--teal-d)}.srs-mastered{background:#EAF3DE;color:#27500A}
 .unit-filter{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px;scrollbar-width:none}
 .unit-filter::-webkit-scrollbar{display:none}
 .unit-btn{flex-shrink:0;padding:5px 12px;border-radius:20px;border:1px solid var(--line);background:var(--surface);font-size:11px;font-weight:600;font-family:inherit;color:var(--muted);cursor:pointer;white-space:nowrap}
@@ -63,19 +67,10 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .action-row{display:flex;gap:8px;margin-top:12px}
 .btn-sound{flex:1;background:var(--teal-l);color:var(--teal-d);border:none;border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
 .btn-practice{flex:2;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
-/* SRS badge colors */
-.srs-new{background:#E8F4FD;color:#0A5C8C}
-.srs-learning{background:var(--gold-l);color:var(--gold-d)}
-.srs-review{background:var(--teal-l);color:var(--teal-d)}
-.srs-mastered{background:#EAF3DE;color:#27500A}
-/* Quiz */
 .quiz-wrap{padding:16px 16px 100px}
 .q-prog-track{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:6px}
 .q-prog-fill{height:100%;background:var(--school);border-radius:4px;transition:width .4s}
 .q-counter{font-size:11px;color:var(--muted);margin-bottom:16px}
-.q-mode-tabs{display:flex;gap:6px;margin-bottom:14px}
-.q-mode-tab{flex:1;padding:7px;border-radius:var(--r-sm);border:1px solid var(--line);background:var(--surface);font-size:11px;font-weight:600;font-family:inherit;color:var(--muted);cursor:pointer;text-align:center}
-.q-mode-tab.active{background:var(--school);color:#fff;border-color:var(--school)}
 .q-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:20px;margin-bottom:14px}
 .q-label{font-size:10px;font-weight:700;color:var(--hint);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
 .q-word-display{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--school-l);border-radius:var(--r-sm);margin-bottom:10px}
@@ -88,52 +83,62 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .q-opt.correct{background:var(--teal-l);border-color:var(--teal);color:var(--teal-d);font-weight:700}
 .q-opt.wrong{background:var(--rose-l);border-color:var(--rose);color:var(--rose-d);font-weight:700}
 .q-opt:disabled{cursor:default}
-/* Type input */
 .q-type-input{width:100%;border:2px solid var(--school);border-radius:var(--r-sm);padding:12px;font-size:16px;font-family:'Courier New',monospace;direction:ltr;text-align:left;background:var(--bg);color:var(--ink);outline:none;margin-bottom:10px;letter-spacing:1px}
 .q-type-input.correct{border-color:var(--teal);background:var(--teal-l);color:var(--teal-d)}
 .q-type-input.wrong{border-color:var(--rose);background:var(--rose-l);color:var(--rose-d)}
 .q-type-submit{width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;margin-bottom:10px}
-/* Match game */
 .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
 .match-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:12px 8px;font-size:12px;font-weight:600;cursor:pointer;text-align:center;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .match-card.selected{border-color:var(--school);background:var(--school-l);color:var(--school)}
 .match-card.matched{border-color:var(--teal);background:var(--teal-l);color:var(--teal-d);cursor:default}
 .match-card.wrong-flash{border-color:var(--rose);background:var(--rose-l)}
-.match-card.en{direction:ltr}
-.match-card.fa{direction:rtl}
+.match-card.en{direction:ltr}.match-card.fa{direction:rtl}
 .q-feedback{border-radius:var(--r-md);padding:11px 14px;font-size:13px;font-weight:600;margin-bottom:10px;display:none}
 .q-feedback.show{display:block}
-.q-feedback.ok{background:var(--teal-l);color:var(--teal-d)}
-.q-feedback.no{background:var(--rose-l);color:var(--rose-d)}
+.q-feedback.ok{background:var(--teal-l);color:var(--teal-d)}.q-feedback.no{background:var(--rose-l);color:var(--rose-d)}
 .q-next{width:100%;background:var(--ink);color:#fff;border:none;border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;display:none}
 .q-next.show{display:block}
 .q-done{text-align:center;padding:40px 16px}
 .q-done-ring{width:88px;height:88px;border-radius:50%;background:var(--school-l);margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:40px}
-/* Stats */
 .stats-sb{padding:16px 16px 100px}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .stat-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 12px}
 .stat-tile.dark{background:var(--school);border-color:var(--school)}.st-num{font-size:30px;font-weight:900;color:var(--ink);line-height:1}
 .stat-tile.dark .st-num{color:#fff}.st-lbl{font-size:11px;color:var(--muted);margin-top:4px}.stat-tile.dark .st-lbl{color:rgba(255,255,255,.5)}
 .reset-btn{width:100%;margin-top:14px;background:none;border:1.5px solid var(--rose);border-radius:var(--r-md);padding:12px;font-size:13px;font-weight:700;font-family:inherit;color:var(--rose);cursor:pointer}
-/* Leaderboard */
 .lb-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .lb-rank{width:28px;height:28px;border-radius:50%;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
-.lb-rank.gold{background:#FDF3E3;color:#7A5520}
-.lb-rank.silver{background:#F0F0F0;color:#555}
-.lb-rank.bronze{background:#FFF0E5;color:#8B4513}
-.lb-name{flex:1;font-size:13px;font-weight:600;color:var(--ink)}
-.lb-score{font-size:13px;font-weight:700;color:var(--school)}
-/* Weekly report */
+.lb-rank.gold{background:#FDF3E3;color:#7A5520}.lb-rank.silver{background:#F0F0F0;color:#555}.lb-rank.bronze{background:#FFF0E5;color:#8B4513}
+.lb-name{flex:1;font-size:13px;font-weight:600;color:var(--ink)}.lb-score{font-size:13px;font-weight:700;color:var(--school)}
 .week-bar{display:flex;align-items:flex-end;gap:6px;height:80px;margin-bottom:8px}
 .week-day{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
-.week-bar-fill{width:100%;background:var(--school-l);border-radius:4px 4px 0 0;transition:height .3s;min-height:4px}
+.week-bar-fill{width:100%;background:var(--school-l);border-radius:4px 4px 0 0;min-height:4px}
 .week-bar-fill.active{background:var(--school)}
 .week-day-label{font-size:9px;color:var(--muted);font-weight:600}
+/* Teacher Panel */
+.teacher-panel{padding:16px 16px 100px}
+.teacher-header{background:var(--school);border-radius:var(--r-xl);padding:20px;margin-bottom:16px;color:#fff}
+.teacher-header h2{font-size:18px;font-weight:900;margin-bottom:4px}
+.teacher-header p{font-size:11px;color:rgba(255,255,255,.6)}
+.teacher-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.teacher-stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;text-align:center}
+.teacher-stat-n{font-size:28px;font-weight:900;color:var(--school)}
+.teacher-stat-l{font-size:11px;color:var(--muted);margin-top:4px}
+.student-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.student-avatar{width:36px;height:36px;border-radius:50%;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.student-info{flex:1}.student-name{font-size:13px;font-weight:600;color:var(--ink)}.student-id{font-size:10px;color:var(--muted)}
+.student-score{font-size:13px;font-weight:700;color:var(--school)}
+.announce-form{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;margin-bottom:16px}
+.announce-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;font-size:14px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;min-height:80px;resize:none;margin-bottom:10px}
+.announce-input:focus{border-color:var(--school)}
+.pack-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;margin-bottom:10px}
+.pack-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.pack-meta{font-size:11px;color:var(--muted);margin-bottom:10px}
+.pack-units{display:flex;flex-wrap:wrap;gap:6px}
 /* Modals */
 .modal-bg{display:none;position:fixed;inset:0;z-index:100;background:rgba(18,16,42,.65);align-items:flex-end;justify-content:center}
 .modal-bg.show{display:flex}
-.modal-box{background:var(--surface);border-radius:var(--r-xl) var(--r-xl) 0 0;padding:22px 18px max(22px,env(safe-area-inset-bottom));width:100%;max-height:90dvh;overflow-y:auto}
+.modal-box{background:var(--surface);border-radius:var(--r-xl) var(--r-xl) 0 0;padding:22px 18px max(22px,env(safe-area-inset-bottom));width:100%;max-height:92dvh;overflow-y:auto}
 .modal-handle{width:36px;height:4px;background:var(--line);border-radius:4px;margin:0 auto 18px}
 .modal-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:5px}
 .modal-sub{font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.6}
@@ -147,17 +152,16 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 .json-ta:focus{border-color:var(--school)}
 .info-note{font-size:11px;background:var(--teal-l);color:var(--teal-d);padding:9px 11px;border-radius:var(--r-sm);margin-bottom:10px;line-height:1.6}
 .teacher-login-btn{background:none;border:1px solid var(--line);border-radius:var(--r-md);padding:11px;font-size:12px;font-weight:600;font-family:inherit;color:var(--muted);cursor:pointer;width:100%;margin-top:8px}
-/* Login */
+.primary-btn{width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;margin-bottom:8px}
 .login-screen{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
 .login-logo{width:68px;height:68px;border-radius:18px;background:var(--school);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:900;color:#fff;margin-bottom:18px}
 .login-title{font-size:20px;font-weight:900;color:var(--ink);margin-bottom:5px;text-align:center}
 .login-sub{font-size:12px;color:var(--muted);margin-bottom:28px;text-align:center;line-height:1.6}
 .login-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:22px;width:100%;max-width:340px}
 .login-label{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;display:block}
-.login-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:12px}
+.login-input{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);padding:12px;font-size:15px;font-family:inherit;color:var(--ink);background:var(--bg);outline:none;margin-bottom:10px}
 .login-input:focus{border-color:var(--school)}
 .login-btn{width:100%;background:var(--school);color:#fff;border:none;border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
-/* Toast & Loading */
 .toast{position:fixed;bottom:80px;left:50%;z-index:200;transform:translateX(-50%) translateY(12px);background:var(--ink2);color:#fff;padding:9px 20px;border-radius:30px;font-size:12px;font-weight:500;opacity:0;transition:all .25s;white-space:nowrap;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .loading-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);z-index:200;transform:scaleX(0);transform-origin:right;transition:transform .3s}
@@ -172,10 +176,12 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 <div id="login-screen" class="login-screen">
   <div class="login-logo">پ</div>
   <div class="login-title">واژه‌یار پیشرو</div>
-  <div class="login-sub">مدرسه غیرانتفاعی پیشرو<br>نام کلاس یا نام خود را وارد کنید</div>
+  <div class="login-sub">مدرسه غیرانتفاعی پیشرو<br>نام و شماره دانش‌آموزی خود را وارد کنید</div>
   <div class="login-box">
-    <label class="login-label">نام کلاس یا نام شما</label>
-    <input class="login-input" type="text" id="student-name" placeholder="مثلاً: هفتم الف">
+    <label class="login-label">نام و نام خانوادگی</label>
+    <input class="login-input" type="text" id="student-name" placeholder="مثلاً: علی محمدی">
+    <label class="login-label">شماره دانش‌آموزی</label>
+    <input class="login-input" type="text" id="student-sid" placeholder="مثلاً: ۱۴۰۲۰۱">
     <button class="login-btn" id="login-btn">ورود به اپ</button>
   </div>
 </div>
@@ -206,20 +212,17 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title">افزودن کارت برای همه دانش‌آموزان</div>
-    <div class="modal-sub">این کارت در سرور ذخیره می‌شه و همه می‌بینن.</div>
     <div class="lang-row">
       <span style="font-size:11px;color:var(--muted);white-space:nowrap">یونیت:</span>
       <select class="lang-sel" id="unit-select">
-        <option value="1">یونیت ۱ — Nice to meet you</option><option value="2">یونیت ۲ — In class</option>
-        <option value="3">یونیت ۳ — In my family</option><option value="4">یونیت ۴ — Daily life</option>
-        <option value="5">یونیت ۵ — Free time</option><option value="6">یونیت ۶ — My neighborhood</option>
-        <option value="7">یونیت ۷ — Food</option><option value="8">یونیت ۸ — Clothes</option>
-        <option value="9">یونیت ۹ — My interests</option><option value="10">یونیت ۱۰ — Busy lives</option>
-        <option value="11">یونیت ۱۱ — Looking back</option><option value="12">یونیت ۱۲ — Fabulous food</option>
+        <option value="1">یونیت ۱</option><option value="2">یونیت ۲</option><option value="3">یونیت ۳</option>
+        <option value="4">یونیت ۴</option><option value="5">یونیت ۵</option><option value="6">یونیت ۶</option>
+        <option value="7">یونیت ۷</option><option value="8">یونیت ۸</option><option value="9">یونیت ۹</option>
+        <option value="10">یونیت ۱۰</option><option value="11">یونیت ۱۱</option><option value="12">یونیت ۱۲</option>
       </select>
     </div>
     <textarea class="json-ta" id="teacher-json" placeholder='{ "word": "introduce", ... }' style="min-height:100px"></textarea>
-    <button class="modal-btn" id="btn-add-teacher-card" style="margin-top:8px">افزودن به کارت‌های مدرسه</button>
+    <button class="modal-btn" id="btn-add-teacher-card" style="margin-top:8px">افزودن کارت</button>
     <button class="modal-cancel" id="btn-cancel-add">انصراف</button>
   </div>
 </div>
@@ -239,6 +242,12 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
 <!-- HOME -->
 <div class="screen" id="s-home">
   <div class="sb">
+    <!-- Announcement -->
+    <div class="announce-box" id="announce-box">
+      <button class="announce-close" id="announce-close">×</button>
+      <span class="announce-icon">📢</span>
+      <span class="announce-text" id="announce-text"></span>
+    </div>
     <div class="hero-banner">
       <div class="hero-eyebrow">Touchstone 1 — مدرسه پیشرو</div>
       <div class="hero-title">واژه‌یار هوشمند</div>
@@ -277,7 +286,6 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
   <div class="quiz-wrap">
     <div class="q-prog-track"><div class="q-prog-fill" id="q-prog" style="width:0%"></div></div>
     <div class="q-counter" id="q-counter">سوال ۱ از ۱</div>
-    <!-- MC mode -->
     <div id="mc-mode">
       <div class="q-card">
         <div class="q-label">جای خالی را پر کن</div>
@@ -289,7 +297,6 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
         <button class="q-opt" id="qo2"></button><button class="q-opt" id="qo3"></button>
       </div>
     </div>
-    <!-- Type mode -->
     <div id="type-mode" style="display:none">
       <div class="q-card">
         <div class="q-label">کلمه را تایپ کن</div>
@@ -299,7 +306,6 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
       <input class="q-type-input" type="text" id="type-input" placeholder="جواب را اینجا بنویس...">
       <button class="q-type-submit" id="type-submit">بررسی کن ✓</button>
     </div>
-    <!-- Match mode -->
     <div id="match-mode" style="display:none">
       <div class="q-card" style="margin-bottom:10px">
         <div class="q-label">کلمه را با معنی مچ کن</div>
@@ -330,13 +336,11 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
       <div class="stat-tile"><div class="st-num" id="st-ok">0</div><div class="st-lbl">جواب درست</div></div>
       <div class="stat-tile"><div class="st-num" id="st-pct">—</div><div class="st-lbl">درصد موفقیت</div></div>
     </div>
-    <!-- Weekly chart -->
     <div class="section-head" style="margin-bottom:10px">فعالیت هفته</div>
     <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;margin-bottom:14px">
       <div class="week-bar" id="week-bar"></div>
       <div style="display:flex;gap:6px" id="week-labels"></div>
     </div>
-    <!-- SRS stats -->
     <div class="section-head" style="margin-bottom:10px">وضعیت کارت‌ها</div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
       <div style="background:#E8F4FD;border-radius:var(--r-sm);padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:#0A5C8C" id="srs-new">0</div><div style="font-size:9px;color:#0A5C8C">جدید</div></div>
@@ -344,12 +348,63 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
       <div style="background:var(--teal-l);border-radius:var(--r-sm);padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:var(--teal-d)" id="srs-review">0</div><div style="font-size:9px;color:var(--teal-d)">مرور</div></div>
       <div style="background:#EAF3DE;border-radius:var(--r-sm);padding:10px;text-align:center"><div style="font-size:18px;font-weight:700;color:#27500A" id="srs-mastered">0</div><div style="font-size:9px;color:#27500A">تسلط</div></div>
     </div>
-    <!-- Leaderboard -->
     <div class="section-head" style="margin-bottom:10px">رتبه‌بندی کلاس</div>
     <div id="leaderboard"></div>
     <div class="section-head" style="margin-bottom:10px;margin-top:14px">پیشرفت یونیت‌ها</div>
     <div id="unit-stats"></div>
     <button class="reset-btn" id="btn-reset-stats">پاک کردن آمار تمرین</button>
+  </div>
+</div>
+ 
+<!-- TEACHER PANEL -->
+<div class="screen" id="s-teacher">
+  <div class="teacher-panel">
+    <div class="teacher-header">
+      <h2>پنل مدیریت معلم</h2>
+      <p>گزارش کلاس، پیام‌رسانی و مدیریت محتوا</p>
+    </div>
+    <!-- Stats -->
+    <div class="section-head" style="margin-bottom:10px">آمار کلاس</div>
+    <div class="teacher-grid">
+      <div class="teacher-stat"><div class="teacher-stat-n" id="t-students">0</div><div class="teacher-stat-l">دانش‌آموز</div></div>
+      <div class="teacher-stat"><div class="teacher-stat-n" id="t-sessions">0</div><div class="teacher-stat-l">جلسه تمرین</div></div>
+      <div class="teacher-stat"><div class="teacher-stat-n" id="t-avg">—</div><div class="teacher-stat-l">میانگین موفقیت</div></div>
+      <div class="teacher-stat"><div class="teacher-stat-n" id="t-cards">0</div><div class="teacher-stat-l">کارت فعال</div></div>
+    </div>
+    <!-- Announcement -->
+    <div class="section-head" style="margin-bottom:10px">ارسال پیام به دانش‌آموزان</div>
+    <div class="announce-form">
+      <textarea class="announce-input" id="announce-input" placeholder="پیام خود را بنویسید... (مثلاً: فردا امتحان یونیت ۳ داریم)"></textarea>
+      <button class="primary-btn" id="btn-send-announce">📢 ارسال پیام</button>
+    </div>
+    <!-- Packs -->
+    <div class="section-head" style="margin-bottom:10px">
+      <span>پک‌های درسی</span>
+      <button class="see-all" id="btn-add-pack">+ پک جدید</button>
+    </div>
+    <div id="packs-list"></div>
+    <!-- Add card -->
+    <div class="section-head" style="margin-bottom:10px;margin-top:14px">افزودن کارت جدید</div>
+    <button class="primary-btn" id="btn-open-add-card">+ افزودن کارت برای همه</button>
+    <!-- Students list -->
+    <div class="section-head" style="margin-bottom:10px;margin-top:14px">لیست دانش‌آموزان</div>
+    <div id="students-list"></div>
+    <button class="teacher-login-btn" id="btn-exit-teacher" style="margin-top:14px;color:var(--rose);border-color:var(--rose)">خروج از پنل معلم</button>
+  </div>
+</div>
+ 
+<!-- Pack Modal -->
+<div class="modal-bg" id="modal-pack">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">پک درسی جدید</div>
+    <div class="modal-sub">یک مجموعه از یونیت‌ها برای تمرین گروهی</div>
+    <input class="modal-input" type="text" id="pack-name" placeholder="اسم پک (مثلاً: امتحان میان‌ترم)">
+    <div class="modal-sub" style="margin-top:8px">یونیت‌های مورد نظر را انتخاب کنید:</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px" id="pack-units">
+    </div>
+    <button class="modal-btn" id="btn-save-pack">ذخیره پک</button>
+    <button class="modal-cancel" id="btn-cancel-pack">انصراف</button>
   </div>
 </div>
  
@@ -363,24 +418,29 @@ body{font-family:'Vazirmatn',system-ui,sans-serif;background:var(--bg);color:var
   <button class="ntab" id="nt-stats">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span>آمار</span>
   </button>
+  <button class="ntab" id="nt-teacher" style="display:none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>معلم</span>
+  </button>
 </nav>
  
 <script>
 var SB='https://akmwnlmwfouunwmdnbbb.supabase.co';
 var SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFrbXdubG13Zm91dW53bWRuYmJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxNDI0NTQsImV4cCI6MjA5NzcxODQ1NH0.Kqts_Xq03Wtc3wV-jNhLJnZm86RF_pu-AIOvYpbGJAg';
-var API=SB+'/rest/v1/cards';
+var API=SB+'/rest/v1/';
 var H={'apikey':SK,'Authorization':'Bearer '+SK,'Content-Type':'application/json','Prefer':'return=representation'};
 var UNITS={1:'Nice to meet you',2:'In class',3:'In my family',4:'Daily life',5:'Free time',6:'My neighborhood',7:'Food',8:'Clothes',9:'My interests',10:'Busy lives',11:'Looking back',12:'Fabulous food'};
 var DAYS=['ش','ی','د','س','چ','پ','ج'];
  
-// State
-var TC=[];
-var ST=JSON.parse(localStorage.getItem('py_s4')||'{"p":0,"c":0,"units":{},"srs":{},"weekly":{},"name":""}');
-var curScreen='home',prevScreen='home',activeUnit=0,OCD=null;
+var TC=[],curScreen='home',prevScreen='home',activeUnit=0,OCD=null;
 var qPool=[],qIdx=0,qAns=false,qSes=0,qMode='mc';
 var matchSelected=null,matchPairs=[],matchMatched=0;
+var isTeacher=false;
+var currentStudent={name:'',sid:''};
+var ST=JSON.parse(localStorage.getItem('py_s5')||'{"p":0,"c":0,"units":{},"srs":{},"weekly":{}}');
+var packs=JSON.parse(localStorage.getItem('py_packs')||'[]');
+var selectedPackUnits=[];
  
-function saveL(){localStorage.setItem('py_s4',JSON.stringify(ST));}
+function saveL(){localStorage.setItem('py_s5',JSON.stringify(ST));}
 function ld(on){document.getElementById('loading-bar').classList.toggle('show',on);}
 function today(){return new Date().toISOString().slice(0,10);}
  
@@ -388,65 +448,49 @@ function today(){return new Date().toISOString().slice(0,10);}
 function getSRS(id){return ST.srs[id]||{level:0,due:today(),correct:0,wrong:0};}
 function updateSRS(id,ok){
   var s=getSRS(id);
-  if(ok){
-    s.correct++;
-    s.level=Math.min(s.level+1,4);
-    var days=[1,3,7,14,30];
-    var d=new Date();d.setDate(d.getDate()+days[s.level-1]||1);
-    s.due=d.toISOString().slice(0,10);
-  } else {
-    s.wrong++;
-    s.level=Math.max(s.level-1,0);
-    s.due=today();
-  }
+  if(ok){s.correct++;s.level=Math.min(s.level+1,4);var days=[1,3,7,14,30];var d=new Date();d.setDate(d.getDate()+(days[s.level-1]||1));s.due=d.toISOString().slice(0,10);}
+  else{s.wrong++;s.level=Math.max(s.level-1,0);s.due=today();}
   ST.srs[id]=s;saveL();
 }
 function getDueCards(){return TC.filter(function(c){var s=getSRS(c.id);return s.due<=today();});}
 function getSRSLabel(id){
   var s=getSRS(id);
-  if(s.level===0)return {label:'جدید',cls:'srs-new'};
-  if(s.level<=1)return {label:'یادگیری',cls:'srs-learning'};
-  if(s.level<=3)return {label:'مرور',cls:'srs-review'};
-  return {label:'تسلط',cls:'srs-mastered'};
+  if(s.level===0)return{label:'جدید',cls:'srs-new'};
+  if(s.level<=1)return{label:'یادگیری',cls:'srs-learning'};
+  if(s.level<=3)return{label:'مرور',cls:'srs-review'};
+  return{label:'تسلط',cls:'srs-mastered'};
 }
- 
-// ── Weekly tracking ──
-function trackToday(){
-  var t=today();
-  if(!ST.weekly[t])ST.weekly[t]=0;
-  ST.weekly[t]++;saveL();
-}
+function trackToday(){var t=today();if(!ST.weekly[t])ST.weekly[t]=0;ST.weekly[t]++;saveL();}
  
 // ── Auth ──
-async function hashPass(p){
-  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p+'pishro_salt'));
-  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');
-}
+async function hashPass(p){var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p+'pishro_salt'));return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0');}).join('');}
 function getHash(){return localStorage.getItem('py_th');}
  
 // ── Speech ──
 function speakWord(word){
   if(!word)return;
-  try{
-    var audio=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&q='+encodeURIComponent(word)+'&tl=en&client=tw-ob');
-    audio.play().catch(function(){fallbackSpeak(word);});
-  }catch(e){fallbackSpeak(word);}
+  try{var a=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&q='+encodeURIComponent(word)+'&tl=en&client=tw-ob');a.play().catch(function(){fbSpeak(word);});}
+  catch(e){fbSpeak(word);}
 }
-function fallbackSpeak(word){
+function fbSpeak(word){
   if(!window.speechSynthesis)return;
   window.speechSynthesis.cancel();
   var u=new SpeechSynthesisUtterance(word);u.lang='en-US';u.rate=0.85;
-  var voices=window.speechSynthesis.getVoices();
-  var v=voices.find(function(x){return x.lang.startsWith('en');});
-  if(v)u.voice=v;
-  window.speechSynthesis.speak(u);
+  var v=window.speechSynthesis.getVoices().find(function(x){return x.lang.startsWith('en');});
+  if(v)u.voice=v;window.speechSynthesis.speak(u);
 }
 if(window.speechSynthesis){window.speechSynthesis.getVoices();window.speechSynthesis.onvoiceschanged=function(){window.speechSynthesis.getVoices();};}
+ 
+// ── Supabase helpers ──
+function sbGet(table,query){return fetch(API+table+'?'+query,{headers:H}).then(function(r){return r.json();});}
+function sbPost(table,data){return fetch(API+table,{method:'POST',headers:H,body:JSON.stringify(data)});}
+function sbPatch(table,query,data){return fetch(API+table+'?'+query,{method:'PATCH',headers:Object.assign({},H,{'Prefer':'return=minimal'}),body:JSON.stringify(data)});}
  
 // ── Events ──
 document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('login-btn').addEventListener('click',studentLogin);
-  document.getElementById('student-name').addEventListener('keydown',function(e){if(e.key==='Enter')studentLogin();});
+  document.getElementById('student-name').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('student-sid').focus();});
+  document.getElementById('student-sid').addEventListener('keydown',function(e){if(e.key==='Enter')studentLogin();});
   document.getElementById('btn-teacher-login').addEventListener('click',openTeacherLogin);
   document.getElementById('btn-set-pass').addEventListener('click',setNewPass);
   document.getElementById('btn-cancel-set').addEventListener('click',function(){closeModal('modal-set-pass');});
@@ -454,50 +498,65 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('btn-cancel-login').addEventListener('click',function(){closeModal('modal-login');});
   document.getElementById('btn-add-teacher-card').addEventListener('click',addTeacherCard);
   document.getElementById('btn-cancel-add').addEventListener('click',function(){closeModal('modal-teacher-add');});
+  document.getElementById('btn-open-add-card').addEventListener('click',function(){openModal('modal-teacher-add');});
+  document.getElementById('announce-close').addEventListener('click',function(){document.getElementById('announce-box').style.display='none';});
   document.getElementById('nt-home').addEventListener('click',function(){goTab('home');});
   document.getElementById('nt-quiz').addEventListener('click',function(){startQuizMode('mc');});
   document.getElementById('nt-stats').addEventListener('click',function(){goTab('stats');});
+  document.getElementById('nt-teacher').addEventListener('click',function(){goTab('teacher');});
   document.getElementById('back-btn').addEventListener('click',goBack);
   document.getElementById('btn-see-all').addEventListener('click',showAllCards);
   document.getElementById('btn-reset-stats').addEventListener('click',resetStats);
-  // Quiz modes
   document.getElementById('btn-quiz-mc').addEventListener('click',function(){startQuizMode('mc');});
   document.getElementById('btn-quiz-type').addEventListener('click',function(){startQuizMode('type');});
   document.getElementById('btn-quiz-match').addEventListener('click',function(){startMatchGame();});
   document.getElementById('btn-quiz-srs').addEventListener('click',function(){startSRSQuiz();});
-  // MC buttons
   document.getElementById('qo0').addEventListener('click',function(){pickOpt(0);});
   document.getElementById('qo1').addEventListener('click',function(){pickOpt(1);});
   document.getElementById('qo2').addEventListener('click',function(){pickOpt(2);});
   document.getElementById('qo3').addEventListener('click',function(){pickOpt(3);});
   document.getElementById('q-next').addEventListener('click',nextQ);
   document.getElementById('q-sound').addEventListener('click',function(){if(qPool[qIdx])speakWord(qPool[qIdx].word);});
-  // Type mode
   document.getElementById('type-submit').addEventListener('click',checkTypeAnswer);
   document.getElementById('type-input').addEventListener('keydown',function(e){if(e.key==='Enter')checkTypeAnswer();});
   document.getElementById('type-sound-btn').addEventListener('click',function(){if(qPool[qIdx])speakWord(qPool[qIdx].word);});
-  // Done
   document.getElementById('q-done-home').addEventListener('click',function(){goTab('home');});
   document.getElementById('q-done-retry').addEventListener('click',function(){qPool.sort(function(){return Math.random()-.5;});qIdx=0;qAns=false;qSes=0;renderQ();});
+  // Teacher panel
+  document.getElementById('btn-send-announce').addEventListener('click',sendAnnouncement);
+  document.getElementById('btn-add-pack').addEventListener('click',openPackModal);
+  document.getElementById('btn-save-pack').addEventListener('click',savePack);
+  document.getElementById('btn-cancel-pack').addEventListener('click',function(){closeModal('modal-pack');});
+  document.getElementById('btn-exit-teacher').addEventListener('click',function(){isTeacher=false;document.getElementById('nt-teacher').style.display='none';goTab('home');});
   // Check saved
-  var saved=localStorage.getItem('py_student');
-  if(saved){showApp(saved);fetchTC();}
+  var sn=localStorage.getItem('py_student_name');var ss=localStorage.getItem('py_student_sid');
+  if(sn&&ss){currentStudent={name:sn,sid:ss};showApp();}
 });
  
+// ── Student Login ──
 function studentLogin(){
   var name=document.getElementById('student-name').value.trim();
+  var sid=document.getElementById('student-sid').value.trim();
   if(!name||name.length<2){toast('لطفاً نام خود را وارد کنید');return;}
-  localStorage.setItem('py_student',name);
-  ST.name=name;saveL();
-  showApp(name);fetchTC();
+  if(!sid||sid.length<2){toast('لطفاً شماره دانش‌آموزی را وارد کنید');return;}
+  localStorage.setItem('py_student_name',name);localStorage.setItem('py_student_sid',sid);
+  currentStudent={name:name,sid:sid};
+  // ثبت در Supabase
+  sbPost('students',{name:name,student_id:sid}).then(function(){}).catch(function(){});
+  showApp();
 }
-function showApp(name){
+ 
+function showApp(){
   document.getElementById('login-screen').style.display='none';
   document.getElementById('topbar').style.display='flex';
   document.getElementById('bottomnav').style.display='flex';
-  document.getElementById('student-label').textContent=name;
+  document.getElementById('student-label').textContent=currentStudent.name;
   showScreen('home');
+  fetchTC();
+  loadAnnouncement();
 }
+ 
+// ── Teacher Auth ──
 function openTeacherLogin(){
   if(!getHash()){openModal('modal-set-pass');setTimeout(function(){document.getElementById('np1').focus();},200);}
   else{openModal('modal-login');setTimeout(function(){document.getElementById('pass-input').focus();},200);}
@@ -508,38 +567,145 @@ async function setNewPass(){
   if(p1!==p2){toast('رمزها یکسان نیستند');return;}
   localStorage.setItem('py_th',await hashPass(p1));
   closeModal('modal-set-pass');document.getElementById('np1').value='';document.getElementById('np2').value='';
-  openModal('modal-teacher-add');toast('رمز ذخیره شد! خوش آمدید معلم گرامی');
+  enterTeacherMode();
 }
 async function checkPass(){
   var h=await hashPass(document.getElementById('pass-input').value);
-  if(h===getHash()){closeModal('modal-login');document.getElementById('pass-input').value='';openModal('modal-teacher-add');toast('خوش آمدید، معلم گرامی!');}
+  if(h===getHash()){closeModal('modal-login');document.getElementById('pass-input').value='';enterTeacherMode();}
   else toast('رمز اشتباه است');
 }
+function enterTeacherMode(){
+  isTeacher=true;
+  document.getElementById('nt-teacher').style.display='flex';
+  toast('خوش آمدید، معلم گرامی!');
+  goTab('teacher');
+  loadTeacherPanel();
+}
  
-// ── Supabase ──
+// ── Announcement ──
+function loadAnnouncement(){
+  sbGet('announcements','is_active=eq.true&order=created_at.desc&limit=1').then(function(d){
+    if(d&&d.length){
+      var box=document.getElementById('announce-box');
+      document.getElementById('announce-text').textContent=d[0].message;
+      var seen=localStorage.getItem('py_seen_ann');
+      if(seen!==String(d[0].id)){box.style.display='block';localStorage.setItem('py_seen_ann',d[0].id);}
+    }
+  }).catch(function(){});
+}
+function sendAnnouncement(){
+  var msg=document.getElementById('announce-input').value.trim();
+  if(!msg){toast('پیامی وارد کنید');return;}
+  ld(true);
+  // غیرفعال کردن پیام‌های قبلی
+  sbPatch('announcements','is_active=eq.true',{is_active:false}).then(function(){
+    return sbPost('announcements',{message:msg,is_active:true});
+  }).then(function(){
+    document.getElementById('announce-input').value='';
+    toast('پیام برای همه ارسال شد ✓');ld(false);
+  }).catch(function(){toast('خطا در ارسال');ld(false);});
+}
+ 
+// ── Teacher Panel ──
+function loadTeacherPanel(){
+  ld(true);
+  // آمار دانش‌آموزان از Supabase
+  sbGet('students','select=*').then(function(students){
+    document.getElementById('t-students').textContent=students.length;
+    document.getElementById('t-cards').textContent=TC.length;
+    // نمایش لیست دانش‌آموزان
+    var el=document.getElementById('students-list');el.innerHTML='';
+    if(!students.length){el.innerHTML='<div style="color:var(--hint);font-size:12px;padding:10px 0">هنوز دانش‌آموزی وارد نشده</div>';ld(false);return;}
+    students.forEach(function(s,i){
+      var row=document.createElement('div');row.className='student-row';
+      var initial=s.name?s.name[0]:'؟';
+      row.innerHTML='<div class="student-avatar">'+initial+'</div>'
+        +'<div class="student-info"><div class="student-name">'+s.name+'</div><div class="student-id">شماره: '+s.student_id+'</div></div>';
+      el.appendChild(row);
+    });
+    // آمار کلی از student_stats
+    return sbGet('student_stats','select=*');
+  }).then(function(stats){
+    if(!stats)return;
+    var total=stats.length;var correct=stats.filter(function(s){return s.correct;}).length;
+    var avg=total>0?Math.round(correct/total*100):0;
+    document.getElementById('t-sessions').textContent=total;
+    document.getElementById('t-avg').textContent=avg+'%';
+    ld(false);
+  }).catch(function(){ld(false);});
+  renderPacks();
+}
+ 
+// ── Packs ──
+function openPackModal(){
+  var grid=document.getElementById('pack-units');grid.innerHTML='';
+  selectedPackUnits=[];
+  for(var i=1;i<=12;i++){
+    var btn=document.createElement('button');
+    btn.style.cssText='padding:8px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-size:11px;font-weight:600;font-family:inherit;cursor:pointer';
+    btn.textContent='U'+i;btn.dataset.unit=i;
+    btn.addEventListener('click',(function(b){return function(){
+      var u=parseInt(b.dataset.unit);
+      if(selectedPackUnits.includes(u)){selectedPackUnits=selectedPackUnits.filter(function(x){return x!==u;});b.style.background='var(--surface)';b.style.color='var(--ink)';b.style.borderColor='var(--line)';}
+      else{selectedPackUnits.push(u);b.style.background='var(--school)';b.style.color='#fff';b.style.borderColor='var(--school)';}
+    };})(btn));
+    grid.appendChild(btn);
+  }
+  document.getElementById('pack-name').value='';
+  openModal('modal-pack');
+}
+function savePack(){
+  var name=document.getElementById('pack-name').value.trim();
+  if(!name){toast('اسم پک را وارد کنید');return;}
+  if(!selectedPackUnits.length){toast('حداقل یک یونیت انتخاب کنید');return;}
+  packs.push({id:Date.now(),name:name,units:selectedPackUnits.slice().sort()});
+  localStorage.setItem('py_packs',JSON.stringify(packs));
+  closeModal('modal-pack');renderPacks();toast('پک ذخیره شد ✓');
+}
+function renderPacks(){
+  var el=document.getElementById('packs-list');if(!el)return;el.innerHTML='';
+  if(!packs.length){el.innerHTML='<div style="color:var(--hint);font-size:12px;padding:10px 0">هنوز پکی نساختی. پک‌ها مجموعه‌ای از یونیت‌ها هستند.</div>';return;}
+  packs.forEach(function(p,i){
+    var card=document.createElement('div');card.className='pack-card';
+    var unitBadges=p.units.map(function(u){return '<span class="unit-badge" style="margin-left:4px">U'+u+'</span>';}).join('');
+    var cardCount=TC.filter(function(c){return p.units.includes(c.unit_number);}).length;
+    card.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">'
+      +'<div class="pack-title">'+p.name+'</div>'
+      +'<button style="background:none;border:none;cursor:pointer;color:var(--rose);font-size:18px" data-idx="'+i+'">🗑</button></div>'
+      +'<div class="pack-meta">'+cardCount+' کارت</div>'
+      +'<div class="pack-units">'+unitBadges+'</div>'
+      +'<button style="width:100%;margin-top:10px;background:var(--school);color:#fff;border:none;border-radius:var(--r-sm);padding:9px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer" data-pack="'+i+'">تمرین این پک</button>';
+    card.querySelector('[data-idx]').addEventListener('click',function(e){
+      var idx=parseInt(e.target.dataset.idx);packs.splice(idx,1);localStorage.setItem('py_packs',JSON.stringify(packs));renderPacks();
+    });
+    card.querySelector('[data-pack]').addEventListener('click',function(e){
+      var idx=parseInt(e.target.dataset.pack);var pack=packs[idx];
+      var pool=TC.filter(function(c){return pack.units.includes(c.unit_number);});
+      if(!pool.length){toast('کارتی برای این پک وجود ندارد');return;}
+      startQuizMode('mc',pool);
+    });
+    el.appendChild(card);
+  });
+}
+ 
+// ── Fetch Cards ──
 function fetchTC(){
   ld(true);
-  fetch(API+'?is_teacher=eq.true&order=unit_number.asc,created_at.asc',{headers:H})
+  fetch(API+'cards?is_teacher=eq.true&order=unit_number.asc,created_at.asc',{headers:H})
   .then(function(r){return r.json();})
   .then(function(d){
     TC=d.map(function(x){return Object.assign({},x,{synonyms:Array.isArray(x.synonyms)?x.synonyms:[],quiz_options:Array.isArray(x.quiz_options)?x.quiz_options:[]});});
     renderHome();renderUnitFilter();ld(false);
-  })
-  .catch(function(){
-    document.getElementById('empty-home').style.display='';
-    document.getElementById('empty-home').querySelector('.empty-h').textContent='خطا در اتصال';
-    ld(false);
-  });
+  }).catch(function(){document.getElementById('empty-home').style.display='';ld(false);});
 }
+ 
 function addTeacherCard(){
-  var raw=document.getElementById('teacher-json').value.trim();
-  if(!raw){toast('چیزی پیست نشده!');return;}
+  var raw=document.getElementById('teacher-json').value.trim();if(!raw){toast('چیزی پیست نشده!');return;}
   try{
-    var c=JSON.parse(raw.replace(/```json|```/g,'').trim());
-    if(!c.word||!c.translation)throw new Error();
+    var c=JSON.parse(raw.replace(/```json|```/g,'').trim());if(!c.word||!c.translation)throw new Error();
     ld(true);
-    var body=JSON.stringify({word:c.word,language:c.language||'English',translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1});
-    fetch(API,{method:'POST',headers:H,body:body}).then(function(){return fetchTC();}).then(function(){closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';toast('کارت معلم اضافه شد ✓');ld(false);}).catch(function(){toast('خطا در ذخیره');ld(false);});
+    sbPost('cards',{word:c.word,language:c.language||'English',translation:c.translation,pronunciation:c.pronunciation,part_of_speech:c.part_of_speech,definition:c.definition,example1:c.example1,example1_translation:c.example1_translation,example2:c.example2,example2_translation:c.example2_translation,synonyms:c.synonyms||[],quiz_question:c.quiz_question,quiz_answer:c.quiz_answer,quiz_options:c.quiz_options||[],is_teacher:true,unit_number:parseInt(document.getElementById('unit-select').value)||1})
+    .then(function(){return fetchTC();}).then(function(){closeModal('modal-teacher-add');document.getElementById('teacher-json').value='';toast('کارت اضافه شد ✓');ld(false);}).catch(function(){toast('خطا');ld(false);});
   }catch(e){toast('فرمت JSON اشتباه است');}
 }
  
@@ -553,7 +719,7 @@ function renderHome(){
   var filtered=activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;});
   document.getElementById('empty-home').style.display=TC.length?'none':'';
   document.getElementById('sec-teacher').style.display=filtered.length?'':'none';
-  document.getElementById('cards-title').textContent=activeUnit===0?'همه کارت‌ها':'یونیت '+activeUnit+' — '+(UNITS[activeUnit]||'');
+  document.getElementById('cards-title').textContent=activeUnit===0?'همه کارت‌ها':'یونیت '+activeUnit;
   renderCardList(filtered.slice(0,6));
 }
 function renderCardList(list){
@@ -565,13 +731,11 @@ function renderCardList(list){
       +'<div class="card-info"><div class="card-word">'+c.word+'</div><div class="card-trans">'+c.translation+'</div></div>'
       +(c.unit_number?'<span class="unit-badge">U'+c.unit_number+'</span>':'')
       +'<span class="srs-badge '+srs.cls+'">'+srs.label+'</span>';
-    row.addEventListener('click',function(){openCard(c.id);});
-    el.appendChild(row);
+    row.addEventListener('click',function(){openCard(c.id);});el.appendChild(row);
   });
 }
 function showAllCards(){
-  var filtered=activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;});
-  renderCardList(filtered);
+  var filtered=activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;});renderCardList(filtered);
 }
 function renderUnitFilter(){
   var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean).sort(function(a,b){return a-b;});
@@ -579,7 +743,7 @@ function renderUnitFilter(){
   var allBtn=document.createElement('button');allBtn.className='unit-btn'+(activeUnit===0?' active':'');allBtn.textContent='همه';
   allBtn.addEventListener('click',function(){filterUnit(0);});el.appendChild(allBtn);
   units.forEach(function(u){
-    var btn=document.createElement('button');btn.className='unit-btn'+(activeUnit===u?' active':'');btn.textContent='یونیت '+u;
+    var btn=document.createElement('button');btn.className='unit-btn'+(activeUnit===u?' active':'');btn.textContent='U'+u;
     btn.addEventListener('click',function(){filterUnit(u);});el.appendChild(btn);
   });
 }
@@ -594,25 +758,20 @@ function openCard(id){
     '<div class="word-hero" data-l="'+c.word[0].toUpperCase()+'">'
     +'<div class="wh-pos"><span class="unit-badge" style="margin-left:5px">'+(c.unit_number?'U'+c.unit_number:'')+'</span>'
     +'<span class="srs-badge '+srs.cls+'">'+srs.label+'</span></div>'
-    +'<div class="wh-word">'+c.word+'</div>'
-    +'<div class="wh-phon">'+(c.pronunciation||'')+'</div>'
-    +'<div class="wh-trans">'+c.translation+'</div>'
-    +'<div class="wh-def">'+(c.definition||'')+'</div></div>'
+    +'<div class="wh-word">'+c.word+'</div><div class="wh-phon">'+(c.pronunciation||'')+'</div>'
+    +'<div class="wh-trans">'+c.translation+'</div><div class="wh-def">'+(c.definition||'')+'</div></div>'
     +'<div class="info-block"><div class="ib-label">مثال‌ها</div>'
     +'<div class="ex-en">'+c.example1+'</div><div class="ex-fa">'+c.example1_translation+'</div>'
     +'<div class="ex-en" style="margin-top:8px">'+c.example2+'</div><div class="ex-fa">'+c.example2_translation+'</div></div>'
     +syn
-    +'<div class="action-row">'
-    +'<button class="btn-sound" id="detail-sound-btn">🔊 تلفظ</button>'
-    +'<button class="btn-practice" id="detail-practice-btn">تمرین این کارت</button>'
-    +'</div>';
+    +'<div class="action-row"><button class="btn-sound" id="detail-sound-btn">🔊 تلفظ</button><button class="btn-practice" id="detail-practice-btn">تمرین این کارت</button></div>';
   document.getElementById('detail-sound-btn').addEventListener('click',function(){speakWord(OCD.word);});
   document.getElementById('detail-practice-btn').addEventListener('click',function(){startQuizMode('mc',[OCD]);});
   showScreen('detail');
   setTimeout(function(){speakWord(c.word);},600);
 }
  
-// ── Quiz MC ──
+// ── Quiz ──
 function startQuizMode(mode,pool){
   qMode=mode;
   var p=pool||(activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;}));
@@ -628,11 +787,7 @@ function startQuizMode(mode,pool){
   document.getElementById('q-feedback').className='q-feedback';
   renderQ();
 }
-function startSRSQuiz(){
-  var due=getDueCards();
-  if(!due.length){toast('امروز کارتی برای مرور نداری! 🎉');return;}
-  startQuizMode('mc',due);
-}
+function startSRSQuiz(){var due=getDueCards();if(!due.length){toast('امروز کارتی برای مرور نداری! 🎉');return;}startQuizMode('mc',due);}
  
 function renderQ(){
   if(qIdx>=qPool.length){showDone();return;}
@@ -641,234 +796,160 @@ function renderQ(){
   document.getElementById('q-counter').textContent='سوال '+(qIdx+1)+' از '+qPool.length+(c.unit_number?' · U'+c.unit_number:'');
   document.getElementById('q-feedback').className='q-feedback';
   document.getElementById('q-next').className='q-next';
-  if(qMode==='mc'){renderMC(c);}
-  else if(qMode==='type'){renderType(c);}
+  if(qMode==='mc')renderMC(c);else if(qMode==='type')renderType(c);
 }
- 
 function renderMC(c){
   document.getElementById('q-word').textContent=c.word;
-  var qText=(c.quiz_question||'').replace('___','<span class="q-blank">___</span>');
-  document.getElementById('q-sentence').innerHTML=qText;
+  document.getElementById('q-sentence').innerHTML=(c.quiz_question||'').replace('___','<span class="q-blank">___</span>');
   var raw=(c.quiz_options||[]).filter(function(o){return o&&o.trim()&&o!==c.quiz_answer;});
   var def=['never','always','sometimes','nobody'];var di=0;
   while(raw.length<3&&di<def.length){if(def[di]!==c.quiz_answer&&raw.indexOf(def[di])===-1)raw.push(def[di]);di++;}
   var opts=raw.slice(0,3).concat([c.quiz_answer]).sort(function(){return Math.random()-.5;});
-  for(var i=0;i<4;i++){
-    var btn=document.getElementById('qo'+i);
-    if(i<opts.length){btn.textContent=opts[i];btn.setAttribute('data-v',opts[i]);btn.className='q-opt';btn.disabled=false;btn.style.display='block';}
-    else btn.style.display='none';
-  }
+  for(var i=0;i<4;i++){var btn=document.getElementById('qo'+i);if(i<opts.length){btn.textContent=opts[i];btn.setAttribute('data-v',opts[i]);btn.className='q-opt';btn.disabled=false;btn.style.display='block';}else btn.style.display='none';}
 }
- 
 function renderType(c){
   document.getElementById('type-meaning').textContent=c.translation;
-  var qText=(c.quiz_question||'').replace('___','<span class="q-blank">___</span>');
-  document.getElementById('type-sentence').innerHTML=qText;
-  var inp=document.getElementById('type-input');
-  inp.value='';inp.className='q-type-input';inp.disabled=false;
+  document.getElementById('type-sentence').innerHTML=(c.quiz_question||'').replace('___','<span class="q-blank">___</span>');
+  var inp=document.getElementById('type-input');inp.value='';inp.className='q-type-input';inp.disabled=false;
   document.getElementById('type-submit').disabled=false;
   setTimeout(function(){inp.focus();},300);
 }
- 
 function pickOpt(i){
-  if(qAns)return;
-  var c=qPool[qIdx];var btn=document.getElementById('qo'+i);
+  if(qAns)return;var c=qPool[qIdx];var btn=document.getElementById('qo'+i);
   var chosen=btn.getAttribute('data-v');if(!chosen||chosen==='—')return;
   qAns=true;var ok=chosen===c.quiz_answer;
   recordAnswer(c,ok);
   for(var j=0;j<4;j++){var b=document.getElementById('qo'+j);if(b.getAttribute('data-v')===c.quiz_answer)b.classList.add('correct');else if(b===btn&&!ok)b.classList.add('wrong');b.disabled=true;}
   showFeedback(ok,c.quiz_answer);
 }
- 
 function checkTypeAnswer(){
-  if(qAns)return;
-  var c=qPool[qIdx];var inp=document.getElementById('type-input');
+  if(qAns)return;var c=qPool[qIdx];var inp=document.getElementById('type-input');
   var val=inp.value.trim().toLowerCase();var ans=c.quiz_answer.toLowerCase();
   qAns=true;var ok=val===ans||(val.length>2&&ans.includes(val));
-  recordAnswer(c,ok);
-  inp.className='q-type-input '+(ok?'correct':'wrong');inp.disabled=true;
-  document.getElementById('type-submit').disabled=true;
-  showFeedback(ok,c.quiz_answer);
+  recordAnswer(c,ok);inp.className='q-type-input '+(ok?'correct':'wrong');inp.disabled=true;
+  document.getElementById('type-submit').disabled=true;showFeedback(ok,c.quiz_answer);
 }
- 
 function recordAnswer(c,ok){
   ST.p++;if(ok){ST.c++;qSes++;}
   if(c.unit_number){if(!ST.units[c.unit_number])ST.units[c.unit_number]={p:0,c:0};ST.units[c.unit_number].p++;if(ok)ST.units[c.unit_number].c++;}
   updateSRS(c.id,ok);trackToday();saveL();
+  // ذخیره در Supabase
+  sbPost('student_stats',{student_id:currentStudent.sid,card_id:c.id,correct:ok,mode:qMode}).catch(function(){});
 }
- 
 function showFeedback(ok,ans){
-  var fb=document.getElementById('q-feedback');
-  fb.textContent=ok?'آفرین! جواب درسته ✓':'اشتباه — جواب: '+ans;
+  var fb=document.getElementById('q-feedback');fb.textContent=ok?'آفرین! جواب درسته ✓':'اشتباه — جواب: '+ans;
   fb.className='q-feedback show '+(ok?'ok':'no');
-  var nxt=document.getElementById('q-next');
-  nxt.textContent=qIdx+1<qPool.length?'سوال بعدی →':'مشاهده نتیجه';
-  nxt.className='q-next show';
+  var nxt=document.getElementById('q-next');nxt.textContent=qIdx+1<qPool.length?'سوال بعدی →':'مشاهده نتیجه';nxt.className='q-next show';
   if(ok)speakWord(qPool[qIdx]?qPool[qIdx].word:'');
 }
- 
 function nextQ(){qIdx++;renderQ();}
- 
-function showDone(){
-  var pct=Math.round(qSes/qPool.length*100);
-  document.getElementById('mc-mode').style.display='none';
-  document.getElementById('type-mode').style.display='none';
-  document.getElementById('match-mode').style.display='none';
-  document.getElementById('q-feedback').className='q-feedback';
-  document.getElementById('q-next').className='q-next';
-  document.getElementById('q-done').style.display='block';
-  document.getElementById('q-done-emoji').textContent=pct>=70?'🎉':'💪';
-  document.getElementById('q-done-h').textContent=pct>=70?'آفرین!':'ادامه بده!';
-  document.getElementById('q-done-score').textContent=pct+'%';
-  document.getElementById('q-done-sub').textContent=qSes+' از '+qPool.length+' درست';
-  // save to leaderboard
-  saveLeaderboard(pct);
-}
  
 // ── Match Game ──
 function startMatchGame(){
   var pool=activeUnit===0?TC:TC.filter(function(c){return c.unit_number===activeUnit;});
   if(pool.length<4){toast('حداقل ۴ کارت نیاز است');return;}
   showScreen('quiz');
-  document.getElementById('mc-mode').style.display='none';
-  document.getElementById('type-mode').style.display='none';
-  document.getElementById('match-mode').style.display='';
-  document.getElementById('q-done').style.display='none';
-  document.getElementById('q-feedback').className='q-feedback';
-  document.getElementById('q-next').className='q-next';
-  document.getElementById('q-prog').style.width='0%';
-  document.getElementById('q-counter').textContent='کلمه را با معنیش مچ کن';
+  document.getElementById('mc-mode').style.display='none';document.getElementById('type-mode').style.display='none';
+  document.getElementById('match-mode').style.display='';document.getElementById('q-done').style.display='none';
+  document.getElementById('q-feedback').className='q-feedback';document.getElementById('q-next').className='q-next';
+  document.getElementById('q-prog').style.width='0%';document.getElementById('q-counter').textContent='کلمه را با معنیش مچ کن';
   var selected=pool.slice().sort(function(){return Math.random()-.5;}).slice(0,6);
   matchPairs=selected;matchSelected=null;matchMatched=0;
-  var enCards=selected.map(function(c,i){return {id:'en'+i,cid:c.id,text:c.word,type:'en',pair:i};});
-  var faCards=selected.map(function(c,i){return {id:'fa'+i,cid:c.id,text:c.translation,type:'fa',pair:i};});
+  var enCards=selected.map(function(c,i){return{id:'en'+i,text:c.word,type:'en',pair:i};});
+  var faCards=selected.map(function(c,i){return{id:'fa'+i,text:c.translation,type:'fa',pair:i};});
   var all=enCards.concat(faCards).sort(function(){return Math.random()-.5;});
   var grid=document.getElementById('match-grid');grid.innerHTML='';
-  document.getElementById('match-score').textContent='';
+  document.getElementById('match-score').textContent='';qSes=0;
   all.forEach(function(item){
-    var btn=document.createElement('button');
-    btn.className='match-card '+item.type;
-    btn.textContent=item.text;btn.id=item.id;btn.dataset.pair=item.pair;btn.dataset.type=item.type;
-    btn.addEventListener('click',function(){matchClick(btn,item);});
-    grid.appendChild(btn);
+    var btn=document.createElement('button');btn.className='match-card '+item.type;btn.textContent=item.text;btn.id=item.id;btn.dataset.pair=item.pair;btn.dataset.type=item.type;
+    btn.addEventListener('click',function(){matchClick(btn,item);});grid.appendChild(btn);
   });
-  qSes=0;
 }
- 
 function matchClick(btn,item){
   if(btn.classList.contains('matched')||btn.classList.contains('selected'))return;
   if(!matchSelected){matchSelected={btn:btn,item:item};btn.classList.add('selected');}
   else{
     var prev=matchSelected;
     if(prev.item.pair===item.pair&&prev.item.type!==item.type){
-      // match!
-      btn.classList.add('matched');prev.btn.classList.add('matched');
-      matchMatched++;qSes++;trackToday();
-      var pct2=Math.round(matchMatched/matchPairs.length*100);
+      btn.classList.add('matched');prev.btn.classList.add('matched');matchMatched++;qSes++;trackToday();
       document.getElementById('match-score').textContent='✓ '+matchMatched+' از '+matchPairs.length+' مچ شد';
-      document.getElementById('q-prog').style.width=pct2+'%';
+      document.getElementById('q-prog').style.width=Math.round(matchMatched/matchPairs.length*100)+'%';
       ST.p++;ST.c++;saveL();
-      if(matchMatched>=matchPairs.length){
-        setTimeout(function(){
-          document.getElementById('match-mode').style.display='none';
-          document.getElementById('q-done').style.display='block';
-          document.getElementById('q-done-emoji').textContent='🎉';
-          document.getElementById('q-done-h').textContent='عالی!';
-          document.getElementById('q-done-score').textContent='100%';
-          document.getElementById('q-done-sub').textContent='همه '+matchPairs.length+' جفت مچ شد!';
-          saveLeaderboard(100);
-        },600);
-      }
+      if(matchMatched>=matchPairs.length){setTimeout(function(){document.getElementById('match-mode').style.display='none';document.getElementById('q-done').style.display='block';document.getElementById('q-done-emoji').textContent='🎉';document.getElementById('q-done-h').textContent='عالی!';document.getElementById('q-done-score').textContent='100%';document.getElementById('q-done-sub').textContent='همه مچ شد!';},600);}
     } else {
-      // wrong
-      btn.classList.add('wrong-flash');prev.btn.classList.add('wrong-flash');
-      ST.p++;saveL();
+      btn.classList.add('wrong-flash');prev.btn.classList.add('wrong-flash');ST.p++;saveL();
       setTimeout(function(){btn.classList.remove('wrong-flash','selected');prev.btn.classList.remove('wrong-flash','selected');},500);
     }
-    matchSelected=null;
-    if(!btn.classList.contains('matched'))btn.classList.remove('selected');
+    matchSelected=null;if(!btn.classList.contains('matched'))btn.classList.remove('selected');
   }
 }
  
-// ── Leaderboard ──
-function saveLeaderboard(score){
-  var name=ST.name||localStorage.getItem('py_student')||'ناشناس';
-  var key='lb_'+name.replace(/\s/g,'_');
-  var existing=JSON.parse(localStorage.getItem(key)||'{"name":"","best":0,"total":0,"sessions":0}');
-  existing.name=name;existing.total+=score;existing.sessions++;
-  if(score>existing.best)existing.best=score;
-  localStorage.setItem(key,JSON.stringify(existing));
-  // shared leaderboard via localStorage keys
-  var allKeys=[];
-  for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k.startsWith('lb_'))allKeys.push(k);}
-  var lb=allKeys.map(function(k){return JSON.parse(localStorage.getItem(k));}).filter(function(x){return x&&x.name;});
-  localStorage.setItem('py_lb',JSON.stringify(lb));
-}
- 
-function renderLeaderboard(){
-  var lb=JSON.parse(localStorage.getItem('py_lb')||'[]');
-  lb.sort(function(a,b){return b.best-a.best;});
-  var el=document.getElementById('leaderboard');el.innerHTML='';
-  if(!lb.length){el.innerHTML='<div style="color:var(--hint);font-size:12px;padding:10px 0">هنوز کسی تمرین نکرده</div>';return;}
-  lb.slice(0,10).forEach(function(p,i){
-    var rankCls=i===0?'gold':i===1?'silver':i===2?'bronze':'';
-    var row=document.createElement('div');row.className='lb-row';
-    row.innerHTML='<div class="lb-rank '+rankCls+'">'+(i+1)+'</div>'
-      +'<div class="lb-name">'+p.name+'</div>'
-      +'<div class="lb-score">'+p.best+'%</div>';
-    el.appendChild(row);
-  });
+function showDone(){
+  var pct=Math.round(qSes/qPool.length*100);
+  document.getElementById('mc-mode').style.display='none';document.getElementById('type-mode').style.display='none';
+  document.getElementById('match-mode').style.display='none';document.getElementById('q-feedback').className='q-feedback';document.getElementById('q-next').className='q-next';
+  document.getElementById('q-done').style.display='block';
+  document.getElementById('q-done-emoji').textContent=pct>=70?'🎉':'💪';
+  document.getElementById('q-done-h').textContent=pct>=70?'آفرین!':'ادامه بده!';
+  document.getElementById('q-done-score').textContent=pct+'%';
+  document.getElementById('q-done-sub').textContent=qSes+' از '+qPool.length+' درست';
+  // ذخیره در leaderboard
+  var lb=JSON.parse(localStorage.getItem('py_lb5')||'[]');
+  var existing=lb.find(function(x){return x.sid===currentStudent.sid;});
+  if(existing){if(pct>existing.best)existing.best=pct;existing.sessions++;}
+  else lb.push({name:currentStudent.name,sid:currentStudent.sid,best:pct,sessions:1});
+  localStorage.setItem('py_lb5',JSON.stringify(lb));
 }
  
 // ── Stats ──
 function fillStats(){
-  document.getElementById('st-c').textContent=TC.length;
-  document.getElementById('st-p').textContent=ST.p;
-  document.getElementById('st-ok').textContent=ST.c;
-  document.getElementById('st-pct').textContent=ST.p>0?Math.round(ST.c/ST.p*100)+'%':'—';
-  // SRS counts
+  document.getElementById('st-c').textContent=TC.length;document.getElementById('st-p').textContent=ST.p;
+  document.getElementById('st-ok').textContent=ST.c;document.getElementById('st-pct').textContent=ST.p>0?Math.round(ST.c/ST.p*100)+'%':'—';
   var counts={0:0,1:0,2:0,3:0,4:0};
   TC.forEach(function(c){var s=getSRS(c.id);counts[Math.min(s.level,4)]++;});
-  document.getElementById('srs-new').textContent=counts[0];
-  document.getElementById('srs-learning').textContent=counts[1];
-  document.getElementById('srs-review').textContent=counts[2]+counts[3];
-  document.getElementById('srs-mastered').textContent=counts[4];
-  // Weekly chart
-  var wb=document.getElementById('week-bar');var wl=document.getElementById('week-labels');
-  wb.innerHTML='';wl.innerHTML='';
+  document.getElementById('srs-new').textContent=counts[0];document.getElementById('srs-learning').textContent=counts[1];
+  document.getElementById('srs-review').textContent=counts[2]+counts[3];document.getElementById('srs-mastered').textContent=counts[4];
+  var wb=document.getElementById('week-bar');var wl=document.getElementById('week-labels');wb.innerHTML='';wl.innerHTML='';
+  var DAYS=['ش','ی','د','س','چ','پ','ج'];
   var days=[];for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);days.push(d.toISOString().slice(0,10));}
   var max=Math.max.apply(null,days.map(function(d){return ST.weekly[d]||0;}));if(!max)max=1;
-  days.forEach(function(d,i){
-    var val=ST.weekly[d]||0;var pct=Math.round(val/max*100);
-    var isToday=d===today();
+  days.forEach(function(d){
+    var val=ST.weekly[d]||0;var pct=Math.round(val/max*100);var isToday=d===today();
     var dayDiv=document.createElement('div');dayDiv.className='week-day';
     var bar=document.createElement('div');bar.className='week-bar-fill'+(isToday?' active':'');bar.style.height=pct+'%';
-    var lbl=document.createElement('div');lbl.className='week-day-label';lbl.textContent=DAYS[new Date(d).getDay()];
     dayDiv.appendChild(bar);wb.appendChild(dayDiv);
-    var ll=document.createElement('div');ll.className='week-day-label';ll.style.flex='1';ll.style.textAlign='center';ll.textContent=DAYS[new Date(d).getDay()];
-    wl.appendChild(ll);
+    var ll=document.createElement('div');ll.className='week-day-label';ll.style.cssText='flex:1;text-align:center';ll.textContent=DAYS[new Date(d).getDay()];wl.appendChild(ll);
   });
-  // Unit stats
+  var lb=JSON.parse(localStorage.getItem('py_lb5')||'[]');lb.sort(function(a,b){return b.best-a.best;});
+  var lbEl=document.getElementById('leaderboard');lbEl.innerHTML='';
+  if(!lb.length){lbEl.innerHTML='<div style="color:var(--hint);font-size:12px;padding:10px 0">هنوز کسی تمرین نکرده</div>';}
+  else lb.slice(0,10).forEach(function(p,i){
+    var rankCls=i===0?'gold':i===1?'silver':i===2?'bronze':'';
+    var row=document.createElement('div');row.className='lb-row';
+    row.innerHTML='<div class="lb-rank '+rankCls+'">'+(i+1)+'</div><div class="lb-name">'+p.name+'</div><div class="lb-score">'+p.best+'%</div>';
+    lbEl.appendChild(row);
+  });
+  var UNITS={1:'Nice to meet you',2:'In class',3:'In my family',4:'Daily life',5:'Free time',6:'My neighborhood',7:'Food',8:'Clothes',9:'My interests',10:'Busy lives',11:'Looking back',12:'Fabulous food'};
   var units=[...new Set(TC.map(function(c){return c.unit_number;}))].filter(Boolean).sort(function(a,b){return a-b;});
-  var el=document.getElementById('unit-stats');el.innerHTML='';
+  var uEl=document.getElementById('unit-stats');uEl.innerHTML='';
   units.forEach(function(u){
     var s=ST.units&&ST.units[u];var pct2=s&&s.p>0?Math.round(s.c/s.p*100):0;var done=s&&s.p>0;
     var div=document.createElement('div');div.style.cssText='background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px;margin-bottom:7px;display:flex;align-items:center;gap:10px';
-    div.innerHTML='<div style="width:36px;height:36px;border-radius:9px;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">'+u+'</div>'
+    div.innerHTML='<div style="width:34px;height:34px;border-radius:9px;background:var(--school-l);color:var(--school);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">'+u+'</div>'
       +'<div style="flex:1"><div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:3px">'+(UNITS[u]||'یونیت '+u)+'</div>'
       +'<div style="height:4px;background:var(--line);border-radius:4px;overflow:hidden"><div style="height:100%;width:'+pct2+'%;background:'+(pct2>=70?'var(--teal)':'var(--school)')+';border-radius:4px"></div></div></div>'
       +'<div style="font-size:12px;font-weight:700;color:'+(done?(pct2>=70?'var(--teal-d)':'var(--school)'):'var(--hint)')+'">'+(done?pct2+'%':'—')+'</div>';
-    el.appendChild(div);
+    uEl.appendChild(div);
   });
-  renderLeaderboard();
 }
-function resetStats(){if(!confirm('آمار پاک شود؟'))return;ST={p:0,c:0,units:{},srs:{},weekly:{},name:ST.name};saveL();fillStats();toast('آمار پاک شد');}
+function resetStats(){if(!confirm('آمار پاک شود؟'))return;ST={p:0,c:0,units:{},srs:{},weekly:{}};saveL();fillStats();toast('آمار پاک شد');}
  
 // ── Nav ──
 function goTab(n){
   if(n==='stats')fillStats();
+  if(n==='teacher')loadTeacherPanel();
   showScreen(n);
-  ['home','quiz','stats'].forEach(function(x){var el=document.getElementById('nt-'+x);if(el)el.classList.toggle('active',x===n);});
+  ['home','quiz','stats','teacher'].forEach(function(x){var el=document.getElementById('nt-'+x);if(el)el.classList.toggle('active',x===n);});
 }
 function showScreen(n){
   prevScreen=curScreen;curScreen=n;
@@ -880,8 +961,7 @@ function showScreen(n){
 }
 function goBack(){
   var t=prevScreen==='detail'||prevScreen==='quiz'?'home':prevScreen;
-  showScreen(t);
-  ['home','quiz','stats'].forEach(function(x){var el=document.getElementById('nt-'+x);if(el)el.classList.toggle('active',x===curScreen);});
+  showScreen(t);['home','quiz','stats','teacher'].forEach(function(x){var el=document.getElementById('nt-'+x);if(el)el.classList.toggle('active',x===curScreen);});
 }
 function openModal(id){document.getElementById(id).classList.add('show');}
 function closeModal(id){document.getElementById(id).classList.remove('show');}
